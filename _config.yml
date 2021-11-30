@@ -123,7 +123,7 @@ theme_config:
   menu:
     home: / || fa fa-home
     about: /about/ || fa fa-user
-    book: /book/ || fa fa-book
+    书籍: /book/ || fa fa-book
     tags: /tags/ || fa fa-tags
     categories: /categories/ || fa fa-th
     archives: /archives/ || fa fa-archive
@@ -138,7 +138,7 @@ theme_config:
       enable: true
   mermaid:
     enable: true
-    theme: forest
+    theme: default
   social:
     GitHub: https://github.com/alecthw || fab fa-github
   footer:

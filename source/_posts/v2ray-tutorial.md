@@ -9,7 +9,7 @@ categories:
   - 科学上网
 ---
 
-# 前言
+## 前言
 
 当前V2Ray应该算是比较好用的翻墙软件，和ss、ssr相比还是很稳定的，不容易被检测，尤其是加上Nginx和TLS，再做个简单的网站顶在前面，完全伪造成了一个正常的网页访问行为，非常安全可靠，并且具有很强的抗检测能力。
 
@@ -19,13 +19,13 @@ categories:
 - 没耐心的可以去用机场或者一键脚本
 - 这是针对学生和工薪阶层且有科学上网需求的同志，土豪请直接用机场去吧（比如[外号richCloud的rixCloud](https://rixcloud.me/)）
 
-## 参考文档
+### 参考文档
 
 [V2Ray官方文档](https://www.v2ray.com/)
 [V2Ray白话文教程](https://toutyrater.github.io/)
 [MTProxy官方文档](https://github.com/TelegramMessenger/MTProxy)
 
-## 涉及的内容：
+### 涉及的内容
 
 ``` mermaid
 graph LR
@@ -51,7 +51,7 @@ graph LR
 5. v2ray同时提供mtproto服务；
 6. 使用腾讯公益404作为web主页；
 
-## 大致的步骤
+### 大致的步骤
 
 1. 准备服务器；
 2. 申请域名；
@@ -61,9 +61,9 @@ graph LR
 6. 修改Nginx配置支持Https；
 7. 安装启动V2Ray；
 
-# 安装部署
+## 安装部署
 
-## 端口规划
+### 端口规划
 
 |Port |Listen IP|Use            |
 |-----|---------|---------------|
@@ -72,13 +72,13 @@ graph LR
 |10443|127.0.0.1|V2Ray WebSocket|
 |8080 |0.0.0.0  |V2Ray MTProto  |
 
-## 服务器准备
+### 服务器准备
 
 拿来翻墙用的服务器，肯定是本着便宜好用性价比高的原则来选择。[搬瓦工](https://bwh8.net/)毕竟有cn2和cn2 gia线路，价格也算是最便宜的，重点可以支付宝支付，还是选择搬瓦工吧。
 
 逢年过节，搬瓦工都会推出特别款优惠主机，比如双十一、黑五，性价比极高！可以关注下。
 
-### BandwagonHost套餐选择
+#### BandwagonHost套餐选择
 
 搬瓦工套餐很多，相同配置不同价格排序如下：
 `普通线路 < CN2线路 < CN2 GIA线路`
@@ -132,16 +132,16 @@ Link speed: 1 Gigabit
 
 同样KVM架构，延迟比cn2略低，油管4K撑得住。高峰期对网络影响较小。
 
-### 准备软件
+#### 准备软件
 
 1、 [MobaXterm](https://mobaxterm.mobatek.net/): SSH客户端工具，集成了SFTP，安装免费版即可
 2、 [Visual Studio Code](https://code.visualstudio.com/): 编辑器，主要拿来编辑Nginx的配置文件和V2ray的配置文件，支持JSON代码高亮，避免配置文件编写错误
 
-### 配置服务器
+#### 配置服务器
 
 这里以搬瓦工为例。
 
-#### 更换操作系统
+##### 更换操作系统
 
 建议选择CentOS7吧，方便好用。如果是KVM架构的机器，还能选择支持bbr的操作CentOS。这里以CN2 GIA的服务器为例。
 
@@ -156,7 +156,7 @@ Link speed: 1 Gigabit
   ![config_server_3](/images/v2ray-tutorial/config_server_3.JPG)
 - ***记下root密码和端口号备用***
 
-#### 更改服务器密码
+##### 更改服务器密码
 
 使用MobaXterm（或者其他SSH工具），使用刚刚的密码和端口号登录服务器，注意下**端口号**，搬瓦工的SSH不是默认22端口。
 登录后执行`passwd`，然后输入两遍新密码即可
@@ -169,7 +169,7 @@ Retype new password:
 passwd: all authentication tokens updated successfully.
 ```
 
-#### 更新系统
+##### 更新系统
 
 搬瓦工自带的epel总觉得缺包，所以卸载重新安装下。
 同时需要安装下vim、git、zip和unzip。
@@ -181,14 +181,14 @@ yum update -y
 yum install -y vim git zip unzip
 ```
 
-### 申请域名
+#### 申请域名
 
 由于要使用TLS，所以需要一个域名。建议注册`.cc`结尾的域名，便宜并且不需要实名认证。
 传送门：[https://wanwang.aliyun.com/](https://wanwang.aliyun.com/)
 
 ***假设我们申请的域名的是：`example.cc`，编写配置文件时记得替换成自己的。***
 
-#### 配置域名解析
+##### 配置域名解析
 
 域名解析这里配置两条，把`example.cc`和`www.example.cc`都指向服务器的地址。
 ![config_server_4](/images/v2ray-tutorial/config_server_4.JPG)
@@ -199,7 +199,7 @@ yum install -y vim git zip unzip
 ping example.cc
 ```
 
-### 准备web根目录
+#### 准备web根目录
 
 - 新建目录
 
@@ -226,14 +226,14 @@ ping example.cc
   </html>
   ```
 
-### 安装配置Nginx
+#### 安装配置Nginx
 
 Nginx安装后，会用到两份配置：
 
 - 第一份是给第一次申请Let's Encrypt的SSL证书用的（由于此时还没有证书，配置成Https）
 - 第二份是增加了V2Ray反代和Http重定向Https的配置，这个就是一直要用的配置
 
-#### 安装Nginx
+##### 安装Nginx
 
 很简单，一行命令搞定。
 
@@ -241,7 +241,7 @@ Nginx安装后，会用到两份配置：
 yum install -y nginx
 ```
 
-#### 编辑`nginx.conf`
+##### 编辑`nginx.conf`
 
 文件`/etc/nginx/nginx.conf`。
 害怕出错的或者新手请将文件SFTP下载到本地，使用VSCode修改后再SFTP传回服务器。
@@ -292,7 +292,7 @@ http {
 }
 ```
 
-#### 启动Nginx服务
+##### 启动Nginx服务
 
 ``` bash
 systemctl enable nginx
@@ -310,7 +310,7 @@ $ systemctl status nginx
 
 然后打开浏览器访问**www.example.cc**和**example.cc**看是否能打开腾讯公益404页面。能打开说明Nginx已经正确配置，然后就可以开始申请SSL证书了。
 
-### 安装V2Ray
+#### 安装V2Ray
 
 具体参考[V2Ray官方文档](https://www.v2ray.com/chapter_00/install.html#linuxscript)：
 
@@ -324,11 +324,11 @@ bash <(curl -L -s https://install.direct/go.sh)
 systemctl stop v2ray
 ```
 
-### 申请Let's Encrypt的SSL证书
+#### 申请Let's Encrypt的SSL证书
 
 Let's Encrypt有很多ACME客户端的实现。这里选用[acme.sh](https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E)。
 
-#### 安装acme.sh
+##### 安装acme.sh
 
 安装很简单，一个命令：
 
@@ -342,7 +342,7 @@ curl  https://get.acme.sh | sh
 source /root/.bashrc
 ```
 
-#### 申请证书
+##### 申请证书
 
 很简单，一也是命令：
 
@@ -352,7 +352,7 @@ acme.sh --issue -d example.cc -d www.example.cc --webroot /www/root/ -k ec-256
 
 使用ec-256证书，让通信更安全吧。
 
-#### 将证书安装到目录
+##### 将证书安装到目录
 
 这里将证书放到`/etx/v2ray`目录下。
 
@@ -362,7 +362,7 @@ acme.sh --installcert -d example.cc -d www.example.cc --key-file /etc/v2ray/v2ra
 
 这行命令除了将证书放到指定目录下外，还会自动创建crontab定时任务，后面引号里的命令是定时任务更新证书后执行的命令。
 
-### 配置Nginx支持Https访问
+#### 配置Nginx支持Https访问
 
 不废话了，直接修改`/etc/nginx/nginx.conf`，完整配置文件如下：
 
@@ -454,11 +454,11 @@ systemctl restart nginx
 
 访问**www.example.cc**和**example.cc**，如果自动跳转`https://www.example.cc`并且正确显示公益404则已经配置正确。
 
-### 配置V2Ray并启动
+#### 配置V2Ray并启动
 
 前置的所有服务都已经配置完毕，只差最后的V2Ray了。
 
-#### 为V2Ray生成一个UUID
+##### 为V2Ray生成一个UUID
 
 使用V2Ray自带的`v2ctl`工具生成一个新的uuid。
 
@@ -469,7 +469,7 @@ $ /usr/bin/v2ray/v2ctl uuid
 
 记录下此uuid
 
-#### 为mtproto生成一个密钥
+##### 为mtproto生成一个密钥
 
 使用linux系统创建伪随机数作为密钥。
 
@@ -480,7 +480,7 @@ $ head -c 16 /dev/urandom | xxd -ps
 
 记录下此随机数
 
-#### 修改`/etc/v2ray/config.json`
+##### 修改`/etc/v2ray/config.json`
 
 同样的，没把握用vim修改的，就拷贝下来在VSCode里修改，改完再传回服务器。
 
@@ -572,7 +572,7 @@ $ head -c 16 /dev/urandom | xxd -ps
 }
 ```
 
-####　启动V2Ray
+#####　启动V2Ray
 
 开启开机启动并启动。
 
@@ -593,7 +593,7 @@ $systemctl status v2ray
            └─8908 /usr/bin/v2ray/v2ray -config /etc/v2ray/config.json
 ```
 
-# 客户端配置
+## 客户端配置
 
 客户端配置不尽相同，对应客户端详细配置可以自己百度。
 
@@ -607,7 +607,7 @@ $systemctl status v2ray
 6. 开启TLS
 7. AlterId填写`64`，需要和服务端一致
 
-## IOS客户端
+### IOS客户端
 
 IOS下的VPN类客户端在国区基本下架下完了，V2Ray推荐使用Kitsunebi的TestFlight版本。
 
@@ -616,18 +616,18 @@ IOS下的VPN类客户端在国区基本下架下完了，V2Ray推荐使用Kitsun
 
 -->[原文地址](https://docs.google.com/forms/d/1-1ZuYA1qkyDfAn6qzUzNEV3YVZbgr__7b6aFBiKeNHc/closedform)
 
-## 其它
+### 其它
 
 其它客户端请参考：
 [Windows](https://www.v2ray.com/ui_client/windows.html#windows-%E5%AE%A2%E6%88%B7%E7%AB%AF)
 [Android](https://www.v2ray.com/ui_client/android.html#android-%E5%AE%A2%E6%88%B7%E7%AB%AF)
 [Mac OS X](https://www.v2ray.com/ui_client/osx.html#mac-os-x)
 
-## 最后提供两份客户端配置文件
+### 最后提供两份客户端配置文件
 
 无需求的以下就可以不看了。
 
-### PC用的支持国内外分流
+#### PC用的支持国内外分流
 
 ``` json
 {
@@ -792,7 +792,7 @@ IOS下的VPN类客户端在国区基本下架下完了，V2Ray推荐使用Kitsun
 }
 ```
 
-### 路由器用的，透明代理
+#### 路由器用的，透明代理
 
 ``` json
 {
