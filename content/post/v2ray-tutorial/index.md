@@ -149,11 +149,11 @@ Link speed: 1 Gigabit
 
 - 登录搬瓦工`Client Area`，点`Services -> My Services`查看自己的所有服务
 - 点击对应`Product/Service`后面的`KiwiVM Control Panel`按钮进入控制台
-  ![config_server_1](/images/v2ray-tutorial/config_server_1.JPG)
+  ![config_server_1](config_server_1.JPG)
 - 首先将虚拟机关机，关机后才能重装系统
-  ![config_server_2](/images/v2ray-tutorial/config_server_2.JPG)
+  ![config_server_2](config_server_2.JPG)
 - 选择`Install new OS`，然后选择`"centos-7-x86_64-bbr"`，勾选`"I agree ..."`，点`Reload`重新安装
-  ![config_server_3](/images/v2ray-tutorial/config_server_3.JPG)
+  ![config_server_3](config_server_3.JPG)
 - **_记下 root 密码和端口号备用_**
 
 ##### 更改服务器密码
@@ -191,7 +191,7 @@ yum install -y vim git zip unzip
 ##### 配置域名解析
 
 域名解析这里配置两条，把`example.cc`和`www.example.cc`都指向服务器的地址。
-![config_server_4](/images/v2ray-tutorial/config_server_4.JPG)
+![config_server_4](config_server_4.JPG)
 
 配置好之后，可以在本地 ping 一下，看看通没通。
 
