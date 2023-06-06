@@ -3,5 +3,11 @@
         "editor.quickSuggestions": {
             "other": true
         }
+    },
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": [
+            "/workflows/deploy.yml",
+            "/workflows/update-theme.yml"
+        ]
     }
 }
