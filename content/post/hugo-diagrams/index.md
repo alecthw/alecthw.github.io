@@ -1,8 +1,8 @@
 ---
-title: "在 Hugo Stack 中集成 Mermaid 和 MarkMap"
+title: 在 Hugo Stack 中集成 Mermaid 和 MarkMap
 description: 不修改 Hugo Stack 主题文件，优雅的引入 Mermaid 和 MarkMap。
 slug: hugo-diagrams
-date: 2023-04-19 21:59:22+0000
+date: 2023-04-19T21:59:22+08:00
 image: cover.jpg
 categories:
   - None
