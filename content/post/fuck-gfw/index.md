@@ -18,7 +18,7 @@ tags:
   - 梯子
 ---
 
-👉首先推广下自己编译的 OpenWrt 旁路由极简版，专为旁路由而制作👍。
+👉 首先推广下自己编译的 OpenWrt 旁路由极简版，专为旁路由而制作。 👍👍👍
 
 - 编译脚本以及个人修改的组件依赖全开源，Github Actions 在线编译，安全可靠无后门。
 - 基于 [lede](https://github.com/coolsnowwolf/lede) 源码
