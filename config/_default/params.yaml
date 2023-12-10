@@ -64,7 +64,7 @@ imageProcessing:
 ## Comments
 comments:
   enabled: true
-  provider: disqus
+  provider: giscus
   disqusjs:
     shortname: ""
     apiUrl: ""
@@ -110,13 +110,13 @@ comments:
     serverName: cactus.chat
     siteName: ""
   giscus:
-    repo: ""
-    repoID: ""
-    category: ""
-    categoryID: ""
-    mapping: ""
-    lightTheme: ""
-    darkTheme: ""
+    repo: "alecthw/alecthw.github.io"
+    repoID: "R_kgDOJYr3yg"
+    category: "Announcements"
+    categoryID: "DIC_kwDOJYr3ys4CbogO"
+    mapping: "pathname"
+    lightTheme: "noborder_light"
+    darkTheme: "noborder_gray"
     reactionsEnabled: 1
     emitMetadata: 0
   gitalk:
