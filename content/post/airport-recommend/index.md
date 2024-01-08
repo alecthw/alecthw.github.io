@@ -77,6 +77,30 @@ tags:
 - 追求稳定性
 - 高速和低时延要求
 
+### [TAG](https://tagss03.pro/#/auth/2neqgxFl)
+
+官网：[👉链接🚀](https://tagss03.pro/#/auth/2neqgxFl)
+
+协议：`Shadowsocks`
+
+特点：比较贵，节点覆盖面广，速度较快，稳定。
+
+[毒药](https://www.duyaoss.com/)推荐中的第二名，以前的 Ac­cel­er­a­tor，线路现在是全 BGP-IEPL 广港 + BGP-IEPL 沪日中转，全球90+国家地区节点，地区覆盖范围目前应该是最广的。
+
+同样的，Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是。
+
+他家有一个特别套餐，154CNY/Year，总共200G流量，用作备用防失联特别好，或者需要一些罕见地区的时候。
+
+![TAG 特殊套餐](tag-sp.png)
+
+其他套餐价格如下：
+
+![TAG套餐](tag.png)
+
+毒药的电信测速，可以参考下。
+
+![TAG测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/72d9f0e8-6b0d-438e-83d6-551057f88442)
+
 ### [Nexitally](https://nexitally.net/)
 
 官网1：[👉链接🚀](https://nexitally.net/)
@@ -85,7 +109,7 @@ tags:
 
 协议：`Shadowsocks`, `Trojan`
 
-特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度
+特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度。`PS: 最近稍微有点不稳定，建议稍微观望下。`
 
 官网打不开的话先挂个别的代理。
 
@@ -107,30 +131,6 @@ Netflix、Disney+等流媒体，该解锁的都解锁了，ChatGPT 也是可以�
 毒药的电信测速，可以参考下。
 
 ![Nexitally测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/80f7a09b-6bf6-4db5-89e5-2df9c8a97ef8)
-
-### [TAG](https://tagss02.pro/#/auth/2neqgxFl)
-
-官网：[👉链接🚀](https://tagss02.pro/#/auth/2neqgxFl)
-
-协议：`Shadowsocks`
-
-特点：比较贵，节点覆盖面广，速度较快，稳定。
-
-[毒药](https://www.duyaoss.com/)推荐中的第二名，以前的 Ac­cel­er­a­tor，线路现在是全 BGP-IEPL 广港 + BGP-IEPL 沪日中转，全球90+国家地区节点，地区覆盖范围目前应该是最广的。
-
-同样的，Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是。
-
-他家有一个特别套餐，154CNY/Year，总共200G流量，用作备用防失联特别好，或者需要一些罕见地区的时候。
-
-![TAG 特殊套餐](tag-sp.png)
-
-其他套餐价格如下：
-
-![TAG套餐](tag.png)
-
-毒药的电信测速，可以参考下。
-
-![TAG测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/72d9f0e8-6b0d-438e-83d6-551057f88442)
 
 ### [TLS](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
