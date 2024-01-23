@@ -5,9 +5,15 @@ slug: cloud-firmware-hyperv
 date: 2024-01-14T17:57:22+08:00
 image: cover.png
 categories:
-  - None
+  - system
 tags:
-  - None
+  - vhdx
+  - 虚拟硬盘
+  - 云固件
+---
+
+🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss03.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
+
 ---
 
 关于云固件相关的资料，请参考 [陆伟峰​的知乎](https://zhuanlan.zhihu.com/p/651550564)，这里不再赘述。

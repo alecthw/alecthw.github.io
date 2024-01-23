@@ -6,10 +6,15 @@ date: 2023-12-01T22:09:55+08:00
 image: cover.png
 categories:
   - passgfw
+  - network
 tags:
   - gfw
   - vxlan
   - ros
+---
+
+🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss03.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
+
 ---
 
 VXLAN（Virtual eXtensible Local Area Network，虚拟扩展局域网），是由 IETF 定义的 NVO3（Network Virtualization over Layer 3）标准技术之一，是对传统 VLAN 协议的一种扩展。VXLAN 的特点是将 L2 的以太帧封装到 UDP 报文（即 L2 over L4）中，并在 L3 网络中传输。

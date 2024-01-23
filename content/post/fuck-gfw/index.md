@@ -18,6 +18,10 @@ tags:
   - 梯子
 ---
 
+🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss03.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
+
+---
+
 👉 首先推广下自己编译的 OpenWrt 旁路由极简版，专为旁路由而制作。 👍👍👍
 
 - 编译脚本以及个人修改的组件依赖全开源，Github Actions 在线编译，安全可靠无后门。
