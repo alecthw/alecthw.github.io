@@ -26,7 +26,7 @@ weight: 1
 - Telegram 聊天
 - 基本没有速度和时延要求
 
-### [一元机场](https://xn--4gq62f52gdss.art/#/register?code=QFTTlbYU)
+### [一元机场](https://xn--4gq62f52gdss.art/#/register?code=QFTTlbYU)🔥
 
 官网：[👉链接🚀](https://xn--4gq62f52gdss.art/#/register?code=QFTTlbYU)
 
@@ -52,7 +52,7 @@ weight: 1
 
 特点：廉价，流量较少，速度还行，稳定性一般，相对小众一点。
 
-和上面类似，也是靠低价起家的，后来也推出了高级套餐，不过买贵的干嘛买他家。9.5CNY/Year 的价格，VIP1-200G每月-年付套餐，大概每天3分钱，机场名字应该也是这么来的，买个随便玩玩还是可以的。
+和上面类似，也是靠低价起家的，后来也推出了高级套餐，不过买贵的干嘛买他家。9.5CNY/Year 的价格，VIP1-200G 每月-年付套餐，大概每天 3 分钱，机场名字应该也是这么来的，买个随便玩玩还是可以的。
 
 特别注意，套餐里有个小字说明，`福建福州、泉州、河南大部分地区此套餐可能无法使`，这些地区的小伙伴谨慎购买。
 
@@ -70,7 +70,7 @@ weight: 1
 
 ## 重度使用
 
-- 不在乎价格
+- **不在乎价格**
 - Netflix、Disney+ 等流媒体重度依赖
 - 长期看不能直连的 Emby 公益服
 - Telegram 上看视频
@@ -78,7 +78,7 @@ weight: 1
 - 追求稳定性
 - 高速和低时延要求
 
-### [TAG](https://tagss03.pro/#/auth/2neqgxFl)
+### [TAG](https://tagss03.pro/#/auth/2neqgxFl)🔥
 
 官网：[👉链接🚀](https://tagss03.pro/#/auth/2neqgxFl)
 
@@ -110,7 +110,7 @@ weight: 1
 
 协议：`Shadowsocks`, `Trojan`
 
-特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度。`PS: 最近稍微有点不稳定，建议稍微观望下。`
+特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度。`PS: 最近稍微有点不稳定，不知道机场在折腾啥，建议稍微观望下。`
 
 官网打不开的话先挂个别的代理。
 
@@ -118,20 +118,20 @@ weight: 1
 
 这也是我个人主要使用的，已经使用三年了，目前应该是第四年。
 
-Netflix、Disney+等流媒体，该解锁的都解锁了，ChatGPT 也是可以正常用的。
+Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以正常用的。
 
 有自己的傻瓜客户端，可以登录后一键连接。
 
 套餐情况：
 
-- Smart Access：每月500G流量，约 117CNY/Month，约 606CNY/Year，约 1102CNY/Year
-- Smart Access Air：每月200G流量，价格是Smart Access的一半多点，但是`限量提供，能不能买到看缘分，买到后可以一直续费`
+- Smart Access：每月 500G 流量，约 117CNY/Month，约 606CNY/Year，约 1102CNY/Year
+- Smart Access Air：每月 200G 流量，价格是 Smart Access 的一半多点，但是`限量提供，能不能买到看缘分，买到后可以一直续费`
 
-![Nexitally套餐](nexitally.png)
+![Nexitally 套餐](nexitally.png)
 
 毒药的电信测速，可以参考下。
 
-![Nexitally测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/80f7a09b-6bf6-4db5-89e5-2df9c8a97ef8)
+![Nexitally 测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/80f7a09b-6bf6-4db5-89e5-2df9c8a97ef8)
 
 ### [TLS](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
@@ -139,22 +139,22 @@ Netflix、Disney+等流媒体，该解锁的都解锁了，ChatGPT 也是可以�
 
 协议：`Shadowsocks`
 
-特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。
+特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。`PS: 目前 Emby 服务器被折腾挂了，在重新扫库，恢复中······`
 
 最大的特色是高级套餐附带 Emby 服务，并且直连 Emby 的速度也是不错的，不需要梯子就能直接看。影视库更新速度也挺快，最新电视剧集基本第二天就上了。
 
 套餐除了机场送 Emby 外，也单独提供了 Emby 套餐。
 
-相对小众一点，客服态度也很好，价格与Nexitally和TAG相比要低一点。
+相对小众一点，客服态度也很好，价格与 Nexitally 和 TAG 相比要低一点。
 
-![TLS套餐](tls.png)
+![TLS 套餐](tls.png)
 
 测速如下：
 
-![TLS测速（来自网络）](tls-speed.png)
+![TLS 测速（来自网络）](tls-speed.png)
 
 ## 最后
 
 对于刚接触科学上网的朋友，建议先买廉价的梯子试试，确认自己是否有科学上网的需求、科学上网的依赖度有多大，然后再考虑换高价稳定的梯子。
 
-对于海淘只看看商品不亲自购买的妹子，一元机场、三分机场这种完全够用，别信海淘群里那种倒卖的，说不定卖给你的也是这种。
+对于海淘只看看商品不亲自购买的朋友，一元机场、三分机场这种完全够用，别信海淘群里那种倒卖的，说不定卖给你的也是这种。

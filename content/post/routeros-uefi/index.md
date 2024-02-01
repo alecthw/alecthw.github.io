@@ -5,7 +5,7 @@ slug: routeros-uefi
 date: 2023-12-07T17:11:11+08:00
 image: cover.png
 categories:
-  - none
+  - system
 tags:
   - ros
   - mikrotik
