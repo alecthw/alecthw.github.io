@@ -25,7 +25,9 @@ tags:
 1. 使用 CloudDrive2 把云盘挂载到本地。
 2. 新款 CPU 如果没有硬解选项，就安装 beta 版的 emby。
 
-`以下使用的ESXi 8.0，基于 Ubuntu 22.04 LTS，在 root 用户下操作。需要有简单的 Linux 基础知识，例如了解 SSH、VIM 怎么使用。`
+`PS：以下使用的ESXi 8.0，基于 Ubuntu 22.04 LTS，在 root 用户下操作。需要有简单的 Linux 基础知识，例如了解 SSH、VIM 怎么使用。`
+
+`PS：CloudDrive2 和 Emby 的都是从 Github 下载的，连不上 Github 自行科学上网。`
 
 ## ESXi 核显直通
 
@@ -116,7 +118,7 @@ ESXi Web 控制台下
 
 ![PCI 选择核显](select-uhd.jpg)
 
-保存，启动虚拟机。这一次启动可能会比较慢，耐心等待，知道 SSH 可以连接上虚拟机。
+保存，启动虚拟机。这一次启动可能会比较慢，耐心等待，直到 SSH 可以连接上虚拟机。
 
 ## 安装配置 CloudDrive2
 
@@ -245,7 +247,7 @@ systemctl status emby-server
 
 ### 2. 启动顺序
 
-由于使用了 CloudDrive2，期望的是 CloudDrive2 要在 Emby 之前启动，才能保证正常。
+由于使用了 CloudDrive2 挂载云盘，期望的是 CloudDrive2 要在 Emby 之前启动，才能保证 Emby 正常读取到网盘内容，避免报错。
 
 编辑 emby 的 service 文件
 
@@ -253,7 +255,7 @@ systemctl status emby-server
 vim /lib/systemd/system/emby-server.service
 ```
 
-在 `After=network.target` 和 `Wants=network.target` 后面，均添加 `clouddrive2.service`，如下
+在 `After=network.target` 后面，均添加 `clouddrive2.service`，然后再添加一行 `Wants=network.target clouddrive2.service`，如下
 
 ```txt
 [Unit]
