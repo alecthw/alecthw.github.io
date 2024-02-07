@@ -14,7 +14,7 @@ tags:
   - clouddrive2
 ---
 
-🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss03.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
+🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
 
 ---
 
@@ -199,6 +199,10 @@ http://ip:19798/
 ![CloudDrive2 界面](clouddrive2.jpg)
 
 点击云图标添加网盘，登录授权。
+
+CloudDrive2 免费版功能有限制，一般情况下个人用户足够使用。具体可参考下图：
+
+![CloudDrive2 VIP 价格](clouddrive2-vip.jpg)
 
 ### 6. 挂载网盘到本地
 

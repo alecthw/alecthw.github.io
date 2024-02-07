@@ -78,9 +78,9 @@ weight: 1
 - 追求稳定性
 - 高速和低时延要求
 
-### [TAG](https://tagss03.pro/#/auth/2neqgxFl)🔥
+### [TAG](https://tagss04.pro/#/auth/2neqgxFl)🔥
 
-官网：[👉链接🚀](https://tagss03.pro/#/auth/2neqgxFl)
+官网：[👉链接🚀](https://tagss04.pro/#/auth/2neqgxFl)
 
 协议：`Shadowsocks`
 

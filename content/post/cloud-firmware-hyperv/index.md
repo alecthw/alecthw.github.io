@@ -12,7 +12,7 @@ tags:
   - 云固件
 ---
 
-🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss03.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
+🔥🔥🔥：稳定好用的机场/梯子 [TAG](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
 
 ---
 
