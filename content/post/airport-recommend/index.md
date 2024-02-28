@@ -2,7 +2,7 @@
 title: 机场/梯子推荐
 description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
 slug: airport-recommend
-date: 2023-11-23T10:24:13+08:00
+date: 2024-02-28T09:24:13+08:00
 image: cover.jpg
 categories:
   - passgfw
@@ -78,7 +78,7 @@ weight: 1
 - 追求稳定性
 - 高速和低时延要求
 
-### [TAG](https://tagss04.pro/#/auth/2neqgxFl)🔥
+### [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)🔥
 
 官网：[👉链接🚀](https://tagss04.pro/#/auth/2neqgxFl)
 
@@ -139,7 +139,7 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 协议：`Shadowsocks`
 
-特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。`PS: 目前 Emby 服务器被折腾挂了，在重新扫库，恢复中······`
+特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。`PS: Emby 服务高清资源已经恢复了，4K还没有，感觉半摆烂了······`
 
 最大的特色是高级套餐附带 Emby 服务，并且直连 Emby 的速度也是不错的，不需要梯子就能直接看。影视库更新速度也挺快，最新电视剧集基本第二天就上了。
 

@@ -1,11 +1,11 @@
 # Configure main menu and social menu
-# main:
-#   - identifier: home
-#     name: Home
-#     url: /
-#     params:
-#       icon: home
-#       newtab: true
+main:
+  - identifier: tag
+    name: TAG
+    url: https://tagss04.pro/#/auth/2neqgxFl
+    params:
+      icon: flame
+      newtab: true
 
 social:
   - identifier: github
@@ -13,6 +13,11 @@ social:
     url: https://github.com/alecthw
     params:
       icon: brand-github
+  - identifier: telegram
+    name: Telegram
+    url: https://t.me/alecthw
+    params:
+      icon: brand-telegram
   # - identifier: twitter
   #   name: Twitter
   #   url: https://twitter.com
