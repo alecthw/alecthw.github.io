@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vxlan on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/tags/vxlan/</link><description>Recent content in Vxlan on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 01 Dec 2023 22:09:55 +0800</lastBuildDate><atom:link href="https://alecthw.github.io/tags/vxlan/index.xml" rel="self" type="application/rss+xml"/><item><title>Vxlan 是否能让 GFW 放松一点？Vxlan 搭建科学上网实验</title><link>https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/</link><pubDate>Fri, 01 Dec 2023 22:09:55 +0800</pubDate><guid>https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/</guid><description>&lt;img src="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/cover.png" alt="Featured image of post Vxlan 是否能让 GFW 放松一点？Vxlan 搭建科学上网实验" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://tagss04.pro/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/2023/11/airport-recommend/" target="_blank" rel="noopener"
+>机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>VXLAN（Virtual eXtensible Local Area Network，虚拟扩展局域网），是由 IETF 定义的 NVO3（Network Virtualization over Layer 3）标准技术之一，是对传统 VLAN 协议的一种扩展。VXLAN 的特点是将 L2 的以太帧封装到 UDP 报文（即 L2 over L4）中，并在 L3 网络中传输。&lt;/p>
+&lt;p>VXLAN 本质上是一种隧道技术，在源网络设备与目的网络设备之间的 IP 网络上，建立一条逻辑隧道，将用户侧报文经过特定的封装后通过这条隧道转发。&lt;/p>
+&lt;p>关于 VXLAN，这里不展开讲，只需要知道两点：&lt;/p>
+&lt;ol>
+&lt;li>它是一种隧道技术&lt;/li>
+&lt;li>它在公有云中被广泛应用&lt;/li>
+&lt;/ol>
+&lt;p>更深入的了解，可以参考&lt;a class="link" href="https://support.huawei.com/enterprise/zh/doc/EDOC1100087027" target="_blank" rel="noopener"
+>什么是 VXLAN&lt;/a>。&lt;/p>
+&lt;p>既然是隧道，就可以用它来整活儿。由于被公有云广泛应用，猜测 GFW 对它的审查应该有所放松。记得曾经在某公司云服务的一场会议上，听其高管讲，共有云的跨国流量里，80% 的流量都是非法业务。&lt;/p>
+&lt;p>既如此，如果用 VXLAN 来科学上网，效果会不会不错？&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">先说结论吧：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 直接把 VXLAN 作为隧道翻墙是不可行的，经测试，由于 VXLAN 并不加密，GFW 的审查应该是会剥离 VXLAN 头部直接审查内部报文。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 所以，即使经过了 VXLAN 隧道，把 VPS 作为网关，访问情况和国内直接访问一致。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="网络规划">网络规划&lt;/h2>
+&lt;p>整体思路就是旁路由的思路，直接上图：&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/network.jpg"
+width="996"
+height="307"
+srcset="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/network_huf2ebca0b006664feca3a83812beffbc6_25770_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/network_huf2ebca0b006664feca3a83812beffbc6_25770_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="network"
+class="gallery-image"
+data-flex-grow="324"
+data-flex-basis="778px"
+>&lt;/p>
+&lt;p>划重点：&lt;/p>
+&lt;ol>
+&lt;li>VXLAN 是要双向配置的，所以本地和远端都必须是公网IP。&lt;/li>
+&lt;li>本地使用 RouterOS 7，当时起个 Liunx 也可以，用 ROS 主要是为了方便配置策略路由来分流。&lt;/li>
+&lt;/ol>
+&lt;h2 id="开始配置">开始配置&lt;/h2>
+&lt;p>以下涉及到公网的 IP 的，使用 &lt;code>x&lt;/code> 替换了一部分，复制命令时请自行替换。&lt;/p>
+&lt;p>这里是新拉起了一个 Linode VPS 作为远端服务器，系统使用的是 Ubuntu 22.04。&lt;/p>
+&lt;h3 id="vps-准备工作">VPS 准备工作&lt;/h3>
+&lt;h4 id="1-禁用防火墙">1. 禁用防火墙&lt;/h4>
+&lt;p>既然是实验，先禁用防火墙，避免其可能的影响。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl stop ufw.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable ufw.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="2-开启转发">2. 开启转发&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>取消以下两行的注释&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">net.ipv4.ip_forward=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net.ipv6.conf.all.forwarding=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>再执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sysctl -p
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="routeros-准备工作">RouterOS 准备工作&lt;/h3>
+&lt;p>RouterOS 的配置就不截 winbox 配置界面的图了，命令行和界面基本都能对上，直接贴命令行了。&lt;/p>
+&lt;h4 id="1-ip服务的安全策略先加上避免被爆破导致控制台疯狂输出登录失败日志">1. IP服务的安全策略先加上，避免被爆破，导致控制台疯狂输出登录失败日志&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> telnet &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> ftp &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> www &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> ssh &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> www-ssl &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> api &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> winbox &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/ip service &lt;span class="nb">set&lt;/span> api-ssl &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="2-配置上网这里是-pppoe-拨号">2. 配置上网，这里是 PPPOE 拨号&lt;/h4>
+&lt;p>修改下接口名字&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/interface ethernet &lt;span class="nb">set&lt;/span> &lt;span class="o">[&lt;/span> find default-name&lt;span class="o">=&lt;/span>ether1 &lt;span class="o">]&lt;/span> &lt;span class="nv">name&lt;/span>&lt;span class="o">=&lt;/span>ether1-wan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/interface ethernet &lt;span class="nb">set&lt;/span> &lt;span class="o">[&lt;/span> find default-name&lt;span class="o">=&lt;/span>ether2 &lt;span class="o">]&lt;/span> &lt;span class="nv">name&lt;/span>&lt;span class="o">=&lt;/span>ether2-lan
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>配置 PPPOE&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/interface pppoe-client add &lt;span class="nv">interface&lt;/span>&lt;span class="o">=&lt;/span>ether2-wan &lt;span class="nv">name&lt;/span>&lt;span class="o">=&lt;/span>pppoe-wan &lt;span class="nv">user&lt;/span>&lt;span class="o">=&lt;/span>&amp;lt;user&amp;gt; &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>&amp;lt;password&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>配置 DNS&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip dns &lt;span class="nb">set&lt;/span> allow-remote-requests&lt;span class="o">=&lt;/span>yes &lt;span class="nv">servers&lt;/span>&lt;span class="o">=&lt;/span>223.5.5.5,114.114.114.114
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="配置检查">配置检查&lt;/h3>
+&lt;h4 id="本地-ros-ping-vps">本地 ROS ping VPS&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@rostest&lt;span class="o">]&lt;/span> &amp;gt; ping 172.233.142.x
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SEQ HOST SIZE TTL TIME STATUS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> 172.233.142.x &lt;span class="m">56&lt;/span> &lt;span class="m">47&lt;/span> 184ms440us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> 172.233.142.x &lt;span class="m">56&lt;/span> &lt;span class="m">47&lt;/span> 184ms340us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> 172.233.142.x &lt;span class="m">56&lt;/span> &lt;span class="m">47&lt;/span> 184ms235us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">sent&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> &lt;span class="nv">received&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> packet-loss&lt;span class="o">=&lt;/span>0% min-rtt&lt;span class="o">=&lt;/span>184ms235us avg-rtt&lt;span class="o">=&lt;/span>184ms338us max-rtt&lt;span class="o">=&lt;/span>184ms440u
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到网络是通的。&lt;/p>
+&lt;h4 id="vps-ping-本地-ros-的公网-ip">VPS ping 本地 ROS 的公网 IP&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# ping 121.229.x.x
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PING 121.229.x.x &lt;span class="o">(&lt;/span>121.229.x.x&lt;span class="o">)&lt;/span> 56&lt;span class="o">(&lt;/span>84&lt;span class="o">)&lt;/span> bytes of data.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 121.229.x.x: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">40&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">186&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 121.229.x.x: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">40&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">186&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 121.229.x.x: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">40&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">186&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- 121.229.x.x ping statistics ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">3&lt;/span> packets transmitted, &lt;span class="m">3&lt;/span> received, 0% packet loss, &lt;span class="nb">time&lt;/span> 2002ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rtt min/avg/max/mdev &lt;span class="o">=&lt;/span> 185.582/185.879/186.073/0.213 ms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到网络是通的。&lt;/p>
+&lt;h3 id="vxlan-vps-配置">VXLAN: VPS 配置&lt;/h3>
+&lt;p>以下分别为命令行和 netplan 的配置。&lt;/p>
+&lt;h4 id="命令行">命令行&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ip link add vxlan0 &lt;span class="nb">type&lt;/span> vxlan &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> id &lt;span class="m">3000&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> remote 121.229.x.x &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> dstport &lt;span class="m">4789&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> &lt;span class="nb">local&lt;/span> 172.233.142.x &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> dev eth0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip link &lt;span class="nb">set&lt;/span> vxlan0 up
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip addr add 192.168.99.2/24 dev vxlan0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看 vxlan0 接口&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# ifconfig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vxlan0: &lt;span class="nv">flags&lt;/span>&lt;span class="o">=&lt;/span>4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt; mtu &lt;span class="m">1450&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet 192.168.99.2 netmask 255.255.255.0 broadcast 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 fe80::ec90:6ff:fe88:372d prefixlen &lt;span class="m">64&lt;/span> scopeid 0x20&amp;lt;link&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ether ee:90:06:88:37:2d txqueuelen &lt;span class="m">1000&lt;/span> &lt;span class="o">(&lt;/span>Ethernet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX packets &lt;span class="m">0&lt;/span> bytes &lt;span class="m">0&lt;/span> &lt;span class="o">(&lt;/span>0.0 B&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX errors &lt;span class="m">0&lt;/span> dropped &lt;span class="m">0&lt;/span> overruns &lt;span class="m">0&lt;/span> frame &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX packets &lt;span class="m">8&lt;/span> bytes &lt;span class="m">544&lt;/span> &lt;span class="o">(&lt;/span>544.0 B&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX errors &lt;span class="m">0&lt;/span> dropped &lt;span class="m">0&lt;/span> overruns &lt;span class="m">0&lt;/span> carrier &lt;span class="m">0&lt;/span> collisions &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看路由表，多了下面的内容，所有目的地址是 192.168.99.0/24 网络包要通过 vxlan0 转发：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# ip route show
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.168.99.0/24 dev vxlan0 proto kernel scope link src 192.168.99.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看 fdb。这个表项的意思是，默认的 VTEP 对端地址为 121.229.x.x。换句话说，原始报文经过 vxlan0 后会被内核添加上 VXLAN 头部，而外部 UDP 头的目的 IP 地址会被冠上 121.229.x.x。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# bridge fdb show
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">00:00:00:00:00:00 dev vxlan0 dst 121.229.x.x via eth0 self permanent
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="netplan-配置文件">netplan 配置文件&lt;/h4>
+&lt;p>命令行配置重启后会失效，放到 netplan 里配置持久化。&lt;/p>
+&lt;p>&lt;code>/etc/netplan/99-vxlan-config.yaml&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">network&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">tunnels&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">vxlan0&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">mode&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">vxlan&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">local&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">172.233.142&lt;/span>&lt;span class="l">.x&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">remote&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">121.229&lt;/span>&lt;span class="l">.x.x&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">3000&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">4789&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">addresses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="m">192.168.99.2&lt;/span>&lt;span class="l">/24&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="vxlan-本地-ros-配置">VXLAN: 本地 ROS 配置&lt;/h3>
+&lt;p>先创建 VXLAN，然后再把 VXLAN 接口和 LAN 口桥接。&lt;/p>
+&lt;h4 id="创建-vxlan">创建 VXLAN&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/interface vxlan add &lt;span class="nv">name&lt;/span>&lt;span class="o">=&lt;/span>vxlan0 &lt;span class="nv">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">4789&lt;/span> &lt;span class="nv">vni&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/interface vxlan vteps add &lt;span class="nv">interface&lt;/span>&lt;span class="o">=&lt;/span>vxlan0 remote-ip&lt;span class="o">=&lt;/span>172.233.142.x
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="桥接-vxlan0-和-ether2-lan">桥接 vxlan0 和 ether2-lan&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/interface bridge add &lt;span class="nv">name&lt;/span>&lt;span class="o">=&lt;/span>br-lan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/interface bridge port add &lt;span class="nv">bridge&lt;/span>&lt;span class="o">=&lt;/span>br-lan &lt;span class="nv">interface&lt;/span>&lt;span class="o">=&lt;/span>ether2-lan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/interface bridge port add &lt;span class="nv">bridge&lt;/span>&lt;span class="o">=&lt;/span>br-lan &lt;span class="nv">interface&lt;/span>&lt;span class="o">=&lt;/span>vxlan0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="br-lan-配置-ip">br-lan 配置 IP&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip address add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.99.1/24 &lt;span class="nv">interface&lt;/span>&lt;span class="o">=&lt;/span>br-lan &lt;span class="nv">network&lt;/span>&lt;span class="o">=&lt;/span>192.168.99.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里配置的 IP 和 VPS 上给 vxlan0 接口配置的 IP 是相同网段的。&lt;/p>
+&lt;h3 id="测试-vxlan-隧道">测试 VXLAN 隧道&lt;/h3>
+&lt;p>在 VPS 上 ping ROS 的 br-lan 接口的 IP&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# ping 192.168.99.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PING 192.168.99.1 &lt;span class="o">(&lt;/span>192.168.99.1&lt;span class="o">)&lt;/span> 56&lt;span class="o">(&lt;/span>84&lt;span class="o">)&lt;/span> bytes of data.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 192.168.99.1: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">64&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">144&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 192.168.99.1: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">64&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">144&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 192.168.99.1: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">64&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">144&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- 192.168.99.1 ping statistics ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">3&lt;/span> packets transmitted, &lt;span class="m">3&lt;/span> received, 0% packet loss, &lt;span class="nb">time&lt;/span> 2003ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rtt min/avg/max/mdev &lt;span class="o">=&lt;/span> 144.359/144.400/144.446/0.035 ms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 ROS 上 ping VPS 的 vxlan0 接口的 IP&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@rostest&lt;span class="o">]&lt;/span> &amp;gt; ping 192.168.99.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SEQ HOST SIZE TTL TIME STATUS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> 192.168.99.2 &lt;span class="m">56&lt;/span> &lt;span class="m">64&lt;/span> 144ms271us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> 192.168.99.2 &lt;span class="m">56&lt;/span> &lt;span class="m">64&lt;/span> 144ms647us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> 192.168.99.2 &lt;span class="m">56&lt;/span> &lt;span class="m">64&lt;/span> 144ms309us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">sent&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> &lt;span class="nv">received&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> packet-loss&lt;span class="o">=&lt;/span>0% min-rtt&lt;span class="o">=&lt;/span>144ms271us g-rtt&lt;span class="o">=&lt;/span>144ms409us max-rtt&lt;span class="o">=&lt;/span>144ms647us
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到，VXLAN 已经互通了。&lt;/p>
+&lt;p>在 VPS 上再查看一下 fdb，可以看到，本地网络的一些 MAC 地址已经学习过来了，摘取了部分：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">00:00:00:00:00:00 dev vxlan0 dst 121.229.x.x self permanent
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ac:82:26:xx:xx:xx dev vxlan0 dst 121.229.x.x self
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">26:99:ac:xx:xx:xx dev vxlan0 dst 121.229.x.x self
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">98:3f:60:xx:xx:xx dev vxlan0 dst 121.229.x.x self
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="在-vps-上配置-snat">在 VPS 上配置 snat&lt;/h3>
+&lt;p>源地址 NAT 不多说了，不明白的自己查。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">iptables -t nat &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -A POSTROUTING &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -s 192.168.99.0/24 &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -o eth0 &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -j SNAT &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --to-source 172.233.142.x
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>配置完查看下，确保配置成功&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# iptables -nL -t nat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Chain POSTROUTING &lt;span class="o">(&lt;/span>policy ACCEPT&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">target prot opt &lt;span class="nb">source&lt;/span> destination
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SNAT all -- 192.168.99.0/24 0.0.0.0/0 to:172.233.142.x
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="pc-上网测试">PC 上网测试&lt;/h2>
+&lt;p>把本地电脑的网络配置成：&lt;/p>
+&lt;ul>
+&lt;li>地址: 192.168.99.200&lt;/li>
+&lt;li>掩码: 255.255.255.0&lt;/li>
+&lt;li>网关: 192.168.99.2&lt;/li>
+&lt;li>DNS: 8.8.8.8&lt;/li>
+&lt;/ul>
+&lt;p>在 VPS 上 ping 一下 &lt;code>192.168.99.200&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@localhost:~# ping 192.168.99.200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PING 192.168.99.200 &lt;span class="o">(&lt;/span>192.168.99.200&lt;span class="o">)&lt;/span> 56&lt;span class="o">(&lt;/span>84&lt;span class="o">)&lt;/span> bytes of data.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 192.168.99.200: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">128&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">145&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 192.168.99.200: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">128&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">144&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">64&lt;/span> bytes from 192.168.99.200: &lt;span class="nv">icmp_seq&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">3&lt;/span> &lt;span class="nv">ttl&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">128&lt;/span> &lt;span class="nv">time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">143&lt;/span> ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- 192.168.99.200 ping statistics ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">3&lt;/span> packets transmitted, &lt;span class="m">3&lt;/span> received, 0% packet loss, &lt;span class="nb">time&lt;/span> 1998ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rtt min/avg/max/mdev &lt;span class="o">=&lt;/span> 143.159/144.091/144.858/0.703 ms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到，VPS 和本地 PC 已经连通，并且还是相同网段的二层域。&lt;/p>
+&lt;p>打开浏览器，打开 &lt;a class="link" href="https://ip.skk.moe/" target="_blank" rel="noopener"
+>https://ip.skk.moe/&lt;/a> 测试下。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/test-result.jpg"
+width="888"
+height="819"
+srcset="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/test-result_hu58d2a22642f956b0eddff853f60f73e8_94064_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/test-result_hu58d2a22642f956b0eddff853f60f73e8_94064_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="test-result"
+class="gallery-image"
+data-flex-grow="108"
+data-flex-basis="260px"
+>&lt;/p>
+&lt;p>从图中可知，IP 地址已经是 VPS 的公网IP，但是访问阻断情况和国内直接访问一致，并且还额外导致百度无法访问。&lt;/p>
+&lt;p>再次测试，例如 Apple 等未被 GFW 封锁的网站都是可以正常访问的。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/Apple.jpg"
+width="1352"
+height="824"
+srcset="https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/Apple_hu8f897656b0d2f3efb51c1964d92b746e_93637_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/2023/12/fuck-gfw-vxlan/Apple_hu8f897656b0d2f3efb51c1964d92b746e_93637_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Apple"
+class="gallery-image"
+data-flex-grow="164"
+data-flex-basis="393px"
+>&lt;/p>
+&lt;p>由此可见：由于 VXLAN 并不加密，GFW 的审查应该是会剥离 VXLAN 头部直接审查内部报文，所以访问阻断的结果和国内一致。&lt;/p>
+&lt;h2 id="结论">结论&lt;/h2>
+&lt;ol>
+&lt;li>GFW 对 VXLAN 并不会放松审查，但是猜测：VXLAN 报文中含有被阻断的域名、IP，并不会直接导致 GFW 封锁 VPS 的 IP。&lt;/li>
+&lt;li>由第1点，或许可以采用 VXLAN 报文作为外层包装，从而达到保护 VPS IP 的目的。毕竟各大机场基本都是通过国内公有云中转，而中转流量很大一部分应该跑在 VXLAN 之上。&lt;/li>
+&lt;li>VXLAN 对性能的损失非常小，但由于 VXLAN 的配置需要双向公网 IP，没有公网 IP 的情况下，使用起来有两个思路：
+&lt;ol>
+&lt;li>作为外层包装协议，并不实际创建 VXLAN 隧道；&lt;/li>
+&lt;li>使用国内公有云中转，国内外 VPS 直接配置 VXLAN 隧道；&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>
