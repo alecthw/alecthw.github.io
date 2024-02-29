@@ -26,9 +26,9 @@ weight: 1
 - Telegram 聊天
 - 基本没有速度和时延要求
 
-### [一元机场](https://xn--4gq62f52gdss.art/#/register?code=QFTTlbYU)🔥
+### [一元机场](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)🔥
 
-官网：[👉链接🚀](https://xn--4gq62f52gdss.art/#/register?code=QFTTlbYU)
+官网：[👉链接🚀](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)
 
 协议：`Trojan`
 
