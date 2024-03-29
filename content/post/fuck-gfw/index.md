@@ -16,6 +16,7 @@ tags:
   - helloworld
   - 机场
   - 梯子
+weight: 2
 ---
 
 🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
@@ -169,6 +170,8 @@ flowchart TB
 #### mosdns
 
 使用自定义配置，由于使用了 mmdb geoip 匹配，mosdns 必须使用[ alecthw 修改版](https://github.com/alecthw/mosdns)。
+
+PS: 以下配置中的[cn-white.txt](https://github.com/alecthw/chnlist/blob/release/mosdns/whitelist.list)，来自项目[chnlist](https://github.com/alecthw/chnlist)，我编译的固件已内置并设置自动更新，其他固件需要手动下载。
 
 ```yaml
 # 白名单模式
