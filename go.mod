@@ -2,4 +2,4 @@ module github.com/alecthw/alecthw.github.io
 
 go 1.17
 
-require github.com/CaiJimmy/hugo-theme-stack/v3 v3.24.2 // indirect
+require github.com/CaiJimmy/hugo-theme-stack/v3 v3.25.0 // indirect
