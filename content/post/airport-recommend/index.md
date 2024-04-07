@@ -34,7 +34,9 @@ weight: 1
 
 ### [一元机场](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)🔥
 
-官网：[👉链接🚀](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)
+官网1：[👉链接🚀](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)
+
+官网2：[👉链接🚀](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)
 
 协议：`Trojan`
 
@@ -52,7 +54,9 @@ weight: 1
 
 ### [三分机场](https://xn--ehq00hgtfdmt.xyz/#/register?code=FKnu6Hkg)
 
-官网：[👉链接🚀](https://xn--ehq00hgtfdmt.xyz/#/register?code=FKnu6Hkg)
+官网1：[👉链接🚀](https://xn--ehq00hgtfdmt.xyz/#/register?code=FKnu6Hkg)
+
+官网2：[👉链接🚀](https://us.sanfen.me/#/register?code=FKnu6Hkg)
 
 协议：`VMESS`
 
