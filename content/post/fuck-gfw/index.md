@@ -23,7 +23,7 @@ weight: 2
 
 ---
 
-👉 首先推广下自己编译的 OpenWrt 旁路由极简版，专为旁路由而制作。 👍👍👍
+👉 首先推广下自己编译的 OpenWrt **旁路由极简版**，专为**旁路由**而制作。 👍👍👍
 
 - 编译脚本以及个人修改的组件依赖全开源，Github Actions 在线编译，安全可靠无后门。
 - 基于 [lede](https://github.com/coolsnowwolf/lede) 源码
@@ -38,6 +38,10 @@ weight: 2
 | x86 openclash 专版 | 仅包含 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-openclash-x86-amd64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-openclash-x86-amd64) |
 | r2s | 包含 ssrp 和 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-common-r2s-arm64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-common-r2s-arm64) |
 | n1 | 包含 ssrp 和 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-common-n1-arm64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-common-n1-arm64) |
+
+**注意，旁路由固件默认未开启DHCP，旁路由固件默认未开启DHCP，旁路由固件默认未开启DHCP！**
+
+**所以，如果不在控制台修改IP，请修改电脑的IP访问，然后可以在网页修改。**
 
 ## 前言
 
@@ -147,7 +151,7 @@ flowchart TB
 
 ### 配置示例
 
-再次提醒，文章开始处的固件，所有配置已内置哦！
+👍 再次提醒，文章开始处的固件，所有配置已内置哦！
 
 #### dnsmasq
 
@@ -312,3 +316,47 @@ plugins:
       entry: main_sequence
       listen: 0.0.0.0:5335
 ```
+
+## 作为主路由时使用的特别说明
+
+### DHCP 服务器
+
+DHCP 服务器设置中的 DNS 服务器，务必设置成旁路由，不要设置公共 DNS。
+
+### IPv6
+
+1. 不通告 IPv6 DNS 服务器，DNS 解析全部走 IPv4。
+2. 通告 DNS 服务器为路由器自己，即路由器的链路本地地址。
+
+## 作为旁路由时使用的特别说明
+
+### DHCP 服务器
+
+一般情况下建议禁用旁路由 DHCP 服务器，在主路由配置 DHCP 服务器，把网关设置成旁路由，或者通过静态分配指定不同客户端指向不同网关。
+
+DHCP 服务器设置中的 DNS 服务器，务必设置成旁路由，不要设置公共 DNS。
+
+### IPv6
+
+主路由上请勿通告 IPv6 DNS 服务器（这里指 IPv6 地址的 DNS 服务器，如 2400:3200::1）。通过 IPv4 地址的 DNS 服务器解析域名，一样可以拿到 AAAA 记录，所以没必要开启 IPv6 地址的 DNS 服务器，开启反而会增加配置难度，影响 DNS 分流，并可能造成 DNS 泄露。
+
+如下查询示例，可以看到，通过 IPv4 DNS 服务器可以获得 IPv6 地址。
+
+``` bash
+$ nslookup www.iqiyi.com 223.5.5.5
+Server:		223.5.5.5
+Address:	223.5.5.5#53
+
+Non-authoritative answer:
+www.iqiyi.com	canonical name = ipv6-static.dns.iqiyi.com.
+Name:	ipv6-static.dns.iqiyi.com
+Address: 101.227.12.45
+Name:	ipv6-static.dns.iqiyi.com
+Address: 101.227.12.41
+Name:	ipv6-static.dns.iqiyi.com
+Address: 240e:e1:a400:1c::22
+Name:	ipv6-static.dns.iqiyi.com
+Address: 240e:e1:a400:1c::21
+```
+
+Openwrt、iKuai、RouterOS 都是支持不通告 IPv6 DNS 的。如果你的主路由不支持，IPv6 DNS 可以填个无效地址，如 `::1`。
