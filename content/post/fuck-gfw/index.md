@@ -35,7 +35,7 @@ weight: 2
 | 版本 | 说明 | 下载地址 |
 |---|---|:---:|
 | x86 | 包含 ssrp 和 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-common-x86-amd64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-common-x86-amd64) |
-| x86 openclash 专版 | 仅包含 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-openclash-x86-amd64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-openclash-x86-amd64) |
+| x86 openclash 专版 | 仅包含 openclash，注意此固件默认不劫持 53 端口，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-openclash-x86-amd64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-openclash-x86-amd64) |
 | r2s | 包含 ssrp 和 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-common-r2s-arm64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-common-r2s-arm64) |
 | n1 | 包含 ssrp 和 openclash，[详细说明](https://github.com/alecthw/openwrt-actions/blob/master/user/lede-common-n1-arm64/README.md) | [下载](https://github.com/alecthw/openwrt-actions/releases/tag/lede-common-n1-arm64) |
 
@@ -316,6 +316,35 @@ plugins:
       entry: main_sequence
       listen: 0.0.0.0:5335
 ```
+
+#### 防火墙，劫持 53 端口（可选）
+
+防止客户端自定义 DNS 服务器，从而绕过管控，可以在防火墙自定义规则配置劫持 53 端口 UDP 和 UDP。
+
+但是，如果客户端配置加密 DNS 就没法劫持。如果要限制，对于 DoT 和 DoQ 可以屏蔽 853 端口禁用，但是 DoH 就完全没办法。
+
+```bash
+# 同时支持 iptables 和 ip6tables
+dns_redirect() {
+    cmd="-t nat -A PREROUTING -p $1 --dport 53 -j REDIRECT --to-ports 53"
+    chk=$(echo $cmd | sed -e 's/-A/-C/g')
+
+    echo $cmd
+    echo $chk
+
+    $2 $chk
+    ret=$?
+    if [ "$ret" -ne 0 ]; then
+        $2 $cmd
+    fi
+}
+
+dns_redirect udp iptables
+dns_redirect tcp iptables
+[ -n "$(command -v ip6tables)" ] && dns_redirect udp ip6tables
+[ -n "$(command -v ip6tables)" ] && dns_redirect tcp ip6tables
+```
+
 
 ## 作为主路由时使用的特别说明
 
