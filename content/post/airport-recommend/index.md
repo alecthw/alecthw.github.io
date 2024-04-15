@@ -21,6 +21,7 @@ weight: 1
 
 - 🔥尝鲜偶用，预算较低：[一元机场，一个月不到1块钱](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)
 - 🔥重度依赖，流媒解锁：[TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)
+- 🔥喜欢看剧，自带Emby：[TLS 全球50+节点，Emby 有 4K 资源支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
 
 ## 轻度使用
@@ -120,7 +121,7 @@ weight: 1
 
 协议：`Shadowsocks`, `Trojan`
 
-特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度。`PS: 最近稍微有点不稳定，不知道机场在折腾啥，建议稍微观望下。`
+特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度。出问题的时候，也是自己把自己折腾挂了。
 
 官网打不开的话先挂个别的代理。
 
@@ -134,7 +135,7 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 套餐情况：
 
-- Smart Access：每月 500G 流量，约 117CNY/Month，约 606CNY/Year，约 1102CNY/Year
+- Smart Access：每月 500G 流量，约 117CNY/Month，约 594CNY/Year，约 1102CNY/Year
 - Smart Access Air：每月 200G 流量，价格是 Smart Access 的一半多点，但是`限量提供，能不能买到看缘分，买到后可以一直续费`
 
 ![Nexitally 套餐](nexitally.png)
@@ -149,13 +150,13 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 协议：`Shadowsocks`
 
-特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。`PS: Emby 服务高清资源已经恢复了，4K还没有，感觉半摆烂了······`
+特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。`PS: Emby 高清和4K均已恢复，可以冲！······`
 
 最大的特色是高级套餐附带 Emby 服务，并且直连 Emby 的速度也是不错的，不需要梯子就能直接看。影视库更新速度也挺快，最新电视剧集基本第二天就上了。
 
 套餐除了机场送 Emby 外，也单独提供了 Emby 套餐。
 
-相对小众一点，客服态度也很好，价格与 Nexitally 和 TAG 相比要低一点。
+相对小众一点，客服态度也很好，价格适中，比 Nexitally 和 TAG 便宜不少。
 
 ![TLS 套餐](tls.png)
 
