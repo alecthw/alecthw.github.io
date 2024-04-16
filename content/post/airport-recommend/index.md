@@ -15,7 +15,7 @@ tags:
 weight: 1
 ---
 
-按轻度使用和重度使用分别推荐。每种就推荐两三个，需要其他的可以参考毒药的帖子[👉链接](https://www.duyaoss.com/)。
+按[轻度使用](#轻度使用)和[重度使用](#重度使用)分别推荐，每种就推荐两三个。最后还有个[其他机场推荐](#其他机场)，来源是他人推荐或者机场自荐，以供有不同需求的人参考。
 
 极简总结：
 
@@ -23,10 +23,9 @@ weight: 1
 - 🔥重度依赖，流媒解锁：[TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)
 - 🔥喜欢看剧，自带Emby：[TLS 全球50+节点，Emby 有 4K 资源支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
-
 ## 轻度使用
 
-- 预算低，舍不得在这方面大支出
+- **预算低**，舍不得在这方面大支出
 - 备用机场防失联
 - 海淘、谷歌
 - 偶尔看看 Youtube 等视频
@@ -77,7 +76,7 @@ weight: 1
 
 额外提一下中转套餐，节点较少，由于近期刚推出，猜测应该会不错，价格实惠，14.50CNY/月付，流量300G/月，可以试试。没找到测速图，贴一张节点图给大家参考。
 
-![三分机场套餐](three-cents2.jpg)
+![三分机场中转套餐](three-cents2.jpg)
 
 ## 重度使用
 
@@ -86,8 +85,8 @@ weight: 1
 - 长期看不能直连的 Emby 公益服
 - Telegram 上看视频
 - 办公强依赖
-- 追求稳定性
-- 高速和低时延要求
+- 追求**稳定性**
+- **高速**和***低时延***要求
 
 ### [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)🔥
 
@@ -142,7 +141,7 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 毒药的电信测速，可以参考下。
 
-![Nexitally 测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/80f7a09b-6bf6-4db5-89e5-2df9c8a97ef8)
+![Nexitally 测速（来自毒药）](https://www.duyaoss.com/uploaded/20240406_6611560a251b2.png)
 
 ### [TLS](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
@@ -163,6 +162,24 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 测速如下：
 
 ![TLS 测速（来自网络）](tls-speed.png)
+
+## 其他机场
+
+### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=AETedHsL)
+
+官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=AETedHsL)
+
+协议：`Trojan`
+
+特点：一家新兴的性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
+
+相对小众一点，价格适中，值得一试。
+
+![小鸡快跑套餐](chickenrun.jpg)
+
+测速如下：
+
+![小鸡快跑测速（来自网络）](chickenrun-speed.jpg)
 
 ## 最后
 
