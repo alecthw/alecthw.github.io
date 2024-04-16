@@ -165,9 +165,9 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 ## 其他机场
 
-### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=AETedHsL)
+### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
 
-官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=AETedHsL)
+官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
 
 协议：`Trojan`
 
