@@ -4,3 +4,5 @@
 
 
 Personal Homepage: [https://alecthw.github.io](https://alecthw.github.io)
+
+Created with [hugo-theme-stack-starter](https://github.com/CaiJimmy/hugo-theme-stack-starter)

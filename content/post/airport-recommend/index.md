@@ -22,6 +22,7 @@ weight: 1
 - 🔥尝鲜偶用，预算较低：[一元机场，一个月不到1块钱](https://xn--4gq62f52gdss.club/#/register?code=QFTTlbYU)
 - 🔥重度依赖，流媒解锁：[TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)
 - 🔥喜欢看剧，自带Emby：[TLS 全球50+节点，Emby 有 4K 资源支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
+- 🔥高性价比，小众新兴：[小鸡快跑，新兴机场，测速快得有点夸张，价格实惠，值得一试](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
 
 ## 轻度使用
 
