@@ -22,12 +22,12 @@ weight: 1
 
 极简总结：
 
-- 🔥尝鲜偶用，预算较低：[一元机场，一个月不到1块钱，老牌廉价机场，推荐作为备用防失联](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)
-- 🔥重度依赖，流媒解锁：[TAG 全球250+节点、99+流媒体解锁，覆盖地区最广的机场，贵但是好用](https://tagss04.pro/#/auth/2neqgxFl)
-- 🔥喜欢看剧，自带Emby：[TLS 全球50+节点，主打 Emby， 有 4K 资源，支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
-- 🔥高性价比，小众新兴：[小鸡快跑，新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
+- 🔥高性价比，小众新兴：[小鸡快跑，新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
+- 🔥尝鲜偶用，预算较低：[一元机场，一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)
+- 🔥重度依赖，流媒解锁：[TAG 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，贵但是好用](https://tagss04.pro/#/auth/2neqgxFl)
+- 🔥喜欢看剧，自带Emby：[TLS 全球 50+ 节点，主打 Emby， 有 4K 资源，支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
-强烈推荐[小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)，性价比真的太高了！
+强烈推荐[小鸡快跑](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)，性价比真的太高了！
 
 ## 轻度使用
 
@@ -56,9 +56,9 @@ weight: 1
 
 ![一元机场测速（来自网络）](one-dollar-speed.jpg)
 
-### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
+### [小鸡快跑](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)🔥🔥🔥
 
-官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
+官网：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
 
 协议：`Trojan`
 
@@ -86,7 +86,7 @@ weight: 1
 
 特别注意，套餐里有个小字说明，`福建福州、泉州、湖南和河南大部分地区此套餐可能无法使`，这些地区的小伙伴谨慎购买。
 
-中转套餐就不太推荐了，最低 14.50CNY/Month，这个价格的话更推荐上面的 [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup) 了。
+中转套餐就不太推荐了，最低 14.50CNY/Month，这个价格的话更推荐上面的 [小鸡快跑](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup) 了。
 
 目前节点包括香港、日本、美国、新加坡、台湾。
 
@@ -106,7 +106,7 @@ weight: 1
 - 追求**稳定性**
 - **高速**和***低时延***要求
 
-### [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)🔥
+### [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)🔥🔥
 
 官网：[👉链接🚀](https://tagss04.pro/#/auth/2neqgxFl)
 
@@ -128,9 +128,9 @@ weight: 1
 
 ![TAG套餐](tag.png)
 
-毒药的电信测速，可以参考下。
+电信测速，可以参考下。
 
-![TAG测速（来自毒药）](https://github.com/DuyaoSS/Pic/assets/34016863/72d9f0e8-6b0d-438e-83d6-551057f88442)
+![TAG测速](https://github.com/DuyaoSS/Pic/assets/34016863/72d9f0e8-6b0d-438e-83d6-551057f88442)
 
 ### [Nexitally](https://nexitally.net/)
 
@@ -169,13 +169,11 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 协议：`Shadowsocks`
 
-特点：中高级套餐附带Emby，价格适中，速度较快，相对稳定。`PS: Emby 高清和4K均已恢复，可以冲！······`
+特点：中高级套餐附带 Emby 且有 4K，价格适中，速度较快，相对稳定。`PS: Emby 高清和4K均已恢复，可以冲！······`
 
-最大的特色是高级套餐附带 Emby 服务，并且直连 Emby 的速度也是不错的，不需要梯子就能直接看。影视库更新速度也挺快，最新电视剧集基本第二天就上了。
+最大的特色是高级套餐附带 Emby 服务，提供了 4K 片源，并且直连 Emby 的速度也是不错的，不需要梯子就能直接看。影视库更新速度也挺快，最新电视剧集基本第二天就上了，基本可以替代国内视频平台。相对小众一点，客服态度也很好。
 
-套餐除了机场送 Emby 外，也单独提供了 Emby 套餐。
-
-相对小众一点，客服态度也很好，价格适中，比 Nexitally 和 TAG 便宜不少。
+套餐除了翻墙套餐送 Emby 外，也单独提供了 Emby 套餐。
 
 ![TLS 套餐](tls.png)
 
