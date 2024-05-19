@@ -11,7 +11,7 @@ tags:
   - mtproto
 ---
 
-🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](https://alecthw.github.io/p/2023/11/airport-recommend/)
+🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
 
 ---
 
@@ -613,9 +613,9 @@ $systemctl status v2ray
 6. 开启 TLS
 7. AlterId 填写`64`，需要和服务端一致
 
-### IOS 客户端
+### iOS 客户端
 
-IOS 下的 VPN 类客户端在国区基本下架下完了，V2Ray 推荐使用 Kitsunebi 的 TestFlight 版本。
+iOS 下的 VPN 类客户端在国区基本下架下完了，V2Ray 推荐使用 Kitsunebi 的 TestFlight 版本。
 
 1. 在手机上安装 TestFlight App：[https://itunes.apple.com/us/app/testflight/id899247664?mt=8](https://itunes.apple.com/us/app/testflight/id899247664?mt=8)
 2. 在手机上打开这个链接自动加入 TestFlight：[https://testflight.apple.com/join/2w6EF67u](https://testflight.apple.com/join/2w6EF67u)

@@ -27,7 +27,7 @@ tags:
 ## 说在前面
 
 1. 机场/梯子肯定是要花钱买的！这里给你推荐，但不售卖。
-2. Apple IOS 端安装需要外区账号，如果你没本事注册，就花几块钱买，后面会推荐购买平台。
+2. Apple iOS 端安装需要外区账号，如果你没本事注册，就花几块钱买，后面会推荐购买平台。
 
 ## 具体步骤
 
@@ -53,7 +53,7 @@ tags:
 
 本文推荐使用的是 [sing-box](https://github.com/SagerNet/sing-box)，简单好用。
 
-安卓可以直接下载安装，IOS 需要**外区账号**。
+安卓可以直接下载安装，iOS 需要**外区账号**。
 
 #### Android 安装
 
@@ -69,9 +69,9 @@ Github 下载加速：https://mirror.ghproxy.com/
 
 ![Github 下载加速](ghproxy.jpg)
 
-#### IOS 安装
+#### iOS 安装
 
-由于 IOS 的封闭性，软件只能从 APP Store 安装，然而由于某些不可说的原因，国区商店是没有的，所以只能换**非国区**下载。
+由于 iOS 的封闭性，软件只能从 APP Store 安装，然而由于某些不可说的原因，国区商店是没有的，所以只能换**非国区**下载。
 
 ##### 准备苹果外区账号
 
@@ -103,7 +103,7 @@ Github 下载加速：https://mirror.ghproxy.com/
 
 ### 使用 sing-box
 
-IOS 和 Android 的界面有稍许差别。
+iOS 和 Android 的界面有稍许差别。
 
 #### Android
 
@@ -121,21 +121,21 @@ IOS 和 Android 的界面有稍许差别。
 
 ![安卓添加 VPN](singbox-android-1.jpg)
 
-#### IOS
+#### iOS
 
-IOS 需要先点击 `Install Network Extension` 添加 VPN 到系统，如下图。
+iOS 需要先点击 `Install Network Extension` 添加 VPN 到系统，如下图。
 
-![IOS 添加 VPN](singbox-ios-1.jpg)
+![iOS 添加 VPN](singbox-ios-1.jpg)
 
 最下面选择 `Profiles`，点击 `Create`。然后 Type 选择 `Remote`，Name 可以任意填，URL 填入前面购买获取的订阅地址，最后点击 `Create`。
 
-![IOS 添加订阅](singbox-ios-2.jpg)
+![iOS 添加订阅](singbox-ios-2.jpg)
 
 第一次启动时间较长，耐心等待一会儿，直到出现下面第二章图的界面即可使用了。
 
 启动后默认是**规则模式**（Rule，国内外自动分流，可以一直开着不关闭）。节点是**自动选择**，也可按需手动选择。
 
-![IOS 启动](singbox-ios-3.jpg)
+![iOS 启动](singbox-ios-3.jpg)
 
 ## 接下来可以干什么
 
@@ -145,4 +145,4 @@ IOS 需要先点击 `Install Network Extension` 添加 VPN 到系统，如下图
 
 有时候因为特殊原因，机场会刷新订阅地址，如果发现无法使用或者更新不了订阅，请到机场仪表盘重新复制新地址。
 
-后面会出一篇看境外流媒体（Netflix、Disney+ 等）的详细教程，可以留意下。
+👉: [看境外流媒体（Netflix、Disney+ 等）的详细教程](/p/netflix-help/)
