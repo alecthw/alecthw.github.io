@@ -11,6 +11,8 @@ tags:
   - clash
   - ss
   - tag
+  - chickenrun
+  - 小鸡快跑
   - 机场
   - 梯子
   - 科学上网
@@ -22,12 +24,12 @@ weight: 1
 
 极简总结：
 
-- 🔥高性价比，小众新兴：[小鸡快跑，新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
+- 🔥高性价比，小众新兴：[小鸡快跑，新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
 - 🔥尝鲜偶用，预算较低：[一元机场，一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)
 - 🔥重度依赖，流媒解锁：[TAG 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，贵但是好用](https://tagss04.pro/#/auth/2neqgxFl)
 - 🔥喜欢看剧，自带Emby：[TLS 全球 50+ 节点，主打 Emby， 有 4K 资源，支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
-强烈推荐[小鸡快跑](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)，性价比真的太高了！
+强烈推荐**小鸡快跑**，性价比真的太高了！
 
 ## 轻度使用
 
@@ -56,9 +58,11 @@ weight: 1
 
 ![一元机场测速（来自网络）](one-dollar-speed.jpg)
 
-### [小鸡快跑](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)🔥🔥🔥
+### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)🔥🔥🔥
 
-官网：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
+官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
+
+官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
 
 协议：`Trojan`
 
@@ -86,7 +90,7 @@ weight: 1
 
 特别注意，直连套餐里有个小字说明：`福建福州、泉州、湖南和河南大部分地区此套餐可能无法使`，这些地区的小伙伴谨慎购买。
 
-中转套餐就不太推荐了，最低 14.50CNY/Month，这个价格的话更推荐上面的 [小鸡快跑](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup) 了。
+中转套餐就不太推荐了，最低 14.50CNY/Month，这个价格的话更推荐上面的 [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup) 了。
 
 目前节点包括香港、日本、美国、新加坡、台湾。
 

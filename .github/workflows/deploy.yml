@@ -43,7 +43,10 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify --gc
+        run: |
+          hugo --minify --gc
+          hugo --minify --gc --baseURL "https://www.projectv.cc/" --destination public_projectv.cc
+
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
@@ -52,9 +55,6 @@ jobs:
           folder: public
           clean: true
           single-commit: true
-
-      - name: Build projectv.cc
-        run: hugo --minify --gc --baseURL "https://www.projectv.cc/" --destination public_projectv.cc
 
       - name: Deploy projectv.cc
         uses: JamesIves/github-pages-deploy-action@v4

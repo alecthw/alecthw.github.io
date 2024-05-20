@@ -14,8 +14,13 @@ tags:
   - mosdns
   - ss
   - helloworld
+  - tag
+  - chickenrun
+  - 小鸡快跑
   - 机场
   - 梯子
+  - 科学上网
+  - 翻墙
 weight: 2
 ---
 
