@@ -134,7 +134,7 @@ weight: 1
 
 电信测速，可以参考下。
 
-![TAG测速](https://github.com/DuyaoSS/Pic/assets/34016863/72d9f0e8-6b0d-438e-83d6-551057f88442)
+![TAG测速](tag-speed.png)
 
 ### [Nexitally](https://nexitally.net/)
 
@@ -165,7 +165,7 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 毒药的电信测速，可以参考下。
 
-![Nexitally 测速（来自毒药）](https://www.duyaoss.com/uploaded/20240406_6611560a251b2.png)
+![Nexitally 测速（来自毒药）](nexitally-speed.png)
 
 ### [TLS](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
