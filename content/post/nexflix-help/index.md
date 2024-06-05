@@ -83,7 +83,7 @@ Apple TV 无法安装国内视频平台软件。
 
 当然，决定买 Apple TV 的时候，所有的问题应该都考虑到了。
 
-#### 安卓
+#### 安卓盒子
 
 国产盒子看 Youtube 可以安装 [SmartTube](https://smarttubeapp.github.io/)。
 

@@ -318,7 +318,7 @@ $ systemctl status nginx
    Active: active (running) since Wed 2018-11-14 11:22:53 CST; 4 days ago
 ```
 
-然后打开浏览器访问**www.example.cc**和**example.cc**看是否能打开腾讯公益 404 页面。能打开说明 Nginx 已经正确配置，然后就可以开始申请 SSL 证书了。
+然后打开浏览器访问 <www.example.cc> 和 <example.cc>看是否能打开腾讯公益 404 页面。能打开说明 Nginx 已经正确配置，然后就可以开始申请 SSL 证书了。
 
 #### 安装 V2Ray
 
@@ -462,7 +462,7 @@ http {
 systemctl restart nginx
 ```
 
-访问**www.example.cc**和**example.cc**，如果自动跳转`https://www.example.cc`并且正确显示公益 404 则已经配置正确。
+访问 <www.example.cc> 和 <example.cc>，如果自动跳转`https://www.example.cc`并且正确显示公益 404 则已经配置正确。
 
 #### 配置 V2Ray 并启动
 
@@ -578,7 +578,7 @@ $ head -c 16 /dev/urandom | xxd -ps
 }
 ```
 
-#####　启动 V2Ray
+##### 启动 V2Ray
 
 开启开机启动并启动。
 

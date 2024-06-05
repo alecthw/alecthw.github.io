@@ -60,7 +60,7 @@ tags:
 
 #### Android 安装
 
-Github 官方下载地址：https://github.com/SagerNet/sing-box/releases
+Github 官方下载地址：<https://github.com/SagerNet/sing-box/releases>
 
 请选择 `SFA-{版本号}-universal.apk` 下载，因为不是从商店安装的，手机可能会提示风险，一直允许就行。
 
@@ -68,7 +68,7 @@ Github 官方下载地址：https://github.com/SagerNet/sing-box/releases
 
 如果下载太慢，可以使用如下下载加速网站，右键复制链接后，贴到输入框里点击下载。
 
-Github 下载加速：https://mirror.ghproxy.com/
+Github 下载加速：<https://mirror.ghproxy.com/>
 
 ![Github 下载加速](ghproxy.jpg)
 
@@ -82,7 +82,7 @@ Github 下载加速：https://mirror.ghproxy.com/
 
 如果你没有外区账号，自行注册外区账号比较复杂，推荐花 ￥6.6 直接购买一个，地区推荐选择美国。
 
-苹果外区账号购买：https://www.bigplayers.com/shop/detail?id=77&inviteCode=A9245220
+苹果外区账号购买：<https://www.bigplayers.com/shop/detail?id=77&inviteCode=A9245220>
 
 用外区账号登录 APP Store，务必按下图操作，否则有导致手机被锁的风险：
 

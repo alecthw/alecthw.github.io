@@ -74,7 +74,7 @@ lspci -v | grep -A 2 VGA
 
 ```txt
 0000:00:02.0 Display controller VGA compatible controller: Intel Corporation Alder Lake-S GT1 [UHD Graphics 770] 
-	 Class 0300: 8086:5916
+  Class 0300: 8086:5916
 ```
 
 `8086` 是供应商 ID，这里就是 Intel，`5916` 就是硬件 ID。记下这8个字符，这里不要照抄哦，要用你自己的。
@@ -192,7 +192,7 @@ systemctl start clouddrive2
 
 ### 5. 网页登陆配置
 
-http://ip:19798/
+<http://ip:19798/>
 
 注册登录后界面如下
 
@@ -280,7 +280,7 @@ systemctl restart emby-server
 
 ### 3. 配置 Emby
 
-http://ip:8096/
+<http://ip:8096/>
 
 登录后按照指引配置就行了，这里网上教程很多，不赘述。
 
@@ -300,5 +300,5 @@ http://ip:8096/
 
 目前好用的直播源都是 ipv6 的，如果正确配置了 ipv6，可以添加如下直播源和指南数据库。
 
-- 直播源：https://live.fanmingming.com/tv/m3u/ipv6.m3u
-- XmlTV：https://live.fanmingming.com/e.xml
+- 直播源：<https://live.fanmingming.com/tv/m3u/ipv6.m3u>
+- XmlTV：<https://live.fanmingming.com/e.xml>

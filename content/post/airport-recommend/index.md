@@ -26,10 +26,10 @@ weight: 1
 
 - 🔥高性价比，小众新兴：[小鸡快跑，新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
 - 🔥尝鲜偶用，预算较低：[一元机场，一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)
-- 🔥重度依赖，流媒解锁：[TAG 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，贵但是好用](https://tagss04.pro/#/auth/2neqgxFl)
-- 🔥喜欢看剧，自带Emby：[TLS 全球 50+ 节点，主打 Emby， 有 4K 资源，支持直连和 Infuse](https://tls.wiki/index.php#/register?code=ojo2nVBG)
+- 🔥重度依赖，长期稳定：[TAG，全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用](https://tagss04.pro/#/auth/2neqgxFl)
+- 🔥喜欢看剧，自带Emby：[TLS，主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
-当前强烈推荐**小鸡快跑**，性价比真的太高了！
+流媒体解锁都支持的。当前强烈推荐**小鸡快跑**，性价比真的太高了！
 
 ## 轻度使用
 
@@ -76,17 +76,20 @@ weight: 1
 
 ![小鸡快跑测速](chickenrun-speed.jpg)
 
-### [三分机场](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
+### [三分机场](https://hk.sanfen.cc/#/register?code=FKnu6Hkg)
 
-官网：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
+官网1：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
+官网2：[👉链接🚀](https://hk.sanfen.cc/#/register?code=FKnu6Hkg)
 
 协议：`VMESS`
+
+**2024年6月5日起，618活动限时供应 9.5CNY/Year 每月 200G 套餐！！！**
 
 特点：廉价，流量较少，速度还行，稳定性一般，相对小众一点。
 
 和上面类似，也是靠低价起家的，后来也推出了中转套餐。
 
-注意：`9.5CNY/Year 每月 200G` 的套餐目前已经没有了，仅剩下 `39.9CNY/Year 总流量 900G` 和 `5 CNY/Month 每月 5000G 流量`的低价套餐。
+注意：`9.5CNY/Year 每月 200G` 的套餐目前已经不常驻了，仅剩下 `39.9CNY/Year 总流量 900G` 和 `5 CNY/Month 每月 5000G 流量`的低价套餐。
 
 特别注意，直连套餐里有个小字说明：`福建福州、泉州、湖南和河南大部分地区此套餐可能无法使`，这些地区的小伙伴谨慎购买。
 
@@ -110,7 +113,7 @@ weight: 1
 - 追求**稳定性**
 - **高速**和***低时延***要求
 
-### [TAG ](https://tagss04.pro/#/auth/2neqgxFl)🔥🔥
+### [TAG](https://tagss04.pro/#/auth/2neqgxFl)🔥🔥
 
 官网：[👉链接🚀](https://tagss04.pro/#/auth/2neqgxFl)
 

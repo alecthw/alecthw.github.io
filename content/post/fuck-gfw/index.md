@@ -116,7 +116,7 @@ DNS 污染即让你访问网站时，无法获得域名对应的IP地址，从�
   - 其中，境外网站屏蔽 IPV6 应答
 - 如果使用 openclash，DNS 必须经过 clash 内核，以使 DNS 完成 IP <--> Domain 的 mapping
 
-PS: mosdns 使用[ alecthw 修改版](https://github.com/alecthw/mosdns)，支持 MMDB GeoIP 匹配
+PS: mosdns 使用 [alecthw 修改版](https://github.com/alecthw/mosdns)，支持 MMDB GeoIP 匹配
 
 ### 多级 DNS 级联
 
@@ -128,6 +128,7 @@ flowchart LR
 ```
 
 配置过程如下：
+
 - 修改了 dnsmasq 的默认端口号，用 AdGuardHome 监听53端口作为默认的DNS解析。
 - AdGuardHome 可以监控的各个终端的 DNS 请求，并使用广告过滤和管控功能。
 - openclash 作为 AdGuardHome 的上游。
@@ -178,9 +179,9 @@ flowchart TB
 
 #### mosdns
 
-使用自定义配置，由于使用了 mmdb geoip 匹配，mosdns 必须使用[ alecthw 修改版](https://github.com/alecthw/mosdns)。
+使用自定义配置，由于使用了 mmdb geoip 匹配，mosdns 必须使用 [alecthw 修改版](https://github.com/alecthw/mosdns)。
 
-PS: 以下配置中的[cn-white.txt](https://github.com/alecthw/chnlist/blob/release/mosdns/whitelist.list)，来自项目[chnlist](https://github.com/alecthw/chnlist)，我编译的固件已内置并设置自动更新，其他固件需要手动下载。
+PS: 以下配置中的 [cn-white.txt](https://github.com/alecthw/chnlist/blob/release/mosdns/whitelist.list)，来自项目 [chnlist](https://github.com/alecthw/chnlist)，我编译的固件已内置并设置自动更新，其他固件需要手动下载。
 
 ```yaml
 # 白名单模式
@@ -350,27 +351,26 @@ dns_redirect tcp iptables
 [ -n "$(command -v ip6tables)" ] && dns_redirect tcp ip6tables
 ```
 
-
 ## 作为主路由时使用的特别说明
 
-### DHCP 服务器
+### 主路由 DHCP 服务器
 
 DHCP 服务器设置中的 DNS 服务器，务必设置成旁路由，不要设置公共 DNS。
 
-### IPv6
+### 主路由 IPv6
 
 1. 不通告 IPv6 DNS 服务器，DNS 解析全部走 IPv4。
 2. 通告 DNS 服务器为路由器自己，即路由器的链路本地地址。
 
 ## 作为旁路由时使用的特别说明
 
-### DHCP 服务器
+### 旁路由 DHCP 服务器
 
 一般情况下建议禁用旁路由 DHCP 服务器，在主路由配置 DHCP 服务器，把网关设置成旁路由，或者通过静态分配指定不同客户端指向不同网关。
 
 DHCP 服务器设置中的 DNS 服务器，务必设置成旁路由，不要设置公共 DNS。
 
-### IPv6
+### 旁路由 IPv6
 
 主路由上请勿通告 IPv6 DNS 服务器（这里指 IPv6 地址的 DNS 服务器，如 2400:3200::1）。通过 IPv4 地址的 DNS 服务器解析域名，一样可以拿到 AAAA 记录，所以没必要开启 IPv6 地址的 DNS 服务器，开启反而会增加配置难度，影响 DNS 分流，并可能造成 DNS 泄露。
 
@@ -378,18 +378,18 @@ DHCP 服务器设置中的 DNS 服务器，务必设置成旁路由，不要设�
 
 ``` bash
 $ nslookup www.iqiyi.com 223.5.5.5
-Server:		223.5.5.5
-Address:	223.5.5.5#53
+Server:  223.5.5.5
+Address: 223.5.5.5#53
 
 Non-authoritative answer:
-www.iqiyi.com	canonical name = ipv6-static.dns.iqiyi.com.
-Name:	ipv6-static.dns.iqiyi.com
+www.iqiyi.com canonical name = ipv6-static.dns.iqiyi.com.
+Name:         ipv6-static.dns.iqiyi.com
 Address: 101.227.12.45
-Name:	ipv6-static.dns.iqiyi.com
+Name:    ipv6-static.dns.iqiyi.com
 Address: 101.227.12.41
-Name:	ipv6-static.dns.iqiyi.com
+Name:    ipv6-static.dns.iqiyi.com
 Address: 240e:e1:a400:1c::22
-Name:	ipv6-static.dns.iqiyi.com
+Name:    ipv6-static.dns.iqiyi.com
 Address: 240e:e1:a400:1c::21
 ```
 

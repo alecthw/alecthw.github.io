@@ -58,7 +58,6 @@ set enabled=yes
 
 ## 附：DHCP 静态自动添加到地址列表
 
-
 ```bash
 /ip dhcp-server lease
 add address=192.168.1.x mac-address=xx:xx:xx:xx:xx:xx address-lists=allow_upnp
