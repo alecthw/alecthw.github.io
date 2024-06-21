@@ -45,7 +45,7 @@ jobs:
       - name: Build
         run: |
           hugo --minify --gc
-          hugo --minify --gc --baseURL "https://www.projectv.cc/" --destination public_projectv.cc
+          hugo --minify --gc --baseURL "https://www.wegod.cc/" --destination public_wegod.cc
 
 
       - name: Deploy 🚀
@@ -56,10 +56,10 @@ jobs:
           clean: true
           single-commit: true
 
-      - name: Deploy projectv.cc
+      - name: Deploy wegod.cc
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: projectv.cc
-          folder: public_projectv.cc
+          branch: wegod.cc
+          folder: public_wegod.cc
           clean: true
           single-commit: true
