@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sing-Box on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/tags/sing-box/</link><description>Recent content in Sing-Box on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 15 May 2024 17:16:19 +0800</lastBuildDate><atom:link href="https://alecthw.github.io/tags/sing-box/index.xml" rel="self" type="application/rss+xml"/><item><title>手把手教你科学上网 —— 手机篇（sing-box）</title><link>https://alecthw.github.io/p/singbox-help-mobile/</link><pubDate>Wed, 15 May 2024 17:16:19 +0800</pubDate><guid>https://alecthw.github.io/p/singbox-help-mobile/</guid><description>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/cover.png" alt="Featured image of post 手把手教你科学上网 —— 手机篇（sing-box）" />&lt;h2 id="科学上网需要些什么">科学上网需要些什么
+&lt;/h2>&lt;ul>
+&lt;li>一部手机（废话）&lt;/li>
+&lt;li>机场/梯子，术语叫代理、VPN，推荐购买 &lt;a class="link" href="https://cc01.xiaojikp.pro/#/register?code=tqB3FCup" target="_blank" rel="noopener"
+>ChickenRun&lt;/a>&lt;/li>
+&lt;li>客户端软件，文中使用 &lt;a class="link" href="https://github.com/SagerNet/sing-box" target="_blank" rel="noopener"
+>sing-box&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>打个比喻，客户端软件是车，机场/梯子是路，两个都有了才能跑。&lt;/p>
+&lt;h2 id="说在前面">说在前面
+&lt;/h2>&lt;ol>
+&lt;li>机场/梯子肯定是要花钱买的！这里给你推荐，但不售卖。&lt;/li>
+&lt;li>Apple iOS 端安装需要外区账号，如果你没本事注册，就花几块钱买，后面会推荐购买平台。&lt;/li>
+&lt;/ol>
+&lt;h2 id="具体步骤">具体步骤
+&lt;/h2>&lt;p>这里不讲原理，只说怎么用。原理可以去参考本博客其他文章。&lt;/p>
+&lt;h3 id="1-购买机场梯子">1. 购买机场/梯子
+&lt;/h3>&lt;ul>
+&lt;li>推荐买这个：&lt;a class="link" href="https://cc01.xiaojikp.pro/#/register?code=tqB3FCup" target="_blank" rel="noopener"
+>ChickenRun&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>其他机场可能需要订阅转换才能在 &lt;a class="link" href="https://github.com/SagerNet/sing-box" target="_blank" rel="noopener"
+>sing-box&lt;/a> 上使用。&lt;/p>
+&lt;p>以下内容以 &lt;a class="link" href="https://cc01.xiaojikp.pro/#/register?code=tqB3FCup" target="_blank" rel="noopener"
+>ChickenRun&lt;/a> 为例。&lt;/p>
+&lt;p>注册后，选择&lt;code>购买订阅&lt;/code>购买，不同套餐一般都是流量不一样，按需购买。购买时间越长一般优惠越大，切合自己需求和经济能力购买。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/chickenrun-1.jpg"
+width="2267"
+height="1231"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/chickenrun-1_huf67dae9211a8d8da6fac25cad1bcfd8e_244803_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/chickenrun-1_huf67dae9211a8d8da6fac25cad1bcfd8e_244803_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="小鸡快跑购买订阅"
+class="gallery-image"
+data-flex-grow="184"
+data-flex-basis="441px"
+>&lt;/p>
+&lt;p>购买完成后，回到&lt;code>仪表盘&lt;/code>，点击&lt;code>一键订阅&lt;/code>，再点击&lt;code>复制订阅地址&lt;/code>，保留好这个地址备用，一会儿再回来复制也行。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/chickenrun-2.jpg"
+width="2267"
+height="1238"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/chickenrun-2_hud490622633d1f829e289094da9287e04_175881_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/chickenrun-2_hud490622633d1f829e289094da9287e04_175881_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="小鸡快跑订阅地址"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="439px"
+>&lt;/p>
+&lt;h3 id="安装客户端软件">安装客户端软件
+&lt;/h3>&lt;p>本文推荐使用的是 &lt;a class="link" href="https://github.com/SagerNet/sing-box" target="_blank" rel="noopener"
+>sing-box&lt;/a>，简单好用。&lt;/p>
+&lt;p>安卓可以直接下载安装，iOS 需要&lt;strong>外区账号&lt;/strong>。&lt;/p>
+&lt;h4 id="android-安装">Android 安装
+&lt;/h4>&lt;p>Github 官方下载地址：&lt;a class="link" href="https://github.com/SagerNet/sing-box/releases" target="_blank" rel="noopener"
+>https://github.com/SagerNet/sing-box/releases&lt;/a>&lt;/p>
+&lt;p>请选择 &lt;code>SFA-{版本号}-universal.apk&lt;/code> 下载，因为不是从商店安装的，手机可能会提示风险，一直允许就行。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-dl.jpg"
+width="1514"
+height="559"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-dl_hufc31e8b5a193f1da8b07dee7a63a265f_72132_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-dl_hufc31e8b5a193f1da8b07dee7a63a265f_72132_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="sing-box 下载"
+class="gallery-image"
+data-flex-grow="270"
+data-flex-basis="650px"
+>&lt;/p>
+&lt;p>如果下载太慢，可以使用如下下载加速网站，右键复制链接后，贴到输入框里点击下载。&lt;/p>
+&lt;p>Github 下载加速：&lt;a class="link" href="https://mirror.ghproxy.com/" target="_blank" rel="noopener"
+>https://mirror.ghproxy.com/&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/ghproxy.jpg"
+width="2238"
+height="911"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/ghproxy_hu95a7bd9f0b7ba83b5a6b97636996c1ec_112890_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/ghproxy_hu95a7bd9f0b7ba83b5a6b97636996c1ec_112890_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Github 下载加速"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;h4 id="ios-安装">iOS 安装
+&lt;/h4>&lt;p>由于 iOS 的封闭性，软件只能从 APP Store 安装，然而由于某些不可说的原因，国区商店是没有的，所以只能换&lt;strong>非国区&lt;/strong>下载。&lt;/p>
+&lt;h5 id="准备苹果外区账号">准备苹果外区账号
+&lt;/h5>&lt;p>如果你有外区账号，可以跳过本节。&lt;/p>
+&lt;p>如果你没有外区账号，自行注册外区账号比较复杂，推荐花 ￥6.6 直接购买一个，地区推荐选择美国。&lt;/p>
+&lt;p>苹果外区账号购买：&lt;a class="link" href="https://www.bigplayers.com/shop/detail?id=77&amp;amp;inviteCode=A9245220" target="_blank" rel="noopener"
+>https://www.bigplayers.com/shop/detail?id=77&amp;inviteCode=A9245220&lt;/a>&lt;/p>
+&lt;p>用外区账号登录 APP Store，务必按下图操作，否则有导致手机被锁的风险：&lt;/p>
+&lt;p>&lt;strong>一定不要使用购买的账号登录 iCloud ！！！&lt;/strong>
+&lt;strong>一定不要使用购买的账号登录 iCloud ！！！&lt;/strong>
+&lt;strong>一定不要使用购买的账号登录 iCloud ！！！&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>设置--&amp;gt;头像--&amp;gt;媒体购买与订阅&lt;/code>&lt;/li>
+&lt;li>点击&lt;code>媒体购买与订阅&lt;/code>选择&lt;code>退出登录&lt;/code>&lt;/li>
+&lt;li>再点击一次击&lt;code>媒体购买与订阅&lt;/code>选择&lt;code>不是xxx&lt;/code>，输入账号登录&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/apple.jpg"
+width="591"
+height="1280"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/apple_hu7ba122e06c5e370fa6e92050834d33e3_65045_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/apple_hu7ba122e06c5e370fa6e92050834d33e3_65045_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="苹果切换账号"
+class="gallery-image"
+data-flex-grow="46"
+data-flex-basis="110px"
+>&lt;/p>
+&lt;h5 id="安装-sing-box">安装 sing-box
+&lt;/h5>&lt;p>回到 APP Store，直接搜索 &lt;a class="link" href="https://apps.apple.com/us/app/sing-box/id6451272673" target="_blank" rel="noopener"
+>sing-box&lt;/a> 安装即可。&lt;/p>
+&lt;p>注意看下 Logo 和开发商，别下错了。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-app-store.jpg"
+width="1750"
+height="404"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-app-store_hud46c87841fb7967e77c71e1f6a1ef024_36176_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-app-store_hud46c87841fb7967e77c71e1f6a1ef024_36176_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="苹果商店里的sing-box"
+class="gallery-image"
+data-flex-grow="433"
+data-flex-basis="1039px"
+>&lt;/p>
+&lt;h3 id="使用-sing-box">使用 sing-box
+&lt;/h3>&lt;p>iOS 和 Android 的界面有稍许差别。&lt;/p>
+&lt;h4 id="android">Android
+&lt;/h4>&lt;p>最下面选择 &lt;code>Profiles&lt;/code>，点击右下角添加图标，选择 &lt;code>Create Manually&lt;/code>。然后 Type 选择 &lt;code>Remote&lt;/code>，Name 可以任意填，URL 填入前面购买获取的订阅地址，最后点击 &lt;code>Create&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-android-2.jpg"
+width="1280"
+height="900"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-android-2_hu67825f131ed353847dbbf7ef708123c5_58333_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-android-2_hu67825f131ed353847dbbf7ef708123c5_58333_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="安卓添加订阅"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="341px"
+>&lt;/p>
+&lt;p>回到 &lt;code>Dashboard&lt;/code>，选择刚刚创建的 Profile，点击右下角的三角启动。&lt;/p>
+&lt;p>首次启动会提示添加 VPN，按提示允许即可。第一次启动时间较长，耐心等待一会儿，直到出现下面第二张图的界面即可使用了。&lt;/p>
+&lt;p>启动后默认是&lt;strong>规则模式&lt;/strong>（Rule，国内外自动分流，可以一直开着不关闭）。节点是&lt;strong>自动选择&lt;/strong>，也可按需手动选择。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-android-3.jpg"
+width="1280"
+height="675"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-android-3_hu97fe0d499e52589bd1e194c74fefb12e_61572_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-android-3_hu97fe0d499e52589bd1e194c74fefb12e_61572_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="安卓启动"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-android-1.jpg"
+width="606"
+height="1280"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-android-1_hua3928c2beef52dc61e439d077a9069f6_45961_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-android-1_hua3928c2beef52dc61e439d077a9069f6_45961_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="安卓添加 VPN"
+class="gallery-image"
+data-flex-grow="47"
+data-flex-basis="113px"
+>&lt;/p>
+&lt;h4 id="ios">iOS
+&lt;/h4>&lt;p>iOS 需要先点击 &lt;code>Install Network Extension&lt;/code> 添加 VPN 到系统，如下图。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-1.jpg"
+width="591"
+height="1280"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-1_hub6808e41aeb3a735705f423e9b4716d6_25707_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-1_hub6808e41aeb3a735705f423e9b4716d6_25707_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="iOS 添加 VPN"
+class="gallery-image"
+data-flex-grow="46"
+data-flex-basis="110px"
+>&lt;/p>
+&lt;p>最下面选择 &lt;code>Profiles&lt;/code>，点击 &lt;code>Create&lt;/code>。然后 Type 选择 &lt;code>Remote&lt;/code>，Name 可以任意填，URL 填入前面购买获取的订阅地址，最后点击 &lt;code>Create&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-2.jpg"
+width="1280"
+height="922"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-2_hu08fadb228b8d8b6fdb1df5f2652f062e_55209_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-2_hu08fadb228b8d8b6fdb1df5f2652f062e_55209_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="iOS 添加订阅"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="333px"
+>&lt;/p>
+&lt;p>第一次启动时间较长，耐心等待一会儿，直到出现下面第二章图的界面即可使用了。&lt;/p>
+&lt;p>启动后默认是&lt;strong>规则模式&lt;/strong>（Rule，国内外自动分流，可以一直开着不关闭）。节点是&lt;strong>自动选择&lt;/strong>，也可按需手动选择。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-3.jpg"
+width="1280"
+height="692"
+srcset="https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-3_hub791400c2ab57c154c89f94b08c882db_73485_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/singbox-help-mobile/singbox-ios-3_hub791400c2ab57c154c89f94b08c882db_73485_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="iOS 启动"
+class="gallery-image"
+data-flex-grow="184"
+data-flex-basis="443px"
+>&lt;/p>
+&lt;h2 id="接下来可以干什么">接下来可以干什么
+&lt;/h2>&lt;p>至此，Google、Youtube、Telegram 等等你都可以访问了，总之，自由了！&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;p>有时候因为特殊原因，机场会刷新订阅地址，如果发现无法使用或者更新不了订阅，请到机场仪表盘重新复制新地址。&lt;/p>
+&lt;p>👉: &lt;a class="link" href="https://alecthw.github.io/p/netflix-help/" >看境外流媒体（Netflix、Disney+ 等）的详细教程&lt;/a>&lt;/p></description></item></channel></rss>
