@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>系统 on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/categories/system/</link><description>Recent content in 系统 on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://alecthw.github.io/categories/system/index.xml" rel="self" type="application/rss+xml"/><item><title>RouterOS 给 UPNP 设置白名单，避免 APP 白嫖上行带宽</title><link>https://alecthw.github.io/p/routeros-upnp-blcok/</link><pubDate>Mon, 26 Feb 2024 20:11:45 +0800</pubDate><guid>https://alecthw.github.io/p/routeros-upnp-blcok/</guid><description>&lt;img src="https://alecthw.github.io/p/routeros-upnp-blcok/cover.jpg" alt="Featured image of post RouterOS 给 UPNP 设置白名单，避免 APP 白嫖上行带宽" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://tagss04.pro/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h2 id="ros-的-upnp">ROS 的 UPNP
+&lt;/h2>&lt;p>由于 ROS 的 UPNP 功能没有自带类似黑白名单类似的功能，那只能从防火墙入手了。&lt;/p>
+&lt;p>UPNP 服务端涉及两个端口，1900(UDP) 和 2828(TCP)。那么，目标就很明确了：&lt;/p>
+&lt;ol>
+&lt;li>建个白名单&lt;/li>
+&lt;li>仅允许白名单内的 IP 访问这两个端口&lt;/li>
+&lt;/ol>
+&lt;h2 id="配置过程">配置过程
+&lt;/h2>&lt;h3 id="创建一个名称为-allow_upnp-的地址列表作白名单">创建一个名称为 &lt;code>allow_upnp&lt;/code> 的地址列表作白名单
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip firewall address-list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.1.1 &lt;span class="nv">list&lt;/span>&lt;span class="o">=&lt;/span>allow_upnp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.1.2 &lt;span class="nv">list&lt;/span>&lt;span class="o">=&lt;/span>allow_upnp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="创建两条-filter-规则">创建两条 filter 规则
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip firewall filter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">action&lt;/span>&lt;span class="o">=&lt;/span>drop &lt;span class="nv">chain&lt;/span>&lt;span class="o">=&lt;/span>input dst-port&lt;span class="o">=&lt;/span>&lt;span class="m">1900&lt;/span> &lt;span class="nv">protocol&lt;/span>&lt;span class="o">=&lt;/span>udp src-address-list&lt;span class="o">=&lt;/span>!allow_upnp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">action&lt;/span>&lt;span class="o">=&lt;/span>drop &lt;span class="nv">chain&lt;/span>&lt;span class="o">=&lt;/span>input dst-port&lt;span class="o">=&lt;/span>&lt;span class="m">2828&lt;/span> &lt;span class="nv">protocol&lt;/span>&lt;span class="o">=&lt;/span>tcp src-address-list&lt;span class="o">=&lt;/span>!allow_upnp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果原来规则较多，注意下放的位置。&lt;/p>
+&lt;h3 id="重启下-upnp-服务">重启下 UPNP 服务
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip upnp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> &lt;span class="nv">enabled&lt;/span>&lt;span class="o">=&lt;/span>no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> &lt;span class="nv">enabled&lt;/span>&lt;span class="o">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就配置好了，等个几个小时看看，NAT 列表里，除了允许的几个 IP 有 UPNP，其他应该都没有。世界清净了。&lt;/p>
+&lt;p>如果有问题，优先检查 filter 规则顺序。&lt;/p>
+&lt;h2 id="附dhcp-静态自动添加到地址列表">附：DHCP 静态自动添加到地址列表
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip dhcp-server lease
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.1.x mac-address&lt;span class="o">=&lt;/span>xx:xx:xx:xx:xx:xx address-lists&lt;span class="o">=&lt;/span>allow_upnp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>在 Hyper-V 中体验 陆大大的云固件 &amp; 使用 WinNTSetup 制作 L0 镜像</title><link>https://alecthw.github.io/p/cloud-firmware-hyperv/</link><pubDate>Sun, 14 Jan 2024 17:57:22 +0800</pubDate><guid>https://alecthw.github.io/p/cloud-firmware-hyperv/</guid><description>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/cover.png" alt="Featured image of post 在 Hyper-V 中体验 陆大大的云固件 &amp; 使用 WinNTSetup 制作 L0 镜像" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://tagss04.pro/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>关于云固件相关的资料，请参考 &lt;a class="link" href="https://zhuanlan.zhihu.com/p/651550564" target="_blank" rel="noopener"
+>陆伟峰​的知乎&lt;/a>，这里不再赘述。&lt;/p>
+&lt;p>过程是其实和硬件硬盘是一样的，这里只不过是用同样的方式创建虚拟磁盘，然后在 Hyper-V 中启动。&lt;/p>
+&lt;h2 id="云固件文件准备">云固件文件准备
+&lt;/h2>&lt;ul>
+&lt;li>云固件：&lt;a class="link" href="https://pan.baidu.com/share/init?surl=E3LKPlyAZCUX8PhIkIu98Q&amp;amp;pwd=7217" target="_blank" rel="noopener"
+>r23942（v1.6.23942）&lt;/a>&lt;/li>
+&lt;li>Win11 L1 镜像：&lt;a class="link" href="https://pan.baidu.com/s/1qpRqRhTlG5PTk0EfspJomw" target="_blank" rel="noopener"
+>Windows 11 专业版 L1基本安装镜像&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="软件准备">软件准备
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.diskgenius.cn/" target="_blank" rel="noopener"
+>DiskGenius&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="开始制作">开始制作
+&lt;/h2>&lt;p>整体还是比较简单的，先创建 vdhx 虚拟磁盘，然后用 DiskGenius 分区，最后然后再把 Win11 L1 镜像拷贝到 创建的 vhdx 中，配置启动镜像即可。&lt;/p>
+&lt;h3 id="创建-vdhx">创建 vdhx
+&lt;/h3>&lt;p>为了简单，这里给出使用磁盘管理图形界面的创建步骤。&lt;/p>
+&lt;p>首先打开&lt;code>计算机管理&lt;/code>，然后点击左边的&lt;code>磁盘管理&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/pc_mgr.jpg"
+width="555"
+height="440"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/pc_mgr_hu80dde58c56a01f2b9e63c575b914c585_34209_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/pc_mgr_hu80dde58c56a01f2b9e63c575b914c585_34209_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="计算机管理"
+class="gallery-image"
+data-flex-grow="126"
+data-flex-basis="302px"
+>&lt;/p>
+&lt;p>右键，点击&lt;code>创建VHD&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_1.jpg"
+width="1232"
+height="571"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_1_hub9bb621fea29ad0b67adda02284bf224_89263_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_1_hub9bb621fea29ad0b67adda02284bf224_89263_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建虚拟磁盘"
+class="gallery-image"
+data-flex-grow="215"
+data-flex-basis="517px"
+>&lt;/p>
+&lt;p>按下图输入大写和选择，注意大小要大于 &lt;code>260G&lt;/code>，具体原因参考陆大的文章。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_2.jpg"
+width="551"
+height="672"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_2_hud62e294207f868a5062d20b8a1190b39_50457_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_2_hud62e294207f868a5062d20b8a1190b39_50457_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建虚拟磁盘2"
+class="gallery-image"
+data-flex-grow="81"
+data-flex-basis="196px"
+>&lt;/p>
+&lt;p>创建之后会自动挂载。&lt;/p>
+&lt;h3 id="分区">分区
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开 &lt;code>DiskGenius&lt;/code>，选中刚刚创建的虚拟磁盘，然后点击&lt;code>快速分区&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/partition.jpg"
+width="1519"
+height="519"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/partition_hu368acb043ac6b16aa29c3f6c9e9caf9a_142197_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/partition_hu368acb043ac6b16aa29c3f6c9e9caf9a_142197_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="分区"
+class="gallery-image"
+data-flex-grow="292"
+data-flex-basis="702px"
+>&lt;/p>
+&lt;p>按下图选择，卷标输入 &lt;code>VDs&lt;/code>，点击&lt;code>确定&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/partition2.jpg"
+width="835"
+height="647"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/partition2_hu0e8e96c2f9c60bfeada1c97b064f3ebb_87279_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/partition2_hu0e8e96c2f9c60bfeada1c97b064f3ebb_87279_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="分区2"
+class="gallery-image"
+data-flex-grow="129"
+data-flex-basis="309px"
+>&lt;/p>
+&lt;p>执行成功和，&lt;code>VDs&lt;/code> 应该被自动分配盘符挂载到系统了。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc.jpg"
+width="1047"
+height="185"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc_hu932f4e4e3678195d1bcd5d3d566b3cff_28772_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc_hu932f4e4e3678195d1bcd5d3d566b3cff_28772_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="资源管理器"
+class="gallery-image"
+data-flex-grow="565"
+data-flex-basis="1358px"
+>&lt;/p>
+&lt;p>还需要把 &lt;code>ESP&lt;/code> 分区也挂载到系统，只能在 DiskGenius 中操作。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/esp.jpg"
+width="417"
+height="578"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/esp_hu17b20f3809038c0aac8a67499e623534_57676_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/esp_hu17b20f3809038c0aac8a67499e623534_57676_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="挂载ESP分区"
+class="gallery-image"
+data-flex-grow="72"
+data-flex-basis="173px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc2.jpg"
+width="992"
+height="167"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc2_hu64b2c6c6390ef77369749582d0f5829c_33729_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc2_hu64b2c6c6390ef77369749582d0f5829c_33729_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="资源管理器2"
+class="gallery-image"
+data-flex-grow="594"
+data-flex-basis="1425px"
+>&lt;/p>
+&lt;h3 id="复制文件">复制文件
+&lt;/h3>&lt;p>将云固件解压到 &lt;code>ESP&lt;/code> 分区，如下图：&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_cd.jpg"
+width="835"
+height="293"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_cd_hu1124fc6110259e5ac6f193571cb216b3_26501_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_cd_hu1124fc6110259e5ac6f193571cb216b3_26501_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="云固件解压"
+class="gallery-image"
+data-flex-grow="284"
+data-flex-basis="683px"
+>&lt;/p>
+&lt;p>将云固件中的 &lt;code>vd.config&lt;/code> 拷贝到 &lt;code>VDs&lt;/code> 分区中。&lt;/p>
+&lt;p>再将下载的 &lt;code>Windows 11 专业版 L1基本安装镜像&lt;/code>，目录 &lt;code>b1882792&lt;/code> 中的 &lt;code>Windows11-22H2-Pro-L1.7z&lt;/code> 文件解压，解压后删除原文件 &lt;code>Windows11-22H2-Pro-L1.7z&lt;/code>。&lt;/p>
+&lt;p>然后将目录 &lt;code>b1882792&lt;/code> 拷贝到 &lt;code>VDs&lt;/code> 分区中。目录结构如下。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd.jpg"
+width="796"
+height="292"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_hub4efdea33567a702759b18c1a1818ee6_24889_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_hub4efdea33567a702759b18c1a1818ee6_24889_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="镜像解压"
+class="gallery-image"
+data-flex-grow="272"
+data-flex-basis="654px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_2.jpg"
+width="844"
+height="360"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_2_hua45c9aafae8837dad693037d13573ac2_36327_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_2_hua45c9aafae8837dad693037d13573ac2_36327_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="镜像解压2"
+class="gallery-image"
+data-flex-grow="234"
+data-flex-basis="562px"
+>&lt;/p>
+&lt;h3 id="分离vhd">分离VHD
+&lt;/h3>&lt;p>（可选）在 &lt;code>DiskGenius&lt;/code> 中删除 &lt;code>ESP&lt;/code> 分区的盘符。&lt;/p>
+&lt;p>在&lt;code>磁盘管理&lt;/code>中，右键虚拟磁盘，点击&lt;code>分离VHD&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unmount_vhdx.jpg"
+width="767"
+height="235"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unmount_vhdx_hu5171d03e1e5d35808ec0dad9fe98c879_22019_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unmount_vhdx_hu5171d03e1e5d35808ec0dad9fe98c879_22019_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="分离VHD"
+class="gallery-image"
+data-flex-grow="326"
+data-flex-basis="783px"
+>&lt;/p>
+&lt;p>至此，Hypver-V 上的云固件虚拟盘就做好了。&lt;/p>
+&lt;h2 id="在-hyper-v-中创建虚拟机">在 Hyper-V 中创建虚拟机
+&lt;/h2>&lt;p>按如下步骤创建，选择&lt;code>第二代&lt;/code>，虚拟磁盘选择&lt;code>使用现有&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_1.jpg"
+width="980"
+height="413"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_1_hu5207a37ecf57f6d53a87610985ecd525_53852_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_1_hu5207a37ecf57f6d53a87610985ecd525_53852_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建VM1"
+class="gallery-image"
+data-flex-grow="237"
+data-flex-basis="569px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_2.jpg"
+width="980"
+height="384"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_2_hu5207a37ecf57f6d53a87610985ecd525_42567_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_2_hu5207a37ecf57f6d53a87610985ecd525_42567_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建VM2"
+class="gallery-image"
+data-flex-grow="255"
+data-flex-basis="612px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_3.jpg"
+width="976"
+height="377"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_3_hu818554a2c061c16c46b58c750f4a8a9e_38874_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_3_hu818554a2c061c16c46b58c750f4a8a9e_38874_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建VM3"
+class="gallery-image"
+data-flex-grow="258"
+data-flex-basis="621px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_4.jpg"
+width="968"
+height="722"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_4_hua3de318894050389dc215e30d9e9a2d3_73195_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_4_hua3de318894050389dc215e30d9e9a2d3_73195_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建VM4"
+class="gallery-image"
+data-flex-grow="134"
+data-flex-basis="321px"
+>&lt;/p>
+&lt;p>创建完成后，在虚拟机设置中，禁用安全启动。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_5.jpg"
+width="1046"
+height="437"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_5_hudb25b25ea79ca88e83daf9bd3fa89894_74442_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_5_hudb25b25ea79ca88e83daf9bd3fa89894_74442_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="创建VM5"
+class="gallery-image"
+data-flex-grow="239"
+data-flex-basis="574px"
+>&lt;/p>
+&lt;h3 id="启动运行">启动运行
+&lt;/h3>&lt;p>双击虚拟机，启动运行。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/run_1.jpg"
+width="1280"
+height="1045"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/run_1_hub46b25eb8090d374f1ca54c3cd96482d_117377_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/run_1_hub46b25eb8090d374f1ca54c3cd96482d_117377_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="运行1"
+class="gallery-image"
+data-flex-grow="122"
+data-flex-basis="293px"
+>&lt;/p>
+&lt;p>此时，鼠标可能无法使用，请使用 Tab键、方向键和回车键操作。&lt;/p>
+&lt;p>顺利进入系统。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/run_2.jpg"
+width="1275"
+height="1051"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/run_2_hu38ac18eb28a1d2b304ac25a3f3e99df2_80291_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/run_2_hu38ac18eb28a1d2b304ac25a3f3e99df2_80291_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="运行2"
+class="gallery-image"
+data-flex-grow="121"
+data-flex-basis="291px"
+>&lt;/p>
+&lt;hr>
+&lt;h2 id="使用-winntsetup-快速制作-windows-l0-镜像">使用 WinNTSetup 快速制作 Windows L0 镜像
+&lt;/h2>&lt;p>下载 &lt;a class="link" href="https://msfn.org/board/topic/149612-winntsetup-v533/" target="_blank" rel="noopener"
+>WinNTSetup&lt;/a>。&lt;/p>
+&lt;h3 id="vhdx-准备">vhdx 准备
+&lt;/h3>&lt;p>参考之前步骤，完成虚拟磁盘的创建和分区。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="#%e5%88%9b%e5%bb%ba-vdhx" >创建 vdhx&lt;/a>，大小建议70G以上。&lt;/li>
+&lt;li>&lt;a class="link" href="#%e5%88%86%e5%8c%ba" >分区&lt;/a>，卷标不用指定。&lt;/li>
+&lt;/ul>
+&lt;h3 id="制作过程中自动禁用虚拟磁盘扩充到最大">制作过程中自动禁用虚拟磁盘扩充到最大
+&lt;/h3>&lt;p>在目录 &lt;code>WinNTSetup\RegTweaks\Win10&lt;/code> 下创建 &lt;code>disable-vdisk-expand.reg&lt;/code>。&lt;/p>
+&lt;p>这个目录是安装过程中修改注册表的，可以利用此特性预置很多配置。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-reg" data-lang="reg">&lt;span class="line">&lt;span class="cl">Windows Registry Editor Version 5.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[&lt;/span>&lt;span class="nb">HKEY_LOCAL_MACHINE&lt;/span>&lt;span class="k">\SYSTEM\CurrentControlSet\Services\FsDepends\Parameters]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;VirtualDiskExpandOnMount&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000004&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="使用-winntsetup-创建-l0-镜像">使用 WinNTSetup 创建 L0 镜像
+&lt;/h3>&lt;p>打开 &lt;code>WinNTSetup&lt;/code>。&lt;/p>
+&lt;ol>
+&lt;li>选择 Windows 安装镜像 ISO，这里以 LSTC 为例。&lt;/li>
+&lt;li>&lt;code>引导驱动器&lt;/code>选择虚拟磁盘的ESP分区，就是 FAT32 300MB 那个。&lt;/li>
+&lt;li>&lt;code>系统驱动器&lt;/code>选择虚拟磁盘最大的那个分区，NTFS 那个。&lt;/li>
+&lt;li>&lt;code>优化调整&lt;/code>里，&lt;code>注册表调整&lt;/code>选择&lt;code>Win10&lt;/code>，其余选项按需调整。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/winntsetup.jpg"
+width="1706"
+height="661"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/winntsetup_hu0cc3b84ada6d22588bc86ac11ae72376_213059_480x0_resize_q75_box.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/winntsetup_hu0cc3b84ada6d22588bc86ac11ae72376_213059_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="winntsetup"
+class="gallery-image"
+data-flex-grow="258"
+data-flex-basis="619px"
+>&lt;/p>
+&lt;p>最后点击 &lt;code>安装&lt;/code>，会提示&lt;code>不能选择VHD作为引导驱动器&lt;/code>，点击&lt;code>确定&lt;/code>继续即可。&lt;/p>
+&lt;p>安装结束会提示&lt;code>重启&lt;/code>，就不用重启了。&lt;/p>
+&lt;p>最后分离 VHD，一个 Windows 的 L0 镜像就做好了。&lt;/p></description></item><item><title>RouterOS CHR v7 UEFI 镜像，使用 Github Actions 构建</title><link>https://alecthw.github.io/p/routeros-uefi/</link><pubDate>Thu, 07 Dec 2023 17:11:11 +0800</pubDate><guid>https://alecthw.github.io/p/routeros-uefi/</guid><description>&lt;img src="https://alecthw.github.io/p/routeros-uefi/cover.png" alt="Featured image of post RouterOS CHR v7 UEFI 镜像，使用 Github Actions 构建" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://tagss04.pro/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>👉 需要的朋友自取。&lt;/p>
+&lt;p>使用 Github Actions 构建，过程全透明，不存在后门的可能。官方镜像，&lt;code>非破解&lt;/code>。&lt;/p>
+&lt;p>RouterOS chr-7.x 已经包含了 efi 启动文件，但是分区类型是 ext2。&lt;/p>
+&lt;p>所以，只要把分区类型从 ext2 转成 fat 就可以从 uefi 引导启动了。&lt;/p>
+&lt;p>当然，喜欢 GPT 的话，也可以制作 Hybrid MBR。&lt;/p>
+&lt;h2 id="镜像下载httpsgithubcomalecthwmikrotik-routeros-chr-efireleases">&lt;a class="link" href="https://github.com/alecthw/mikrotik-routeros-chr-efi/releases" target="_blank" rel="noopener"
+>镜像下载&lt;/a>
+&lt;/h2>&lt;p>👉 &lt;a class="link" href="https://github.com/alecthw/mikrotik-routeros-chr-efi/releases" target="_blank" rel="noopener"
+>Release&lt;/a> 👈&lt;/p>
+&lt;p>👉 &lt;a class="link" href="https://www.right.com.cn/forum/thread-8271574-1-1.html" target="_blank" rel="noopener"
+>破解版传送门&lt;/a> 👈&lt;/p>
+&lt;p>包含的镜像类型：&lt;/p>
+&lt;ul>
+&lt;li>img&lt;/li>
+&lt;li>qcow2&lt;/li>
+&lt;li>vdi&lt;/li>
+&lt;li>vhd&lt;/li>
+&lt;li>vhdx&lt;/li>
+&lt;li>vmdk&lt;/li>
+&lt;/ul>
+&lt;h2 id="hybrid-mbr-记录">Hybrid MBR 记录
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="c1"># use GPT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> t &lt;span class="c1"># change partition code&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="c1"># select first partition&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">8300&lt;/span> &lt;span class="c1"># change code to Linux filesystem 8300&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> r &lt;span class="c1"># Recovery/transformation&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> h &lt;span class="c1"># Hybrid MBR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="c1"># partitions added to the hybrid MBR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> n &lt;span class="c1"># Place EFI GPT (0xEE) partition first in MBR (good for GRUB)? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="c1"># Enter an MBR hex code (default 83)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> y &lt;span class="c1"># Set the bootable flag? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="c1"># Enter an MBR hex code (default 83)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> n &lt;span class="c1"># Set the bootable flag? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> n &lt;span class="c1"># Unused partition space(s) found. Use one to protect more partitions? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> w &lt;span class="c1"># write changes to disk&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> y &lt;span class="c1"># confirm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">)&lt;/span> &lt;span class="p">|&lt;/span> sudo -E gdisk /dev/nbd1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
