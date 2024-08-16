@@ -13,6 +13,7 @@ tags:
   - tag
   - chickenrun
   - 小鸡快跑
+  - 银河云
   - 机场
   - 梯子
   - 科学上网
@@ -20,7 +21,7 @@ tags:
 weight: 1
 ---
 
-按[轻度使用](#轻度使用)和[重度使用](#重度使用)分别推荐，每种就推荐两三个，以供有不同需求的人参考。
+分类推荐，每种就推荐两三个，供有不同需求的人参考。
 
 极简总结：
 
@@ -32,6 +33,44 @@ weight: 1
 | 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | - |
 
 流媒体解锁都支持的。当前强烈推荐**小鸡快跑**，性价比真的太高了！
+
+目录：
+
+- [特别推荐](#特别推荐)
+  - [小鸡快跑🔥](#小鸡快跑)
+- [轻度使用](#轻度使用)
+  - [一元机场🔥](#一元机场)
+  - [三分机场](#三分机场)
+- [中度使用](#中度使用)
+  - [银河云](#银河云)
+- [重度使用](#重度使用)
+  - [TAG🔥](#tag)
+  - [Nexitally](#nexitally)
+- [特色机场](#特色机场)
+  - [TLS](#tls)
+- [最后](#最后)
+
+## 特别推荐
+
+个人认为非常好用且性价比贼高的机场。
+
+### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)🔥
+
+官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
+
+官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
+
+协议：`Trojan`
+
+特点：一家新兴的性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
+
+相对小众一点，价格适中，与几个大机场相比可以说是低价，重点是速度超越绝大多数机场，值得一试。
+
+![小鸡快跑套餐](chickenrun.jpg)
+
+测速如下：
+
+![小鸡快跑测速](chickenrun-speed.jpg)
 
 ## 轻度使用
 
@@ -52,7 +91,7 @@ weight: 1
 
 有点小名气的低价机场，主打的就是一个价格低。晚高峰会有点卡，稳定性也不算高，不过 12CNY/Year、20CNY/2Year 的价格要什么自行车，主要是速度也还行，解锁 Netflix 和 Disney+，美国节点解锁 ChatGPT。
 
-**注意:** 传家宝套餐由原来每月 `500G`，变成每月 `50G` 了~~
+**注意:** 传家宝套餐由原来每月 `500G`，变成每月 `50G` 了，此时可以优先考虑[三分机场](#三分机场)了~~
 
 他家就买这个传家宝套餐就行了。至于俩稍微贵点的高流量套餐，可以拿来当二道贩子，封装个 APP 卖钱😜。
 
@@ -62,24 +101,6 @@ weight: 1
 
 ![一元机场测速（来自网络）](one-dollar-speed.jpg)
 
-### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)🔥🔥🔥
-
-官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
-
-官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
-
-协议：`Trojan`
-
-特点：一家新兴的性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
-
-相对小众一点，价格适中，与几个大机场相比可以说是低价，重点是速度超越绝大多数机场，值得一试。
-
-![小鸡快跑套餐](chickenrun.jpg)
-
-测速如下：
-
-![小鸡快跑测速](chickenrun-speed.jpg)
-
 ### [三分机场](https://hk.sanfen.cc/#/register?code=FKnu6Hkg)
 
 官网1：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
@@ -87,7 +108,7 @@ weight: 1
 
 协议：`VMESS`
 
-**2024年6月5日起，限时供应 9.5CNY/Year 每月 200G 套餐！！！目前仍可购买。**
+**2024年6月5日起，限时供应 9.5CNY/Year 每月 200G 直连套餐！！！目前仍可购买。**
 
 特点：廉价，流量较少，速度还行，稳定性一般，相对小众一点。
 
@@ -107,6 +128,29 @@ weight: 1
 
 ![三分机场测速](three-cents-speed.jpg)
 
+## 中度使用
+
+- **预算有限**，愿意适当的为科学上网付费
+- 时不时看看 Youtube、Netflix、Disney+ 等流媒体
+- Telegram 聊天，偶尔看看视频
+- 速度和时延不是特别敏感
+
+### [银河云](https://webcc01.galaxycloud.pro/#/register?code=ElSqzXla)
+
+官网：[👉链接🚀](https://webcc01.galaxycloud.pro/#/register?code=ElSqzXla)
+
+协议：`Trojan`
+
+特点：超稳专线，定制俄罗斯节点无压力，XJ 站点任意上，灵活套餐符合各路需求。支持 Netflix、Disney+ 等主流流媒体平台的全解锁，满足您的观影需求。无限制设备数：不限制使用本人设备数量，一账号，全家共享。峰值速率高达 1000Mbps，IPLC 专线传输，覆盖亚洲、欧洲、美洲等主要核心网络。
+
+相对小众一点，价格适中，性价比也是不错的。
+
+![银河云套餐](galaxycloud.jpg)
+
+测速如下：
+
+![银河云测速](galaxycloud-speed.jpg)
+
 ## 重度使用
 
 - **不在乎价格**
@@ -117,7 +161,7 @@ weight: 1
 - 追求**稳定性**
 - **高速**和***低时延***要求
 
-### [TAG](https://tagss04.pro/#/auth/2neqgxFl)🔥🔥
+### [TAG](https://tagss04.pro/#/auth/2neqgxFl)🔥
 
 官网：[👉链接🚀](https://tagss04.pro/#/auth/2neqgxFl)
 
@@ -173,6 +217,10 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 毒药的电信测速，可以参考下。
 
 ![Nexitally 测速（来自毒药）](nexitally-speed.png)
+
+## 特色机场
+
+这类机场除了提供科学上网的节点之外，一般还附带一些别的服务，例如 Emby、Plex 之类的视频服务。
 
 ### [TLS](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 

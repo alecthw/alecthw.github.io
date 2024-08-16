@@ -19,7 +19,7 @@ tags:
   - 翻墙
 ---
 
-## 科学上网需要些什么
+## 手机科学上网需要些什么
 
 - 一部手机（废话）
 - 机场/梯子，术语叫代理、VPN，推荐购买 [ChickenRun](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
@@ -34,7 +34,7 @@ tags:
 
 ## 具体步骤
 
-这里不讲原理，只说怎么用。原理可以去参考本博客其他文章。
+不讲原理，只说怎么用。原理可以去参考本博客其他文章。
 
 ### 1. 购买机场/梯子
 
@@ -52,7 +52,7 @@ tags:
 
 ![小鸡快跑订阅地址](chickenrun-2.jpg)
 
-### 安装客户端软件
+### 2. 安装客户端软件
 
 本文推荐使用的是 [sing-box](https://github.com/SagerNet/sing-box)，简单好用。
 
@@ -104,7 +104,7 @@ Github 下载加速：<https://mirror.ghproxy.com/>
 
 ![苹果商店里的sing-box](singbox-app-store.jpg)
 
-### 使用 sing-box
+### 3. 使用 sing-box
 
 iOS 和 Android 的界面有稍许差别。
 
