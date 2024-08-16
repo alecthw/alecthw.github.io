@@ -37,24 +37,24 @@ weight: 1
 目录：
 
 - [特别推荐](#特别推荐)
-  - [小鸡快跑🔥](#小鸡快跑)
+  - [🔥小鸡快跑 —— 性价比至高之选](#小鸡快跑--性价比至高之选)
 - [轻度使用](#轻度使用)
-  - [一元机场🔥](#一元机场)
-  - [三分机场](#三分机场)
+  - [🔥一元机场 —— 一个月1块钱](#一元机场--一个月1块钱)
+  - [三分机场 —— 一天3分钱](#三分机场--一天3分钱)
 - [中度使用](#中度使用)
-  - [银河云](#银河云)
+  - [银河云 —— 小众实惠](#银河云--小众实惠)
 - [重度使用](#重度使用)
-  - [TAG🔥](#tag)
-  - [Nexitally](#nexitally)
+  - [🔥TAG —— 机场中的排头兵](#tag--机场中的排头兵)
+  - [Nexitally —— 老牌机场佩奇家](#nexitally--老牌机场佩奇家)
 - [特色机场](#特色机场)
-  - [TLS](#tls)
+  - [TLS —— Emby 4K](#tls--emby-4k)
 - [最后](#最后)
 
 ## 特别推荐
 
 个人认为非常好用且性价比贼高的机场。
 
-### [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)🔥
+### 🔥小鸡快跑 —— 性价比至高之选
 
 官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
 
@@ -81,7 +81,7 @@ weight: 1
 - Telegram 聊天
 - 基本没有速度和时延要求
 
-### [一元机场](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)🔥
+### 🔥一元机场 —— 一个月1块钱
 
 官网：[👉链接🚀](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU)
 
@@ -91,7 +91,7 @@ weight: 1
 
 有点小名气的低价机场，主打的就是一个价格低。晚高峰会有点卡，稳定性也不算高，不过 12CNY/Year、20CNY/2Year 的价格要什么自行车，主要是速度也还行，解锁 Netflix 和 Disney+，美国节点解锁 ChatGPT。
 
-**注意:** 传家宝套餐由原来每月 `500G`，变成每月 `50G` 了，此时可以优先考虑[三分机场](#三分机场)了~~
+**注意:** 传家宝套餐由原来每月 `500G`，变成每月 `50G` 了，此时可以优先考虑[三分机场](#三分机场 —— 一天3分钱)了~~
 
 他家就买这个传家宝套餐就行了。至于俩稍微贵点的高流量套餐，可以拿来当二道贩子，封装个 APP 卖钱😜。
 
@@ -101,7 +101,7 @@ weight: 1
 
 ![一元机场测速（来自网络）](one-dollar-speed.jpg)
 
-### [三分机场](https://hk.sanfen.cc/#/register?code=FKnu6Hkg)
+### 三分机场 —— 一天3分钱
 
 官网1：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
 官网2：[👉链接🚀](https://hk.sanfen.cc/#/register?code=FKnu6Hkg)
@@ -135,7 +135,7 @@ weight: 1
 - Telegram 聊天，偶尔看看视频
 - 速度和时延不是特别敏感
 
-### [银河云](https://webcc01.galaxycloud.pro/#/register?code=ElSqzXla)
+### 银河云 —— 小众实惠
 
 官网：[👉链接🚀](https://webcc01.galaxycloud.pro/#/register?code=ElSqzXla)
 
@@ -161,7 +161,7 @@ weight: 1
 - 追求**稳定性**
 - **高速**和***低时延***要求
 
-### [TAG](https://tagss04.pro/#/auth/2neqgxFl)🔥
+### 🔥TAG —— 机场中的排头兵
 
 官网：[👉链接🚀](https://tagss04.pro/#/auth/2neqgxFl)
 
@@ -187,7 +187,7 @@ weight: 1
 
 ![TAG测速](tag-speed.png)
 
-### [Nexitally](https://nexitally.net/)
+### Nexitally —— 老牌机场佩奇家
 
 官网1：[👉链接🚀](https://nexitally.net/)
 
@@ -222,7 +222,7 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 这类机场除了提供科学上网的节点之外，一般还附带一些别的服务，例如 Emby、Plex 之类的视频服务。
 
-### [TLS](https://tls.wiki/index.php#/register?code=ojo2nVBG)
+### TLS —— Emby 4K
 
 官网：[👉链接🚀](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
