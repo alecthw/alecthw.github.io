@@ -27,7 +27,7 @@ weight: 1
 
 | 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 618 优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 高性价比，小众新兴 | 小鸡快跑 | 新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试 | [🚀直达](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup) | - |
+| 🔥 | 高性价比，小众新兴 | 小鸡快跑 | 新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试 | [🚀直达](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup) | - |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://tagss04.pro/#/auth/2neqgxFl) | - |
 | 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | - |
@@ -56,7 +56,7 @@ weight: 1
 
 ### 🔥小鸡快跑 —— 性价比至高之选
 
-官网：[👉链接🚀](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup)
+官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
 
 官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
 
@@ -118,7 +118,7 @@ weight: 1
 
 特别注意，直连套餐里有个小字说明：`福建福州、泉州、湖南和河南大部分地区此套餐可能无法使`，这些地区的小伙伴谨慎购买。
 
-中转套餐就不太推荐了，最低 9.9CNY/Month 80G，这个价格的话更推荐上面的 [小鸡快跑](https://cc01.xiaojikp.pro/#/register?code=tqB3FCup) 了。
+中转套餐就不太推荐了，最低 9.9CNY/Month 80G，这个价格的话更推荐上面的 [小鸡快跑](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup) 了。
 
 目前节点包括香港、日本、美国、新加坡、台湾。
 
