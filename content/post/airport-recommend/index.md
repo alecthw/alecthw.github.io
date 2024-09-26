@@ -65,7 +65,7 @@ weight: 1
 
 特点：新兴的一家全中转 IPLC 翻墙机场，全节点 IPLC 专线，后端负载均衡、多种方式落地，2.5G速率，确保稳定性。不限速不限连接数！如果有特别需求，还可以私人定制。
 
-ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已解锁；
+ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已解锁。
 
 节点：香港、台湾、新加坡、日本、韩国、泰国、美国、法国、加拿大、马来西亚、英国、阿根廷、巴西等。
 
