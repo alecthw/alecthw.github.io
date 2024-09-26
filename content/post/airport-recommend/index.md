@@ -2,7 +2,7 @@
 title: 机场/梯子推荐
 description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
 slug: airport-recommend
-date: 2024-08-14T09:24:13+08:00
+date: 2024-09-26T09:24:13+08:00
 image: cover.jpg
 categories:
   - passgfw
@@ -25,26 +25,26 @@ weight: 1
 
 极简总结：
 
-国庆临近，优惠码会逐步刷新，请关注：
+**国庆临近，优惠码会逐步刷新，请关注：**
 
-| 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 618 优惠码 |
+| 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 国庆优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 高性价比，小众新兴 | 小鸡快跑 | 新兴机场，测速快得有点夸张，价格实惠，性价比高，值得一试 | [🚀直达](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup) | - |
+| 🔥 | 高性价比，小众新兴 | 小米机场 | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xmin02.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | - |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://tagss04.pro/#/auth/2neqgxFl) | - |
 | 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | - |
 
-流媒体解锁都支持的。当前强烈推荐**小鸡快跑**，性价比真的太高了！
+流媒体解锁都支持的。当前强烈推荐**小米机场**，性价比非常高！
 
 目录：
 
 - [特别推荐](#特别推荐)
   - [🔥小米梯子 —— 性价比至高之选](#小米梯子--性价比至高之选)
-  - [🔥小鸡快跑 —— 优质性价比机场](#小鸡快跑--优质性价比机场)
 - [轻度使用](#轻度使用)
   - [🔥一元机场 —— 一个月1块钱](#一元机场--一个月1块钱)
   - [三分机场 —— 一天3分钱](#三分机场--一天3分钱)
 - [中度使用](#中度使用)
+  - [🔥小鸡快跑 —— 优质性价比机场](#小鸡快跑--优质性价比机场)
   - [银河云 —— 小众实惠](#银河云--小众实惠)
 - [重度使用](#重度使用)
   - [🔥TAG —— 机场中的排头兵](#tag--机场中的排头兵)
@@ -63,9 +63,9 @@ weight: 1
 
 协议：`Trojan`
 
-特点：新兴的一家全中转 IPLC 翻墙机场，全节点 IPLC 专线，后端负载均衡、多种方式落地，2.5G速率，确保稳定性。不限速不限连接数！！！
+特点：新兴的一家全中转 IPLC 翻墙机场，全节点 IPLC 专线，后端负载均衡、多种方式落地，2.5G速率，确保稳定性。不限速不限连接数！如果有特别需求，还可以私人定制。
 
-ChatGPT OpenAI TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已解锁；
+ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已解锁；
 
 节点：香港、台湾、新加坡、日本、韩国、泰国、美国、法国、加拿大、马来西亚、英国、阿根廷、巴西等。
 
@@ -78,24 +78,6 @@ ChatGPT OpenAI TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 机场尚在优化调整中，优化完成后都能跑满速，测速图暂做参考，后续会刷新。
 
 ![小米梯子测速](xiaomitizi-speed.png)
-
-### 🔥小鸡快跑 —— 优质性价比机场
-
-官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
-
-官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
-
-协议：`Trojan`
-
-特点：一家性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
-
-相对小众一点，价格适中，与几个大机场相比可以说是低价，重点是速度超越绝大多数机场，值得一试。
-
-![小鸡快跑套餐](chickenrun.jpg)
-
-测速如下：
-
-![小鸡快跑测速](chickenrun-speed.jpg)
 
 ## 轻度使用
 
@@ -159,6 +141,24 @@ ChatGPT OpenAI TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 - 时不时看看 Youtube、Netflix、Disney+ 等流媒体
 - Telegram 聊天，偶尔看看视频
 - 速度和时延不是特别敏感
+
+### 🔥小鸡快跑 —— 优质性价比机场
+
+官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
+
+官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
+
+协议：`Trojan`
+
+特点：一家性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
+
+相对小众一点，价格适中，与几个大机场相比可以说是低价，重点是速度超越绝大多数机场，值得一试。
+
+![小鸡快跑套餐](chickenrun.jpg)
+
+测速如下：
+
+![小鸡快跑测速](chickenrun-speed.jpg)
 
 ### 银河云 —— 小众实惠
 
