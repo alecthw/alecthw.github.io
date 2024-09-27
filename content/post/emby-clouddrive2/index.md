@@ -14,7 +14,7 @@ tags:
   - clouddrive2
 ---
 
-🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
+🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss05.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
 
 ---
 
@@ -73,7 +73,7 @@ lspci -v | grep -A 2 VGA
 返回的信息如下，关注下第二行。
 
 ```txt
-0000:00:02.0 Display controller VGA compatible controller: Intel Corporation Alder Lake-S GT1 [UHD Graphics 770] 
+0000:00:02.0 Display controller VGA compatible controller: Intel Corporation Alder Lake-S GT1 [UHD Graphics 770]
   Class 0300: 8086:5916
 ```
 

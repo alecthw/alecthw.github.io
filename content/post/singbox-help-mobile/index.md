@@ -2,7 +2,7 @@
 title: 手把手教你科学上网 —— 手机篇（sing-box）
 description: 手机端的科学上网教程，完全傻瓜式，不解释任何原理，只管怎么用，Apple & Android 通用，无需付费购买软件。
 slug: singbox-help-mobile
-date: 2024-05-15T17:16:19+08:00
+date: 2024-09-26T17:16:19+08:00
 image: cover.png
 categories:
   - passgfw

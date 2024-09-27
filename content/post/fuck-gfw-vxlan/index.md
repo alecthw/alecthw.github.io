@@ -20,7 +20,7 @@ tags:
   - 翻墙
 ---
 
-🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss04.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
+🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss05.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
 
 ---
 
@@ -136,7 +136,7 @@ RouterOS 的配置就不截 winbox 配置界面的图了，命令行和界面基
 
 ```bash
 [root@rostest] > ping 172.233.142.x
-  SEQ HOST                                     SIZE TTL TIME       STATUS    
+  SEQ HOST                                     SIZE TTL TIME       STATUS
     0 172.233.142.x                             56  47 184ms440us
     1 172.233.142.x                             56  47 184ms340us
     2 172.233.142.x                             56  47 184ms235us
@@ -181,7 +181,7 @@ ip addr add 192.168.99.2/24 dev vxlan0
 查看 vxlan0 接口
 
 ```bash
-root@localhost:~# ifconfig 
+root@localhost:~# ifconfig
 vxlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         inet 192.168.99.2  netmask 255.255.255.0  broadcast 0.0.0.0
         inet6 fe80::ec90:6ff:fe88:372d  prefixlen 64  scopeid 0x20<link>
@@ -195,7 +195,7 @@ vxlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
 查看路由表，多了下面的内容，所有目的地址是 192.168.99.0/24 网络包要通过 vxlan0 转发：
 
 ```bash
-root@localhost:~# ip route show 
+root@localhost:~# ip route show
 192.168.99.0/24 dev vxlan0 proto kernel scope link src 192.168.99.2
 ```
 
@@ -273,7 +273,7 @@ rtt min/avg/max/mdev = 144.359/144.400/144.446/0.035 ms
 
 ```bash
 [root@rostest] > ping 192.168.99.2
-  SEQ HOST                                     SIZE TTL TIME       STATUS    
+  SEQ HOST                                     SIZE TTL TIME       STATUS
     0 192.168.99.2                               56  64 144ms271us
     1 192.168.99.2                               56  64 144ms647us
     2 192.168.99.2                               56  64 144ms309us
@@ -309,7 +309,7 @@ iptables -t nat \
 ```bash
 root@localhost:~# iptables -nL -t nat
 Chain POSTROUTING (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 SNAT       all  --  192.168.99.0/24      0.0.0.0/0            to:172.233.142.x
 ```
 
