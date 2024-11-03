@@ -2,7 +2,7 @@
 title: 机场/梯子推荐
 description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
 slug: airport-recommend
-date: 2024-10-18T09:24:13+08:00
+date: 2024-11-03T09:24:13+08:00
 image: cover.jpg
 categories:
   - passgfw
@@ -13,7 +13,6 @@ tags:
   - tag
   - chickenrun
   - 小鸡快跑
-  - 银河云
   - 机场
   - 梯子
   - 科学上网
@@ -45,7 +44,6 @@ weight: 1
   - [三分机场 —— 一天3分钱](#三分机场--一天3分钱)
 - [中度使用](#中度使用)
   - [🔥小鸡快跑 —— 优质性价比机场](#小鸡快跑--优质性价比机场)
-  - [银河云 —— 小众实惠](#银河云--小众实惠)
 - [重度使用](#重度使用)
   - [🔥TAG —— 机场中的排头兵](#tag--机场中的排头兵)
   - [Nexitally —— 老牌机场佩奇家、奶昔](#nexitally--老牌机场佩奇家奶昔)
@@ -162,22 +160,6 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 测速如下：
 
 ![小鸡快跑测速](chickenrun-speed.jpg)
-
-### 银河云 —— 小众实惠
-
-官网：[👉链接🚀](https://webcc01.galaxycloud.pro/#/register?code=ElSqzXla)
-
-协议：`Trojan`
-
-特点：超稳专线，定制俄罗斯节点无压力，XJ 站点任意上，灵活套餐符合各路需求。支持 Netflix、Disney+ 等主流流媒体平台的全解锁，满足您的观影需求。无限制设备数：不限制使用本人设备数量，一账号，全家共享。峰值速率高达 1000Mbps，IPLC 专线传输，覆盖亚洲、欧洲、美洲等主要核心网络。
-
-相对小众一点，价格适中，性价比也是不错的。
-
-![银河云套餐](galaxycloud.jpg)
-
-测速如下：
-
-![银河云测速](galaxycloud-speed.jpg)
 
 ## 重度使用
 
