@@ -24,7 +24,7 @@ tags:
 weight: 2
 ---
 
-🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss05.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
+🔥🔥🔥：稳定好用的机场/梯子 [TAG 全球250+节点、99+流媒体解锁](https://tagss08.pro/#/auth/2neqgxFl)，更多参考[机场推荐](/p/airport-recommend/)
 
 ---
 

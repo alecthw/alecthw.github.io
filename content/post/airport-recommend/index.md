@@ -31,7 +31,7 @@ weight: 1
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 7折：xm70z |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
-| 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://tagss05.pro/#/auth/2neqgxFl) | 9折：1001 |
+| 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://tagss08.pro/#/auth/2neqgxFl) | 9折：1001 |
 | 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | 8折：happy10-1 |
 
 流媒体解锁都支持的。当前强烈推荐**五树云机场（原小米梯子）**，稳定性好，性价比非常高！
@@ -191,7 +191,7 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 ### 🔥TAG —— 机场中的排头兵
 
-官网：[👉链接🚀](https://tagss05.pro/#/auth/2neqgxFl)
+官网：[👉链接🚀](https://tagss08.pro/#/auth/2neqgxFl)
 
 协议：`Shadowsocks`
 
