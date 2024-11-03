@@ -29,17 +29,17 @@ weight: 1
 
 | 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 国庆优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 高性价比，小众新兴 | 小米梯子 | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xmin02.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 7折：xm70z |
+| 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 7折：xm70z |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://tagss05.pro/#/auth/2neqgxFl) | 9折：1001 |
 | 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | 8折：happy10-1 |
 
-流媒体解锁都支持的。当前强烈推荐**小米梯子**，稳定性好，性价比非常高！
+流媒体解锁都支持的。当前强烈推荐**五树云机场（原小米梯子）**，稳定性好，性价比非常高！
 
 目录：
 
 - [特别推荐](#特别推荐)
-  - [🔥小米梯子 —— 性价比至高之选](#小米梯子--性价比至高之选)
+  - [🔥五树云机场（原小米梯子） —— 性价比至高之选](#五树云机场原小米梯子--性价比至高之选)
 - [轻度使用](#轻度使用)
   - [🔥一元机场 —— 一个月1块钱](#一元机场--一个月1块钱)
   - [三分机场 —— 一天3分钱](#三分机场--一天3分钱)
@@ -57,11 +57,11 @@ weight: 1
 
 个人认为非常好用且性价比贼高的机场。
 
-### 🔥小米梯子 —— 性价比至高之选
+### 🔥五树云机场（原小米梯子） —— 性价比至高之选
 
 全场7折优惠码：xm70z
 
-官网：[👉链接🚀](https://xmin02.xiaomiaff.cc/register.html?invitecode=DBQFuexi)
+官网：[👉链接🚀](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi)
 
 协议：`Trojan`
 
@@ -73,13 +73,13 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 价格适中，稳定性好，地区节点覆盖多。不限速不限连接数，适合多设备、全家共同使用。
 
-![小米梯子套餐](xiaomitizi.jpg)
+![五树云机场套餐](wushuyun.jpg)
 
 测速如下：
 
 机场尚在优化调整中，优化完成后都能跑满速，测速图暂做参考，后续会刷新。
 
-![小米梯子测速](xiaomitizi-speed.png)
+![五树云机场测速](xiaomitizi-speed.png)
 
 ## 轻度使用
 
