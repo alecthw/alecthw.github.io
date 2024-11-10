@@ -85,12 +85,13 @@ wsreset -i
 
 等待，直到开始里出现 Microsoft Store 应用。
 
-### 错误代码 0X80004005 无法访问共享计算机
+### 访问共享文件报错 0X80004005 0x80070035
 
 以管理员身份运行命令提示符，执行如下命令
 
 ``` powershell
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v AllowInsecureGuestAuth /t reg_dword /d 1
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v RequireSecuritySignature /t reg_dword /d 0
 ```
 
 ### 运行游戏一直弹窗 msgamingoverlay
@@ -172,3 +173,10 @@ Windows Registry Editor Version 5.00
 "ParsingName"="shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}"
 "RelativePath"="OneDrive"
 ```
+
+### 删除 网络1 网络2 网络3……
+
+删除以下两个注册表位置的所有子项，然后重启电脑即可
+
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
