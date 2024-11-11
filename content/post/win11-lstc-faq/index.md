@@ -2,7 +2,7 @@
 title: Windows 11 LSTC 安装和使用问题
 description: Windows 11 LSTC 安装和使用问题，持续更新。
 slug: win11-lstc-faq
-date: 2024-11-08T10:11:11+08:00
+date: 2024-11-11T10:11:11+08:00
 image: cover.jpg
 categories:
   - system
@@ -46,7 +46,7 @@ LSTC 本身属于企业版。
 
 公开的 KMS 服务器：[KMS 地址列表](https://www.coolhub.top/tech-articles/kms_list.html)
 
-激活命令：
+以管理员身份运行`命令提示符`，执行如下命令
 
 ``` powershell
 slmgr /skms kms.03k.org
@@ -61,7 +61,7 @@ slmgr /ato
 
 ### 恢复传统右键菜单
 
-以管理员身份运行命令提示符，执行如下命令
+以管理员身份运行`命令提示符`，执行如下命令
 
 ``` powershell
 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
@@ -77,17 +77,17 @@ taskkill /f /im explorer.exe & start explorer.exe
 
 ### 应用商店 Microsoft Store
 
-以管理员身份运行命令提示符，执行如下命令
+以管理员身份运行`命令提示符`，执行如下命令
 
 ``` powershell
 wsreset -i
 ```
 
-等待，直到开始里出现 Microsoft Store 应用。
+该命令执行完没有回显，请耐心等待，直到开始里出现 Microsoft Store 应用。
 
 ### 访问共享文件报错 0X80004005 0x80070035
 
-以管理员身份运行命令提示符，执行如下命令
+以管理员身份运行`命令提示符`，执行如下命令
 
 ``` powershell
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v AllowInsecureGuestAuth /t reg_dword /d 1
@@ -96,7 +96,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v
 
 ### 运行游戏一直弹窗 msgamingoverlay
 
-以管理员身份运行命令提示符，执行如下命令
+以管理员身份运行`命令提示符`，执行如下命令
 
 ``` powershell
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" /v AppCaptureEnabled /t reg_dword /d 0
@@ -180,3 +180,9 @@ Windows Registry Editor Version 5.00
 
 - HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
 - HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
+
+## 应用兼容问题
+
+### JetBrains 系列 Shift + F6 失效
+
+JetBrains 插件商店搜索 `Imefix` 插件，安装即可解决。
