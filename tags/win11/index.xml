@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Win11 on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/tags/win11/</link><description>Recent content in Win11 on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 29 Nov 2024 07:37:37 +0000</lastBuildDate><atom:link href="https://alecthw.github.io/tags/win11/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 11 LSTC 安装和使用问题</title><link>https://alecthw.github.io/p/win11-lstc-faq/</link><pubDate>Mon, 11 Nov 2024 10:11:11 +0800</pubDate><guid>https://alecthw.github.io/p/win11-lstc-faq/</guid><description>&lt;img src="https://alecthw.github.io/p/win11-lstc-faq/cover.jpg" alt="Featured image of post Windows 11 LSTC 安装和使用问题" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>Windows 11 LSTC 问题总结，持续更新。&lt;/p>
+&lt;h2 id="安装">安装
+&lt;/h2>&lt;h3 id="下载">下载
+&lt;/h3>&lt;p>只推荐从 &lt;a class="link" href="https://next.itellyou.cn/" target="_blank" rel="noopener"
+>MSDN, i tell you&lt;/a> 下载。需要使用 BT 工具，如 Aria2、迅雷等。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/win11-lstc-faq/win11-next-itellyou.png"
+width="1823"
+height="545"
+srcset="https://alecthw.github.io/p/win11-lstc-faq/win11-next-itellyou_hu1088529288208912747.png 480w, https://alecthw.github.io/p/win11-lstc-faq/win11-next-itellyou_hu9086015834960264937.png 1024w"
+loading="lazy"
+alt="win11-next-itellyou"
+class="gallery-image"
+data-flex-grow="334"
+data-flex-basis="802px"
+>&lt;/p>
+&lt;h3 id="制作启动盘">制作启动盘
+&lt;/h3>&lt;p>使用 &lt;a class="link" href="https://rufus.ie/zh/" target="_blank" rel="noopener"
+>Rufus&lt;/a> 制作启动 U盘。&lt;/p>
+&lt;h3 id="微软账户登录">微软账户登录
+&lt;/h3>&lt;p>LSTC 版本不强制使用微软账户登录，可以跳过。&lt;/p>
+&lt;p>&lt;strong>TIPs&lt;/strong>：安装过程中，不推荐直接使用微软账户登录，应该先创建&lt;strong>纯英文数字&lt;/strong>的无密码用户，进入系统后再使用微软账户登录。&lt;/p>
+&lt;h3 id="激活">激活
+&lt;/h3>&lt;p>LSTC 本身属于企业版。&lt;/p>
+&lt;h4 id="方式一kms-激活">方式一：KMS 激活
+&lt;/h4>&lt;p>自建服务额：&lt;a class="link" href="https://github.com/Wind4/vlmcsd" target="_blank" rel="noopener"
+>vlmcsd&lt;/a>。多数 OpenWRT 固件都集成了。&lt;/p>
+&lt;p>公开的 KMS 服务器：&lt;a class="link" href="https://www.coolhub.top/tech-articles/kms_list.html" target="_blank" rel="noopener"
+>KMS 地址列表&lt;/a>&lt;/p>
+&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">slmgr&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">skms&lt;/span> &lt;span class="n">kms&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">03k&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">org&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">slmgr&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">ato&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="方式二mas">方式二：MAS
+&lt;/h4>&lt;p>参考官方：&lt;a class="link" href="https://massgrave.dev/" target="_blank" rel="noopener"
+>MAS&lt;/a>&lt;/p>
+&lt;h2 id="使用">使用
+&lt;/h2>&lt;h3 id="恢复传统右键菜单">恢复传统右键菜单
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">ve&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">taskkill&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">im&lt;/span> &lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">&amp;amp;&lt;/span> &lt;span class="nb">start &lt;/span>&lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>还原：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">delete&lt;/span> &lt;span class="s2">&amp;#34;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">taskkill&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">im&lt;/span> &lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">&amp;amp;&lt;/span> &lt;span class="nb">start &lt;/span>&lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="应用商店-microsoft-store">应用商店 Microsoft Store
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wsreset&lt;/span> &lt;span class="n">-i&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>该命令执行完没有回显，请耐心等待，直到开始里出现 Microsoft Store 应用。&lt;/p>
+&lt;h3 id="访问共享文件报错-0x80004005-0x80070035">访问共享文件报错 0X80004005 0x80070035
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">AllowInsecureGuestAuth&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">RequireSecuritySignature&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="运行游戏一直弹窗-msgamingoverlay">运行游戏一直弹窗 msgamingoverlay
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">AppCaptureEnabled&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKCU\System\GameConfigStore&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">GameDVR_Enabled&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="office-安装">Office 安装
+&lt;/h3>&lt;p>推荐使用 &lt;a class="link" href="https://otp.landian.vip/zh-cn/#" target="_blank" rel="noopener"
+>Office Tool Plus&lt;/a> 安装。&lt;/p>
+&lt;p>安装选项：&lt;/p>
+&lt;ul>
+&lt;li>体系结构：64位&lt;/li>
+&lt;li>产品：Office Mondo 2016 - MondoRetail。&lt;strong>注意：无论是否需要使用 OneDrive，此处都不选择。&lt;/strong>&lt;/li>
+&lt;li>语言：简体中文（中国） - zh-cn&lt;/li>
+&lt;/ul>
+&lt;p>安装后激活：&lt;/p>
+&lt;ol>
+&lt;li>许可证管理 -&amp;gt; 卸载所有许可证&lt;/li>
+&lt;li>许可证管理 -&amp;gt; 安装许可证：Office Mondo 2016 - 批量许可证&lt;/li>
+&lt;li>KMS 管理 -&amp;gt; KMS 主机：使用 &lt;a class="link" href="https://github.com/Wind4/vlmcsd" target="_blank" rel="noopener"
+>vlmcsd&lt;/a> 自建或者 &lt;a class="link" href="https://www.coolhub.top/tech-articles/kms_list.html" target="_blank" rel="noopener"
+>KMS 地址列表&lt;/a>选一个&lt;/li>
+&lt;li>许可证管理 -&amp;gt; 激活&lt;/li>
+&lt;/ol>
+&lt;h3 id="onedrive">OneDrive
+&lt;/h3>&lt;h4 id="下载安装">下载安装
+&lt;/h4>&lt;p>&lt;a class="link" href="https://www.microsoft.com/en-us/microsoft-365/onedrive/download?ocid=ORSEARCH_Bing" target="_blank" rel="noopener"
+>下载 OneDrive&lt;/a>&lt;/p>
+&lt;h4 id="修复资源管理器中-onedrive---personal-失效问题">修复资源管理器中 &lt;code>OneDrive - Personal&lt;/code> 失效问题
+&lt;/h4>&lt;p>该问题是由于 LTSC 注册表无 OneDrive 的 ID {A52BBA46-E9E1-435f-B3D9-28DAA648C0F6} 定义导致。&lt;/p>
+&lt;p>解决方案是新建一个 &lt;code>onedrive.reg&lt;/code> 文件，输入如下内容，然后右键 &lt;code>onedrive.reg&lt;/code> 以管理员身份运行导入注册表。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-reg" data-lang="reg">&lt;span class="line">&lt;span class="cl">Windows Registry Editor Version 5.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[&lt;/span>&lt;span class="nb">HKEY_LOCAL_MACHINE&lt;/span>&lt;span class="k">\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Attributes&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Category&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;DefinitionFlags&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000040&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Icon&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,69,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6d,00,61,00,67,00,65,00,72,00,65,00,73,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,31,00,30,00,34,00,30,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalizedName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6f,00,6f,00,74,00,25,00,5c,00,53,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,5c,00,53,00,65,00,74,00,74,00,69,00,6e,00,67,00,53,00,79,00,6e,00,63,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">43,00,6f,00,72,00,65,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,31,00,30,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,34,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalRedirectOnly&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Name&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParentFolder&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{5E6C858F-0E22-4760-9AFE-EA3317B67173}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParsingName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;RelativePath&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[&lt;/span>&lt;span class="nb">HKEY_LOCAL_MACHINE&lt;/span>&lt;span class="k">\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Attributes&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Category&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;DefinitionFlags&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000040&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Icon&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,69,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6d,00,61,00,67,00,65,00,72,00,65,00,73,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,31,00,30,00,34,00,30,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalizedName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6f,00,6f,00,74,00,25,00,5c,00,53,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,5c,00,53,00,65,00,74,00,74,00,69,00,6e,00,67,00,53,00,79,00,6e,00,63,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">43,00,6f,00,72,00,65,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,31,00,30,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,34,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalRedirectOnly&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Name&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParentFolder&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{5E6C858F-0E22-4760-9AFE-EA3317B67173}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParsingName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;RelativePath&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="删除-网络1-网络2-网络3">删除 网络1 网络2 网络3……
+&lt;/h3>&lt;p>删除以下两个注册表位置的所有子项，然后重启电脑即可&lt;/p>
+&lt;ul>
+&lt;li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles&lt;/li>
+&lt;li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged&lt;/li>
+&lt;/ul>
+&lt;h2 id="应用兼容问题">应用兼容问题
+&lt;/h2>&lt;h3 id="jetbrains-系列-shift--f6-失效">JetBrains 系列 Shift + F6 失效
+&lt;/h3>&lt;p>JetBrains 插件商店搜索 &lt;code>Imefix&lt;/code> 插件，安装即可解决。&lt;/p></description></item></channel></rss>
