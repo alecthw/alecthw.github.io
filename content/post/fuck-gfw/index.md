@@ -122,8 +122,8 @@ PS: mosdns 使用 [alecthw 修改版](https://github.com/alecthw/mosdns)，支�
 
 ```mermaid
 flowchart LR
-    A[AdGuardHome, Port 53, no cache] -- 主要 --> B[openclash, Port 5335]
-    B --> C[mosdns, Port 7874]
+    A[AdGuardHome, Port 53, no cache] -- 主要 --> B[openclash, Port 7874]
+    B --> C[mosdns, Port 5335]
     A -- 备用\n防止 openclash 为运行时网络无法访问 --> C
 ```
 
