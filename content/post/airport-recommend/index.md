@@ -2,7 +2,7 @@
 title: 机场/梯子推荐
 description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
 slug: airport-recommend
-date: 2024-11-29T09:24:13+08:00
+date: 2024-12-23T09:24:13+08:00
 image: cover.jpg
 categories:
   - passgfw
@@ -150,6 +150,12 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
 
 协议：`Trojan`
+
+优惠码（截止2025年01月07日）：
+
+- 月付套餐9折：25119
+- 季付以上套餐8折：25118
+- 60G年付优惠套餐:25109
 
 特点：一家性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
 
