@@ -24,14 +24,14 @@ weight: 1
 
 极简总结：
 
-**国庆临近，优惠码会逐步刷新，请关注：**
+**优惠码适时更新，请关注：**
 
-| 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 国庆优惠码 |
+| 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 8折：5sy8z |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | - |
-| 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | - |
+| 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | 8折：2025 |
 
 流媒体解锁都支持的。当前强烈推荐**五树云机场（原小米梯子）**，稳定性好，性价比非常高！
 
@@ -145,17 +145,17 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 ### 🔥小鸡快跑 —— 优质性价比机场
 
+优惠码（截止2025年01月07日，注意关注官网公告）：
+
+- 月付套餐9折：25119
+- 季付以上套餐8折：25118
+- 60G年付优惠套餐:25109
+
 官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
 
 官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
 
 协议：`Trojan`
-
-优惠码（截止2025年01月07日）：
-
-- 月付套餐9折：25119
-- 季付以上套餐8折：25118
-- 60G年付优惠套餐:25109
 
 特点：一家性价比翻墙机场，全节点 IPLC 专线，负载均衡，带宽冗余超过 2Gbps，测速最高能达 260MB/s，有不错的流媒体和 ChatGPT 解锁。
 
@@ -237,6 +237,8 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 这类机场除了提供科学上网的节点之外，一般还附带一些别的服务，例如 Emby、Plex 之类的视频服务。
 
 ### TLS —— Emby 4K
+
+全场8折优惠码：2025
 
 官网：[👉链接🚀](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
