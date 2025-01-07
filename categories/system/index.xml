@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>系统 on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/categories/system/</link><description>Recent content in 系统 on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://alecthw.github.io/categories/system/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 11 LSTC 安装和使用问题</title><link>https://alecthw.github.io/p/win11-lstc-faq/</link><pubDate>Mon, 11 Nov 2024 10:11:11 +0800</pubDate><guid>https://alecthw.github.io/p/win11-lstc-faq/</guid><description>&lt;img src="https://alecthw.github.io/p/win11-lstc-faq/cover.jpg" alt="Featured image of post Windows 11 LSTC 安装和使用问题" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>Windows 11 LSTC 问题总结，持续更新。&lt;/p>
+&lt;h2 id="安装">安装
+&lt;/h2>&lt;h3 id="下载">下载
+&lt;/h3>&lt;p>只推荐从 &lt;a class="link" href="https://next.itellyou.cn/" target="_blank" rel="noopener"
+>MSDN, i tell you&lt;/a> 下载。需要使用 BT 工具，如 Aria2、迅雷等。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/win11-lstc-faq/win11-next-itellyou.png"
+width="1823"
+height="545"
+srcset="https://alecthw.github.io/p/win11-lstc-faq/win11-next-itellyou_hu1088529288208912747.png 480w, https://alecthw.github.io/p/win11-lstc-faq/win11-next-itellyou_hu9086015834960264937.png 1024w"
+loading="lazy"
+alt="win11-next-itellyou"
+class="gallery-image"
+data-flex-grow="334"
+data-flex-basis="802px"
+>&lt;/p>
+&lt;h3 id="制作启动盘">制作启动盘
+&lt;/h3>&lt;p>使用 &lt;a class="link" href="https://rufus.ie/zh/" target="_blank" rel="noopener"
+>Rufus&lt;/a> 制作启动 U盘。&lt;/p>
+&lt;h3 id="微软账户登录">微软账户登录
+&lt;/h3>&lt;p>LSTC 版本不强制使用微软账户登录，可以跳过。&lt;/p>
+&lt;p>&lt;strong>TIPs&lt;/strong>：安装过程中，不推荐直接使用微软账户登录，应该先创建&lt;strong>纯英文数字&lt;/strong>的无密码用户，进入系统后再使用微软账户登录。&lt;/p>
+&lt;h3 id="激活">激活
+&lt;/h3>&lt;p>LSTC 本身属于企业版。&lt;/p>
+&lt;h4 id="方式一kms-激活">方式一：KMS 激活
+&lt;/h4>&lt;p>自建服务额：&lt;a class="link" href="https://github.com/Wind4/vlmcsd" target="_blank" rel="noopener"
+>vlmcsd&lt;/a>。多数 OpenWRT 固件都集成了。&lt;/p>
+&lt;p>公开的 KMS 服务器：&lt;a class="link" href="https://www.coolhub.top/tech-articles/kms_list.html" target="_blank" rel="noopener"
+>KMS 地址列表&lt;/a>&lt;/p>
+&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">slmgr&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">skms&lt;/span> &lt;span class="n">kms&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">03k&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">org&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">slmgr&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">ato&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="方式二mas">方式二：MAS
+&lt;/h4>&lt;p>参考官方：&lt;a class="link" href="https://massgrave.dev/" target="_blank" rel="noopener"
+>MAS&lt;/a>&lt;/p>
+&lt;h2 id="使用">使用
+&lt;/h2>&lt;h3 id="恢复传统右键菜单">恢复传统右键菜单
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">ve&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">taskkill&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">im&lt;/span> &lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">&amp;amp;&lt;/span> &lt;span class="nb">start &lt;/span>&lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>还原：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">delete&lt;/span> &lt;span class="s2">&amp;#34;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">taskkill&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">im&lt;/span> &lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">&amp;amp;&lt;/span> &lt;span class="nb">start &lt;/span>&lt;span class="n">explorer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="应用商店-microsoft-store">应用商店 Microsoft Store
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wsreset&lt;/span> &lt;span class="n">-i&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>该命令执行完没有回显，请耐心等待，直到开始里出现 Microsoft Store 应用。&lt;/p>
+&lt;h3 id="访问共享文件报错-0x80004005-0x80070035">访问共享文件报错 0X80004005 0x80070035
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">AllowInsecureGuestAuth&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">RequireSecuritySignature&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="运行游戏一直弹窗-msgamingoverlay">运行游戏一直弹窗 msgamingoverlay
+&lt;/h3>&lt;p>以管理员身份运行&lt;code>命令提示符&lt;/code>，执行如下命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">AppCaptureEnabled&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">reg&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="s2">&amp;#34;HKCU\System\GameConfigStore&amp;#34;&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="n">GameDVR_Enabled&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">t&lt;/span> &lt;span class="n">reg_dword&lt;/span> &lt;span class="p">/&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="office-安装">Office 安装
+&lt;/h3>&lt;p>推荐使用 &lt;a class="link" href="https://otp.landian.vip/zh-cn/#" target="_blank" rel="noopener"
+>Office Tool Plus&lt;/a> 安装。&lt;/p>
+&lt;p>安装选项：&lt;/p>
+&lt;ul>
+&lt;li>体系结构：64位&lt;/li>
+&lt;li>产品：Office Mondo 2016 - MondoRetail。&lt;strong>注意：无论是否需要使用 OneDrive，此处都不选择。&lt;/strong>&lt;/li>
+&lt;li>语言：简体中文（中国） - zh-cn&lt;/li>
+&lt;/ul>
+&lt;p>安装后激活：&lt;/p>
+&lt;ol>
+&lt;li>许可证管理 -&amp;gt; 卸载所有许可证&lt;/li>
+&lt;li>许可证管理 -&amp;gt; 安装许可证：Office Mondo 2016 - 批量许可证&lt;/li>
+&lt;li>KMS 管理 -&amp;gt; KMS 主机：使用 &lt;a class="link" href="https://github.com/Wind4/vlmcsd" target="_blank" rel="noopener"
+>vlmcsd&lt;/a> 自建或者 &lt;a class="link" href="https://www.coolhub.top/tech-articles/kms_list.html" target="_blank" rel="noopener"
+>KMS 地址列表&lt;/a>选一个&lt;/li>
+&lt;li>许可证管理 -&amp;gt; 激活&lt;/li>
+&lt;/ol>
+&lt;h3 id="onedrive">OneDrive
+&lt;/h3>&lt;h4 id="下载安装">下载安装
+&lt;/h4>&lt;p>&lt;a class="link" href="https://www.microsoft.com/en-us/microsoft-365/onedrive/download?ocid=ORSEARCH_Bing" target="_blank" rel="noopener"
+>下载 OneDrive&lt;/a>&lt;/p>
+&lt;h4 id="修复资源管理器中-onedrive---personal-失效问题">修复资源管理器中 &lt;code>OneDrive - Personal&lt;/code> 失效问题
+&lt;/h4>&lt;p>该问题是由于 LTSC 注册表无 OneDrive 的 ID {A52BBA46-E9E1-435f-B3D9-28DAA648C0F6} 定义导致。&lt;/p>
+&lt;p>解决方案是新建一个 &lt;code>onedrive.reg&lt;/code> 文件，输入如下内容，然后右键 &lt;code>onedrive.reg&lt;/code> 以管理员身份运行导入注册表。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-reg" data-lang="reg">&lt;span class="line">&lt;span class="cl">Windows Registry Editor Version 5.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[&lt;/span>&lt;span class="nb">HKEY_LOCAL_MACHINE&lt;/span>&lt;span class="k">\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Attributes&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Category&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;DefinitionFlags&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000040&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Icon&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,69,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6d,00,61,00,67,00,65,00,72,00,65,00,73,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,31,00,30,00,34,00,30,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalizedName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6f,00,6f,00,74,00,25,00,5c,00,53,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,5c,00,53,00,65,00,74,00,74,00,69,00,6e,00,67,00,53,00,79,00,6e,00,63,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">43,00,6f,00,72,00,65,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,31,00,30,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,34,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalRedirectOnly&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Name&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParentFolder&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{5E6C858F-0E22-4760-9AFE-EA3317B67173}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParsingName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;RelativePath&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[&lt;/span>&lt;span class="nb">HKEY_LOCAL_MACHINE&lt;/span>&lt;span class="k">\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Attributes&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Category&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;DefinitionFlags&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000040&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Icon&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,69,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6d,00,61,00,67,00,65,00,72,00,65,00,73,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,31,00,30,00,34,00,30,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalizedName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">hex(2)&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,&lt;/span>&lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">6f,00,6f,00,74,00,25,00,5c,00,53,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,5c,00,53,00,65,00,74,00,74,00,69,00,6e,00,67,00,53,00,79,00,6e,00,63,00,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">43,00,6f,00,72,00,65,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,31,00,30,00,32,\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">00,34,00,00,00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;LocalRedirectOnly&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000001&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;Name&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParentFolder&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{5E6C858F-0E22-4760-9AFE-EA3317B67173}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;ParsingName&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;RelativePath&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;OneDrive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="删除-网络1-网络2-网络3">删除 网络1 网络2 网络3……
+&lt;/h3>&lt;p>删除以下两个注册表位置的所有子项，然后重启电脑即可&lt;/p>
+&lt;ul>
+&lt;li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles&lt;/li>
+&lt;li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged&lt;/li>
+&lt;/ul>
+&lt;h2 id="应用兼容问题">应用兼容问题
+&lt;/h2>&lt;h3 id="jetbrains-系列-shift--f6-失效">JetBrains 系列 Shift + F6 失效
+&lt;/h3>&lt;p>JetBrains 插件商店搜索 &lt;code>Imefix&lt;/code> 插件，安装即可解决。&lt;/p></description></item><item><title>RouterOS 给 UPNP 设置白名单，避免 APP 白嫖上行带宽</title><link>https://alecthw.github.io/p/routeros-upnp-blcok/</link><pubDate>Mon, 26 Feb 2024 20:11:45 +0800</pubDate><guid>https://alecthw.github.io/p/routeros-upnp-blcok/</guid><description>&lt;img src="https://alecthw.github.io/p/routeros-upnp-blcok/cover.jpg" alt="Featured image of post RouterOS 给 UPNP 设置白名单，避免 APP 白嫖上行带宽" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h2 id="ros-的-upnp">ROS 的 UPNP
+&lt;/h2>&lt;p>由于 ROS 的 UPNP 功能没有自带类似黑白名单类似的功能，那只能从防火墙入手了。&lt;/p>
+&lt;p>UPNP 服务端涉及两个端口，1900(UDP) 和 2828(TCP)。那么，目标就很明确了：&lt;/p>
+&lt;ol>
+&lt;li>建个白名单&lt;/li>
+&lt;li>仅允许白名单内的 IP 访问这两个端口&lt;/li>
+&lt;/ol>
+&lt;h2 id="配置过程">配置过程
+&lt;/h2>&lt;h3 id="创建一个名称为-allow_upnp-的地址列表作白名单">创建一个名称为 &lt;code>allow_upnp&lt;/code> 的地址列表作白名单
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip firewall address-list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.1.1 &lt;span class="nv">list&lt;/span>&lt;span class="o">=&lt;/span>allow_upnp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.1.2 &lt;span class="nv">list&lt;/span>&lt;span class="o">=&lt;/span>allow_upnp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="创建两条-filter-规则">创建两条 filter 规则
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip firewall filter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">action&lt;/span>&lt;span class="o">=&lt;/span>drop &lt;span class="nv">chain&lt;/span>&lt;span class="o">=&lt;/span>input dst-port&lt;span class="o">=&lt;/span>&lt;span class="m">1900&lt;/span> &lt;span class="nv">protocol&lt;/span>&lt;span class="o">=&lt;/span>udp src-address-list&lt;span class="o">=&lt;/span>!allow_upnp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">action&lt;/span>&lt;span class="o">=&lt;/span>drop &lt;span class="nv">chain&lt;/span>&lt;span class="o">=&lt;/span>input dst-port&lt;span class="o">=&lt;/span>&lt;span class="m">2828&lt;/span> &lt;span class="nv">protocol&lt;/span>&lt;span class="o">=&lt;/span>tcp src-address-list&lt;span class="o">=&lt;/span>!allow_upnp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果原来规则较多，注意下放的位置。&lt;/p>
+&lt;h3 id="重启下-upnp-服务">重启下 UPNP 服务
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip upnp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> &lt;span class="nv">enabled&lt;/span>&lt;span class="o">=&lt;/span>no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> &lt;span class="nv">enabled&lt;/span>&lt;span class="o">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就配置好了，等个几个小时看看，NAT 列表里，除了允许的几个 IP 有 UPNP，其他应该都没有。世界清净了。&lt;/p>
+&lt;p>如果有问题，优先检查 filter 规则顺序。&lt;/p>
+&lt;h2 id="附dhcp-静态自动添加到地址列表">附：DHCP 静态自动添加到地址列表
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/ip dhcp-server lease
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">add &lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>192.168.1.x mac-address&lt;span class="o">=&lt;/span>xx:xx:xx:xx:xx:xx address-lists&lt;span class="o">=&lt;/span>allow_upnp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>在 Hyper-V 中体验 陆大大的云固件 &amp; 使用 WinNTSetup 制作 L0 镜像</title><link>https://alecthw.github.io/p/cloud-firmware-hyperv/</link><pubDate>Sun, 14 Jan 2024 17:57:22 +0800</pubDate><guid>https://alecthw.github.io/p/cloud-firmware-hyperv/</guid><description>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/cover.png" alt="Featured image of post 在 Hyper-V 中体验 陆大大的云固件 &amp; 使用 WinNTSetup 制作 L0 镜像" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>关于云固件相关的资料，请参考 &lt;a class="link" href="https://zhuanlan.zhihu.com/p/651550564" target="_blank" rel="noopener"
+>陆伟峰​的知乎&lt;/a>，这里不再赘述。&lt;/p>
+&lt;p>过程是其实和硬件硬盘是一样的，这里只不过是用同样的方式创建虚拟磁盘，然后在 Hyper-V 中启动。&lt;/p>
+&lt;h2 id="云固件文件准备">云固件文件准备
+&lt;/h2>&lt;ul>
+&lt;li>云固件：&lt;a class="link" href="https://pan.baidu.com/share/init?surl=E3LKPlyAZCUX8PhIkIu98Q&amp;amp;pwd=7217" target="_blank" rel="noopener"
+>r23942（v1.6.23942）&lt;/a>&lt;/li>
+&lt;li>Win11 L1 镜像：&lt;a class="link" href="https://pan.baidu.com/s/1qpRqRhTlG5PTk0EfspJomw" target="_blank" rel="noopener"
+>Windows 11 专业版 L1基本安装镜像&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="软件准备">软件准备
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.diskgenius.cn/" target="_blank" rel="noopener"
+>DiskGenius&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="开始制作">开始制作
+&lt;/h2>&lt;p>整体还是比较简单的，先创建 vdhx 虚拟磁盘，然后用 DiskGenius 分区，最后然后再把 Win11 L1 镜像拷贝到 创建的 vhdx 中，配置启动镜像即可。&lt;/p>
+&lt;h3 id="创建-vdhx">创建 vdhx
+&lt;/h3>&lt;p>为了简单，这里给出使用磁盘管理图形界面的创建步骤。&lt;/p>
+&lt;p>首先打开&lt;code>计算机管理&lt;/code>，然后点击左边的&lt;code>磁盘管理&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/pc_mgr.jpg"
+width="555"
+height="440"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/pc_mgr_hu14311868535032535741.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/pc_mgr_hu15461773412491185408.jpg 1024w"
+loading="lazy"
+alt="计算机管理"
+class="gallery-image"
+data-flex-grow="126"
+data-flex-basis="302px"
+>&lt;/p>
+&lt;p>右键，点击&lt;code>创建VHD&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_1.jpg"
+width="1232"
+height="571"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_1_hu14169818712083069578.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_1_hu13617860984858545972.jpg 1024w"
+loading="lazy"
+alt="创建虚拟磁盘"
+class="gallery-image"
+data-flex-grow="215"
+data-flex-basis="517px"
+>&lt;/p>
+&lt;p>按下图输入大写和选择，注意大小要大于 &lt;code>260G&lt;/code>，具体原因参考陆大的文章。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_2.jpg"
+width="551"
+height="672"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_2_hu18321959800955333743.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vhdx_2_hu6545112591800651963.jpg 1024w"
+loading="lazy"
+alt="创建虚拟磁盘2"
+class="gallery-image"
+data-flex-grow="81"
+data-flex-basis="196px"
+>&lt;/p>
+&lt;p>创建之后会自动挂载。&lt;/p>
+&lt;h3 id="分区">分区
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开 &lt;code>DiskGenius&lt;/code>，选中刚刚创建的虚拟磁盘，然后点击&lt;code>快速分区&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/partition.jpg"
+width="1519"
+height="519"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/partition_hu15067148894185229643.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/partition_hu16142500077116218645.jpg 1024w"
+loading="lazy"
+alt="分区"
+class="gallery-image"
+data-flex-grow="292"
+data-flex-basis="702px"
+>&lt;/p>
+&lt;p>按下图选择，卷标输入 &lt;code>VDs&lt;/code>，点击&lt;code>确定&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/partition2.jpg"
+width="835"
+height="647"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/partition2_hu3470047728916892946.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/partition2_hu9162302164793821264.jpg 1024w"
+loading="lazy"
+alt="分区2"
+class="gallery-image"
+data-flex-grow="129"
+data-flex-basis="309px"
+>&lt;/p>
+&lt;p>执行成功和，&lt;code>VDs&lt;/code> 应该被自动分配盘符挂载到系统了。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc.jpg"
+width="1047"
+height="185"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc_hu16509102899267381318.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc_hu343977236513288525.jpg 1024w"
+loading="lazy"
+alt="资源管理器"
+class="gallery-image"
+data-flex-grow="565"
+data-flex-basis="1358px"
+>&lt;/p>
+&lt;p>还需要把 &lt;code>ESP&lt;/code> 分区也挂载到系统，只能在 DiskGenius 中操作。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/esp.jpg"
+width="417"
+height="578"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/esp_hu13283429936587331728.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/esp_hu8077191482494503784.jpg 1024w"
+loading="lazy"
+alt="挂载ESP分区"
+class="gallery-image"
+data-flex-grow="72"
+data-flex-basis="173px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc2.jpg"
+width="992"
+height="167"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc2_hu7672783404565399337.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/my_pc2_hu17592755034917471350.jpg 1024w"
+loading="lazy"
+alt="资源管理器2"
+class="gallery-image"
+data-flex-grow="594"
+data-flex-basis="1425px"
+>&lt;/p>
+&lt;h3 id="复制文件">复制文件
+&lt;/h3>&lt;p>将云固件解压到 &lt;code>ESP&lt;/code> 分区，如下图：&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_cd.jpg"
+width="835"
+height="293"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_cd_hu18162835948685611954.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_cd_hu11010850780547325488.jpg 1024w"
+loading="lazy"
+alt="云固件解压"
+class="gallery-image"
+data-flex-grow="284"
+data-flex-basis="683px"
+>&lt;/p>
+&lt;p>将云固件中的 &lt;code>vd.config&lt;/code> 拷贝到 &lt;code>VDs&lt;/code> 分区中。&lt;/p>
+&lt;p>再将下载的 &lt;code>Windows 11 专业版 L1基本安装镜像&lt;/code>，目录 &lt;code>b1882792&lt;/code> 中的 &lt;code>Windows11-22H2-Pro-L1.7z&lt;/code> 文件解压，解压后删除原文件 &lt;code>Windows11-22H2-Pro-L1.7z&lt;/code>。&lt;/p>
+&lt;p>然后将目录 &lt;code>b1882792&lt;/code> 拷贝到 &lt;code>VDs&lt;/code> 分区中。目录结构如下。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd.jpg"
+width="796"
+height="292"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_hu3314563425287783958.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_hu1198708237195994953.jpg 1024w"
+loading="lazy"
+alt="镜像解压"
+class="gallery-image"
+data-flex-grow="272"
+data-flex-basis="654px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_2.jpg"
+width="844"
+height="360"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_2_hu4055326355661774704.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unzip_vd_2_hu15113434469978293046.jpg 1024w"
+loading="lazy"
+alt="镜像解压2"
+class="gallery-image"
+data-flex-grow="234"
+data-flex-basis="562px"
+>&lt;/p>
+&lt;h3 id="分离vhd">分离VHD
+&lt;/h3>&lt;p>（可选）在 &lt;code>DiskGenius&lt;/code> 中删除 &lt;code>ESP&lt;/code> 分区的盘符。&lt;/p>
+&lt;p>在&lt;code>磁盘管理&lt;/code>中，右键虚拟磁盘，点击&lt;code>分离VHD&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/unmount_vhdx.jpg"
+width="767"
+height="235"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/unmount_vhdx_hu5445628630184306738.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/unmount_vhdx_hu765071923113929068.jpg 1024w"
+loading="lazy"
+alt="分离VHD"
+class="gallery-image"
+data-flex-grow="326"
+data-flex-basis="783px"
+>&lt;/p>
+&lt;p>至此，Hypver-V 上的云固件虚拟盘就做好了。&lt;/p>
+&lt;h2 id="在-hyper-v-中创建虚拟机">在 Hyper-V 中创建虚拟机
+&lt;/h2>&lt;p>按如下步骤创建，选择&lt;code>第二代&lt;/code>，虚拟磁盘选择&lt;code>使用现有&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_1.jpg"
+width="980"
+height="413"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_1_hu9311458163664437986.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_1_hu13100033921993264703.jpg 1024w"
+loading="lazy"
+alt="创建VM1"
+class="gallery-image"
+data-flex-grow="237"
+data-flex-basis="569px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_2.jpg"
+width="980"
+height="384"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_2_hu9325074443487685993.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_2_hu1397754823556960443.jpg 1024w"
+loading="lazy"
+alt="创建VM2"
+class="gallery-image"
+data-flex-grow="255"
+data-flex-basis="612px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_3.jpg"
+width="976"
+height="377"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_3_hu6152426038840700763.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_3_hu13493772826897224488.jpg 1024w"
+loading="lazy"
+alt="创建VM3"
+class="gallery-image"
+data-flex-grow="258"
+data-flex-basis="621px"
+>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_4.jpg"
+width="968"
+height="722"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_4_hu6162280055134612305.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_4_hu15154377720255414241.jpg 1024w"
+loading="lazy"
+alt="创建VM4"
+class="gallery-image"
+data-flex-grow="134"
+data-flex-basis="321px"
+>&lt;/p>
+&lt;p>创建完成后，在虚拟机设置中，禁用安全启动。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_5.jpg"
+width="1046"
+height="437"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_5_hu2563072539878449276.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/create_vm_5_hu16288247078722375775.jpg 1024w"
+loading="lazy"
+alt="创建VM5"
+class="gallery-image"
+data-flex-grow="239"
+data-flex-basis="574px"
+>&lt;/p>
+&lt;h3 id="启动运行">启动运行
+&lt;/h3>&lt;p>双击虚拟机，启动运行。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/run_1.jpg"
+width="1280"
+height="1045"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/run_1_hu14937406432207557171.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/run_1_hu13546985142215718040.jpg 1024w"
+loading="lazy"
+alt="运行1"
+class="gallery-image"
+data-flex-grow="122"
+data-flex-basis="293px"
+>&lt;/p>
+&lt;p>此时，鼠标可能无法使用，请使用 Tab键、方向键和回车键操作。&lt;/p>
+&lt;p>顺利进入系统。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/run_2.jpg"
+width="1275"
+height="1051"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/run_2_hu5866781977290076392.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/run_2_hu258171828002298781.jpg 1024w"
+loading="lazy"
+alt="运行2"
+class="gallery-image"
+data-flex-grow="121"
+data-flex-basis="291px"
+>&lt;/p>
+&lt;hr>
+&lt;h2 id="使用-winntsetup-快速制作-windows-l0-镜像">使用 WinNTSetup 快速制作 Windows L0 镜像
+&lt;/h2>&lt;p>下载 &lt;a class="link" href="https://msfn.org/board/topic/149612-winntsetup-v533/" target="_blank" rel="noopener"
+>WinNTSetup&lt;/a>。&lt;/p>
+&lt;h3 id="vhdx-准备">vhdx 准备
+&lt;/h3>&lt;p>参考之前步骤，完成虚拟磁盘的创建和分区。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="#%e5%88%9b%e5%bb%ba-vdhx" >创建 vdhx&lt;/a>，大小建议70G以上。&lt;/li>
+&lt;li>&lt;a class="link" href="#%e5%88%86%e5%8c%ba" >分区&lt;/a>，卷标不用指定。&lt;/li>
+&lt;/ul>
+&lt;h3 id="制作过程中自动禁用虚拟磁盘扩充到最大">制作过程中自动禁用虚拟磁盘扩充到最大
+&lt;/h3>&lt;p>在目录 &lt;code>WinNTSetup\RegTweaks\Win10&lt;/code> 下创建 &lt;code>disable-vdisk-expand.reg&lt;/code>。&lt;/p>
+&lt;p>这个目录是安装过程中修改注册表的，可以利用此特性预置很多配置。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-reg" data-lang="reg">&lt;span class="line">&lt;span class="cl">Windows Registry Editor Version 5.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[&lt;/span>&lt;span class="nb">HKEY_LOCAL_MACHINE&lt;/span>&lt;span class="k">\SYSTEM\CurrentControlSet\Services\FsDepends\Parameters]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;#34;VirtualDiskExpandOnMount&amp;#34;&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">dword&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">00000004&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="使用-winntsetup-创建-l0-镜像">使用 WinNTSetup 创建 L0 镜像
+&lt;/h3>&lt;p>打开 &lt;code>WinNTSetup&lt;/code>。&lt;/p>
+&lt;ol>
+&lt;li>选择 Windows 安装镜像 ISO，这里以 LSTC 为例。&lt;/li>
+&lt;li>&lt;code>引导驱动器&lt;/code>选择虚拟磁盘的ESP分区，就是 FAT32 300MB 那个。&lt;/li>
+&lt;li>&lt;code>系统驱动器&lt;/code>选择虚拟磁盘最大的那个分区，NTFS 那个。&lt;/li>
+&lt;li>&lt;code>优化调整&lt;/code>里，&lt;code>注册表调整&lt;/code>选择&lt;code>Win10&lt;/code>，其余选项按需调整。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://alecthw.github.io/p/cloud-firmware-hyperv/winntsetup.jpg"
+width="1706"
+height="661"
+srcset="https://alecthw.github.io/p/cloud-firmware-hyperv/winntsetup_hu7777009192627868017.jpg 480w, https://alecthw.github.io/p/cloud-firmware-hyperv/winntsetup_hu11823639199506428345.jpg 1024w"
+loading="lazy"
+alt="winntsetup"
+class="gallery-image"
+data-flex-grow="258"
+data-flex-basis="619px"
+>&lt;/p>
+&lt;p>最后点击 &lt;code>安装&lt;/code>，会提示&lt;code>不能选择VHD作为引导驱动器&lt;/code>，点击&lt;code>确定&lt;/code>继续即可。&lt;/p>
+&lt;p>安装结束会提示&lt;code>重启&lt;/code>，就不用重启了。&lt;/p>
+&lt;p>最后分离 VHD，一个 Windows 的 L0 镜像就做好了。&lt;/p></description></item><item><title>RouterOS CHR v7 UEFI 镜像，使用 Github Actions 构建</title><link>https://alecthw.github.io/p/routeros-uefi/</link><pubDate>Thu, 07 Dec 2023 17:11:11 +0800</pubDate><guid>https://alecthw.github.io/p/routeros-uefi/</guid><description>&lt;img src="https://alecthw.github.io/p/routeros-uefi/cover.png" alt="Featured image of post RouterOS CHR v7 UEFI 镜像，使用 Github Actions 构建" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>👉 需要的朋友自取。&lt;/p>
+&lt;p>使用 Github Actions 构建，过程全透明，不存在后门的可能。官方镜像，&lt;code>非破解&lt;/code>。&lt;/p>
+&lt;p>RouterOS chr-7.x 已经包含了 efi 启动文件，但是分区类型是 ext2。&lt;/p>
+&lt;p>所以，只要把分区类型从 ext2 转成 fat 就可以从 uefi 引导启动了。&lt;/p>
+&lt;p>当然，喜欢 GPT 的话，也可以制作 Hybrid MBR。&lt;/p>
+&lt;h2 id="镜像下载httpsgithubcomalecthwmikrotik-routeros-chr-efireleases">&lt;a class="link" href="https://github.com/alecthw/mikrotik-routeros-chr-efi/releases" target="_blank" rel="noopener"
+>镜像下载&lt;/a>
+&lt;/h2>&lt;p>👉 &lt;a class="link" href="https://github.com/alecthw/mikrotik-routeros-chr-efi/releases" target="_blank" rel="noopener"
+>Release&lt;/a> 👈&lt;/p>
+&lt;p>👉 &lt;a class="link" href="https://www.right.com.cn/forum/thread-8271574-1-1.html" target="_blank" rel="noopener"
+>破解版传送门&lt;/a> 👈&lt;/p>
+&lt;p>包含的镜像类型：&lt;/p>
+&lt;ul>
+&lt;li>img&lt;/li>
+&lt;li>qcow2&lt;/li>
+&lt;li>vdi&lt;/li>
+&lt;li>vhd&lt;/li>
+&lt;li>vhdx&lt;/li>
+&lt;li>vmdk&lt;/li>
+&lt;/ul>
+&lt;h2 id="hybrid-mbr-记录">Hybrid MBR 记录
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="c1"># use GPT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> t &lt;span class="c1"># change partition code&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="c1"># select first partition&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">8300&lt;/span> &lt;span class="c1"># change code to Linux filesystem 8300&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> r &lt;span class="c1"># Recovery/transformation&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> h &lt;span class="c1"># Hybrid MBR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="c1"># partitions added to the hybrid MBR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> n &lt;span class="c1"># Place EFI GPT (0xEE) partition first in MBR (good for GRUB)? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="c1"># Enter an MBR hex code (default 83)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> y &lt;span class="c1"># Set the bootable flag? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="c1"># Enter an MBR hex code (default 83)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> n &lt;span class="c1"># Set the bootable flag? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> n &lt;span class="c1"># Unused partition space(s) found. Use one to protect more partitions? (Y/N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> w &lt;span class="c1"># write changes to disk&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> y &lt;span class="c1"># confirm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">)&lt;/span> &lt;span class="p">|&lt;/span> sudo -E gdisk /dev/nbd1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
