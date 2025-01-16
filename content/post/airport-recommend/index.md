@@ -28,7 +28,7 @@ weight: 1
 
 | 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 8折：5sy8z |
+| 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 9折：2025s9 |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | - |
 | 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | 8折：2025 |
@@ -57,7 +57,7 @@ weight: 1
 
 ### 🔥五树云机场（原小米梯子） —— 性价比至高之选
 
-全场7折优惠码：xm70z
+9折优惠码：2025s9
 
 官网：[👉链接🚀](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi)
 
@@ -110,6 +110,10 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 ### 三分机场 —— 一天3分钱
 
+优惠码（截止2025年01月07日，注意关注官网公告）：
+
+- 9折：sjzczdqh
+
 官网1：[👉链接（最新可直连）🚀](https://panel.sanfen.icu/register?code=FKnu6Hkg)
 官网2：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
 官网3：[👉链接🚀](https://hk.sanfen.cc/#/register?code=FKnu6Hkg)
@@ -122,11 +126,11 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 和上面类似，也是靠低价起家的，后来也推出了中转套餐。
 
-注意：`9.5CNY/Year 每月 200G` 的套餐目前已经不常驻了，仅剩下 `39.9CNY/Year 总流量 900G` 和 `5 CNY/Month 每月 5000G 流量`的低价套餐。
+注意：最实惠的套餐目前就是 `8CNY/Quarter 每月 200G` 了。
 
 特别注意，直连套餐里有个小字说明：`福建福州、泉州、湖南和河南大部分地区此套餐可能无法使`，这些地区的小伙伴谨慎购买。
 
-中转套餐就不太推荐了，最低 9.9CNY/Month 80G，这个价格的话更推荐上面的 [小鸡快跑](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup) 了。
+中转套餐就不太推荐了，最低 9.9CNY/Month 80G，这个价格的话更推荐上面的 [五树云](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) 了。
 
 目前节点包括香港、日本、美国、新加坡、台湾。
 
@@ -147,9 +151,9 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 优惠码（截止2025年01月07日，注意关注官网公告）：
 
-- 月付套餐9折：25119
-- 季付以上套餐8折：25118
-- 60G年付优惠套餐:25109
+- 月付套餐9折：20259
+- 季付以上套餐8折：20258
+- 60G年付套餐9折: 20259n
 
 官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
 
