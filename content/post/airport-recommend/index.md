@@ -31,7 +31,7 @@ weight: 1
 | 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 9折：2025s9 |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | - |
-| 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | 8折：2025 |
+| 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | - |
 
 流媒体解锁都支持的。当前强烈推荐**五树云机场（原小米梯子）**，稳定性好，性价比非常高！
 
@@ -112,7 +112,7 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 优惠码（截止2025年01月07日，注意关注官网公告）：
 
-- 9折：sjzczdqh
+- ~~9折：sjzczdqh~~
 
 官网1：[👉链接（最新可直连）🚀](https://panel.sanfen.icu/register?code=FKnu6Hkg)
 官网2：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
@@ -151,9 +151,9 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 优惠码（截止2025年01月07日，注意关注官网公告）：
 
-- 月付套餐9折：20259
-- 季付以上套餐8折：20258
-- 60G年付套餐9折: 20259n
+- ~~月付套餐9折：20259~~
+- ~~季付以上套餐8折：20258~~
+- ~~60G年付套餐9折: 20259n~~
 
 官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
 
@@ -242,7 +242,7 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 
 ### TLS —— Emby 4K
 
-全场8折优惠码：2025
+- ~~全场8折优惠码：2025~~
 
 官网：[👉链接🚀](https://tls.wiki/index.php#/register?code=ojo2nVBG)
 
