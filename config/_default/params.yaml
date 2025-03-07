@@ -21,6 +21,7 @@ sidebar:
     local: true
     src: img/avatar.gif
 article:
+  headingAnchor : false
   math: false
   readingTime: true
   license:
