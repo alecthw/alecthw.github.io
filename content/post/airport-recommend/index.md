@@ -112,7 +112,7 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 优惠码（截止2025年04月05日，注意关注官网公告）：
 
-- 93折：bacjkmjo
+- 9折：neqatgho
 
 官网1：[👉链接（最新可直连）🚀](https://panel.sanfen.icu/register?code=FKnu6Hkg)
 官网2：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
