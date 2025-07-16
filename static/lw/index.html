@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LastWar S3 Map Guide 811</title>
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                display: flex;
+                flex-direction: row;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                box-sizing: border-box;
+            }
+            #main-area {
+                flex: 1 1 0;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                min-width: 0;
+            }
+            #controls {
+                display: flex;
+                gap: 12px;
+                padding: 12px;
+                background: #f5f5f5;
+                align-items: center;
+                z-index: 2;
+            }
+            #zoom-label {
+                font-size: 20px;
+                margin-left: 8px;
+                color: #333;
+            }
+            #canvas-container {
+                flex: 1 1 0;
+                position: relative;
+                width: 100%;
+                min-width: 0;
+                background: #eee;
+                overflow: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #background-img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4000px;
+                height: 4000px;
+                z-index: 0;
+                pointer-events: none;
+                user-select: none;
+                touch-action: none;
+            }
+            #overlay-canvas {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4000px;
+                height: 4000px;
+                pointer-events: none;
+                z-index: 1;
+            }
+            #sidebar {
+                margin-left: 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                height: 100vh;
+                min-width: 220px;
+                background: #fafafc;
+                box-shadow: 0 0 8px #eee;
+                padding-top: 12px;
+            }
+            .date-btn {
+                width: 200px;
+                height: 80px;
+                font-size: 24px;
+                margin-bottom: 6px;
+                border-radius: 8px;
+                border: 2px solid #888;
+                background: #fff;
+                cursor: pointer;
+                transition: box-shadow 0.2s;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            /* 新增：日期和星期在一行显示 */
+            .date-btn-label-row {
+                display: flex;
+                flex-direction: row;
+                align-items: baseline;
+                gap: 10px;
+            }
+            .weekday-label {
+                font-size: 18px;
+                color: #888;
+                margin-top: 2px;
+                font-weight: normal;
+                letter-spacing: 1px;
+                user-select: none;
+            }
+            .date-btn.selected {
+                background: #ffd;
+                border-color: #f60;
+                box-shadow: 0 0 8px #f60;
+                font-weight: bold;
+            }
+            .zoom-btn {
+                width: 64px;
+                height: 40px;
+                font-size: 28px;
+                border-radius: 6px;
+                border: 1px solid #bbb;
+                background: #fff;
+                cursor: pointer;
+                transition: box-shadow 0.2s;
+            }
+            .zoom-btn:active {
+                background: #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main-area">
+            <div id="controls">
+                <button class="zoom-btn" id="zoom-out">-</button>
+                <button class="zoom-btn" id="zoom-in">+</button>
+                <span id="zoom-label"></span>
+            </div>
+            <div id="canvas-container">
+                <img
+                    id="background-img"
+                    src="background.png"
+                    alt="Background"
+                />
+                <canvas id="overlay-canvas" width="4000" height="4000"></canvas>
+            </div>
+        </div>
+        <div id="sidebar"></div>
+        <script>
+            // 日期范围
+            const startDate = new Date('2025-07-14');
+            const endDate = new Date('2025-08-02');
+            function getDateStr(date) {
+                return date.toISOString().slice(0, 10);
+            }
+            function getBtnLabel(date) {
+                if (date === 'none') return 'none';
+                const d = new Date(date);
+                return `${d.getMonth() + 1}/${d.getDate()}`;
+            }
+            // 获取星期字符串
+            function getWeekdayStr(dateStr) {
+                if (dateStr === 'none') return '';
+                const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+                const d = new Date(dateStr);
+                return weekdays[d.getDay()];
+            }
+
+            // 动态加载配置
+            const dateConfigs = {}; // 缓存
+
+            async function loadConfig(dateStr) {
+                if (dateConfigs[dateStr]) return dateConfigs[dateStr];
+                try {
+                    const config = await import(`./dateConfig/${dateStr}.js`);
+                    dateConfigs[dateStr] = config.default;
+                    return config.default;
+                } catch (e) {
+                    // 加载不到则使用none
+                    if (dateStr !== 'none') return loadConfig('none');
+                    return { layer1: {}, layer2: {} };
+                }
+            }
+
+            // 生成按钮列表
+            const btnDates = ['none'];
+            for (
+                let d = new Date(startDate);
+                d <= endDate;
+                d.setDate(d.getDate() + 1)
+            ) {
+                btnDates.push(getDateStr(d));
+            }
+
+            // 缩放相关
+            let zoom = 1;
+            const minZoom = 0.1;
+            const maxZoom = 5;
+            const zoomStep = 0.1;
+            const canvasSize = 4000;
+            const canvas = document.getElementById('overlay-canvas');
+            const ctx = canvas.getContext('2d');
+            const bgImg = document.getElementById('background-img');
+            const canvasContainer = document.getElementById('canvas-container');
+            const zoomLabel = document.getElementById('zoom-label');
+            function setZoom(newZoom) {
+                zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
+                // 缩放img和canvas
+                bgImg.style.width = canvasSize * zoom + 'px';
+                bgImg.style.height = canvasSize * zoom + 'px';
+                canvas.style.width = canvasSize * zoom + 'px';
+                canvas.style.height = canvasSize * zoom + 'px';
+                zoomLabel.textContent = `缩放: ${Math.round(zoom * 100)}%`;
+            }
+            function fitToContainer() {
+                // 使画布自适应canvasContainer可视区
+                // 只考虑宽高等比缩放
+                const rect = canvasContainer.getBoundingClientRect();
+                const fitZoom = Math.min(
+                    rect.width / canvasSize,
+                    rect.height / canvasSize,
+                    1,
+                );
+                setZoom(fitZoom);
+            }
+            window.addEventListener('resize', fitToContainer);
+            window.addEventListener('DOMContentLoaded', fitToContainer);
+
+            document.getElementById('zoom-in').onclick = function () {
+                setZoom(zoom + zoomStep);
+            };
+            document.getElementById('zoom-out').onclick = function () {
+                setZoom(zoom - zoomStep);
+            };
+
+            // 第一层格子参数
+            const gridCount = 13;
+            const cellW = 300,
+                cellH = 300;
+            const midColW = 400,
+                midRowH = 400;
+            function getColWidth(col) {
+                return col === 6 ? midColW : cellW;
+            }
+            function getRowHeight(row) {
+                return row === 6 ? midRowH : cellH;
+            }
+            function getColX(col) {
+                let x = 0;
+                for (let i = 0; i < col; ++i) x += getColWidth(i);
+                return x;
+            }
+            function getRowY(row) {
+                let y = 0;
+                for (let i = 0; i < row; ++i) y += getRowHeight(i);
+                return y;
+            }
+            function getIntersectCenter(col, row) {
+                return { x: getColX(col + 1), y: getRowY(row + 1) };
+            }
+
+            // 绘制十字形
+            function drawCrossSociety(
+                x,
+                y,
+                w,
+                h,
+                borderColor,
+                borderWidth,
+                fillStyle,
+                alpha,
+                text,
+                showBorder,
+                raw,
+                col,
+            ) {
+                ctx.save();
+                ctx.globalAlpha = alpha ?? 1;
+                ctx.beginPath();
+
+                if (raw == 0 && col == 0) {
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + w, y);
+                    ctx.lineTo(x + w, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h);
+                    ctx.lineTo(x, y + h);
+                } else if (raw == 0 && col == 12) {
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + w, y);
+                    ctx.lineTo(x + w, y + h);
+                    ctx.lineTo(x + 100, y + h);
+                    ctx.lineTo(x + 100, y + h - 100);
+                    ctx.lineTo(x, y + h - 100);
+                } else if (raw == 12 && col == 0) {
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + w - 100, y);
+                    ctx.lineTo(x + w - 100, y + 100);
+                    ctx.lineTo(x + w, y + 100);
+                    ctx.lineTo(x + w, y + h);
+                    ctx.lineTo(x, y + h);
+                } else if (raw == 12 && col == 12) {
+                    ctx.moveTo(x + 100, y);
+                    ctx.lineTo(x + w, y);
+                    ctx.lineTo(x + w, y + h);
+                    ctx.lineTo(x, y + h);
+                    ctx.lineTo(x, y + 100);
+                    ctx.lineTo(x + 100, y + 100);
+                } else if (raw == 0) {
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + w, y);
+                    ctx.lineTo(x + w, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h);
+                    ctx.lineTo(x + 100, y + h);
+                    ctx.lineTo(x + 100, y + h - 100);
+                    ctx.lineTo(x, y + h - 100);
+                } else if (raw == 12) {
+                    ctx.moveTo(x + 100, y);
+                    ctx.lineTo(x + w - 100, y);
+                    ctx.lineTo(x + w - 100, y + 100);
+                    ctx.lineTo(x + w, y + 100);
+                    ctx.lineTo(x + w, y + h);
+                    ctx.lineTo(x, y + h);
+                    ctx.lineTo(x, y + 100);
+                    ctx.lineTo(x + 100, y + 100);
+                } else if (col == 0) {
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + w - 100, y);
+                    ctx.lineTo(x + w - 100, y + 100);
+                    ctx.lineTo(x + w, y + 100);
+                    ctx.lineTo(x + w, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h);
+                    ctx.lineTo(x, y + h);
+                } else if (col == 12) {
+                    ctx.moveTo(x + 100, y);
+                    ctx.lineTo(x + w, y);
+                    ctx.lineTo(x + w, y + h);
+                    ctx.lineTo(x + 100, y + h);
+                    ctx.lineTo(x + 100, y + h - 100);
+                    ctx.lineTo(x, y + h - 100);
+                    ctx.lineTo(x, y + 100);
+                    ctx.lineTo(x + 100, y + 100);
+                } else {
+                    ctx.moveTo(x + 100, y);
+                    ctx.lineTo(x + w - 100, y);
+                    ctx.lineTo(x + w - 100, y + 100);
+                    ctx.lineTo(x + w, y + 100);
+                    ctx.lineTo(x + w, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h - 100);
+                    ctx.lineTo(x + w - 100, y + h);
+                    ctx.lineTo(x + 100, y + h);
+                    ctx.lineTo(x + 100, y + h - 100);
+                    ctx.lineTo(x, y + h - 100);
+                    ctx.lineTo(x, y + 100);
+                    ctx.lineTo(x + 100, y + 100);
+                }
+
+                ctx.closePath();
+
+                if (fillStyle && fillStyle !== 'transparent') {
+                    ctx.fillStyle = fillStyle;
+                    ctx.fill();
+                }
+                if (showBorder) {
+                    ctx.save();
+                    ctx.globalAlpha = 1;
+                    ctx.lineWidth = 6;
+                    ctx.strokeStyle = borderColor;
+                    ctx.stroke();
+                    ctx.restore();
+                }
+                if (text) {
+                    ctx.save();
+                    ctx.globalAlpha = 1;
+                    ctx.fillStyle = '#333';
+                    ctx.font = 'bolder 60px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(text, x + w / 2, y + h / 2);
+                    ctx.restore();
+                }
+                ctx.restore();
+            }
+
+            // 绘制主方法
+            function draw(config) {
+                ctx.clearRect(0, 0, canvasSize, canvasSize);
+                // 第一层（Cross Society十字形）
+                for (let row = 0; row < gridCount; ++row) {
+                    for (let col = 0; col < gridCount; ++col) {
+                        const x = getColX(col);
+                        const y = getRowY(row);
+                        const w = getColWidth(col);
+                        const h = getRowHeight(row);
+                        const key = `${row}-${col}`;
+                        let fillStyle = 'transparent',
+                            alpha = 1,
+                            text = undefined,
+                            showBorder = false;
+                        if (config.layer1 && config.layer1[key]) {
+                            fillStyle =
+                                config.layer1[key].color ?? 'transparent';
+                            alpha = config.layer1[key].alpha ?? 1;
+                            text = config.layer1[key].text;
+                            showBorder = true;
+                        }
+                        drawCrossSociety(
+                            x,
+                            y,
+                            w,
+                            h,
+                            '#000',
+                            6,
+                            fillStyle,
+                            alpha,
+                            text,
+                            showBorder,
+                            row,
+                            col,
+                        );
+                    }
+                }
+                // 第二层（交点矩形）
+                for (let row = 0; row < gridCount - 1; ++row) {
+                    for (let col = 0; col < gridCount - 1; ++col) {
+                        const center = getIntersectCenter(col, row);
+                        const w = 200,
+                            h = 200;
+                        const x = center.x - w / 2;
+                        const y = center.y - h / 2;
+                        const key = `${row}-${col}`;
+                        if (config.layer2 && config.layer2[key]) {
+                            ctx.save();
+                            ctx.globalAlpha = config.layer2[key].alpha ?? 1;
+                            ctx.fillStyle =
+                                config.layer2[key].color ?? 'transparent';
+                            ctx.fillRect(x, y, w, h);
+                            ctx.globalAlpha = 1;
+                            ctx.lineWidth = 6;
+                            ctx.strokeStyle = '#333';
+                            ctx.strokeRect(x, y, w, h);
+                            if (config.layer2[key].text) {
+                                ctx.save();
+                                ctx.globalAlpha = 1;
+                                ctx.fillStyle = '#333';
+                                ctx.font = 'bolder 48px Arial';
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                ctx.fillText(
+                                    config.layer2[key].text,
+                                    x + w / 2,
+                                    y + h / 2,
+                                );
+                                ctx.restore();
+                            }
+                            ctx.restore();
+                        }
+                    }
+                }
+            }
+
+            // 侧边栏按钮生成
+            const sidebar = document.getElementById('sidebar');
+            let selectedDate = 'none';
+            async function selectDate(dateStr) {
+                selectedDate = dateStr;
+                document.querySelectorAll('.date-btn').forEach((btn) => {
+                    btn.classList.toggle(
+                        'selected',
+                        btn.dataset.date === dateStr,
+                    );
+                });
+                const config = await loadConfig(dateStr);
+                draw(config);
+            }
+            btnDates.forEach((dateStr) => {
+                const btn = document.createElement('button');
+                btn.className = 'date-btn';
+                // 主日期和星期在同一行
+                const labelRow = document.createElement('span');
+                labelRow.className = 'date-btn-label-row';
+                // 主日期
+                const mainLabel = document.createElement('span');
+                mainLabel.textContent = getBtnLabel(dateStr);
+                // 星期
+                const weekLabel = document.createElement('span');
+                weekLabel.className = 'weekday-label';
+                weekLabel.textContent = getWeekdayStr(dateStr);
+
+                labelRow.appendChild(mainLabel);
+                if (dateStr !== 'none') labelRow.appendChild(weekLabel);
+                btn.appendChild(labelRow);
+                btn.dataset.date = dateStr;
+                btn.onclick = () => selectDate(dateStr);
+                sidebar.appendChild(btn);
+            });
+
+            // 默认选中当天配置
+            function todayDateStr() {
+                const now = new Date();
+                const ymd = getDateStr(now);
+                return btnDates.includes(ymd) ? ymd : 'none';
+            }
+            selectDate(todayDateStr());
+
+            // redrawOnZoom 需要异步获取配置，否则缩放后显示的内容可能不是最新的
+            const redrawOnZoom = async () => {
+                const config = await loadConfig(selectedDate);
+                draw(config);
+            };
+            // 监听缩放变化，自动重绘
+            new MutationObserver(() => { redrawOnZoom(); }).observe(canvas, {
+                attributes: true,
+                attributeFilter: ['style'],
+            });
+
+            // 也可在dateConfig对象中添加更多日期配置
+        </script>
+    </body>
+</html>
