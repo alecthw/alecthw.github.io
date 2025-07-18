@@ -95,7 +95,7 @@
                 align-items: center;
                 justify-content: center;
             }
-            /* 新增：日期和星期在一行显示 */
+            // 日期和星期在一行显示
             .date-btn-label-row {
                 display: flex;
                 flex-direction: row;
@@ -156,13 +156,14 @@
                 return date.toISOString().slice(0, 10);
             }
             function getBtnLabel(date) {
-                if (date === 'none') return 'none';
+                if (date === 'none' || date === 'final') return date;
                 const d = new Date(date);
                 return `${d.getMonth() + 1}/${d.getDate()}`;
             }
+
             // 获取星期字符串
             function getWeekdayStr(dateStr) {
-                if (dateStr === 'none') return '';
+                if (dateStr === 'none' || dateStr === 'final') return '';
                 const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
                 const d = new Date(dateStr);
                 return weekdays[d.getDay()];
@@ -170,7 +171,6 @@
 
             // 动态加载配置
             const dateConfigs = {}; // 缓存
-
             async function loadConfig(dateStr) {
                 if (dateConfigs[dateStr]) return dateConfigs[dateStr];
                 try {
@@ -185,7 +185,7 @@
             }
 
             // 生成按钮列表
-            const btnDates = ['none'];
+            const btnDates = ['none', 'final'];
             for (
                 let d = new Date(startDate);
                 d <= endDate;
@@ -424,7 +424,7 @@
                         );
                     }
                 }
-                // 第二层（交点矩形）
+                // 第二层（交点矩形，支持对角线红色边框）
                 for (let row = 0; row < gridCount - 1; ++row) {
                     for (let col = 0; col < gridCount - 1; ++col) {
                         const center = getIntersectCenter(col, row);
@@ -441,7 +441,12 @@
                             ctx.fillRect(x, y, w, h);
                             ctx.globalAlpha = 1;
                             ctx.lineWidth = 6;
-                            ctx.strokeStyle = '#333';
+                            // 对角线格子边框红色
+                            if (row === col || row + col === gridCount - 2) {
+                                ctx.strokeStyle = 'red';
+                            } else {
+                                ctx.strokeStyle = '#333';
+                            }
                             ctx.strokeRect(x, y, w, h);
                             if (config.layer2[key].text) {
                                 ctx.save();
@@ -465,8 +470,27 @@
 
             // 侧边栏按钮生成
             const sidebar = document.getElementById('sidebar');
-            let selectedDate = 'none';
-            async function selectDate(dateStr) {
+            let selectedDate = null;
+            // URL查询参数同步辅助
+            function getQueryParam(name) {
+                const url = new URL(window.location.href);
+                return url.searchParams.get(name);
+            }
+            function setQueryParam(name, value, replace = false) {
+                const url = new URL(window.location.href);
+                if (value === null || value === undefined) {
+                    url.searchParams.delete(name);
+                } else {
+                    url.searchParams.set(name, value);
+                }
+                if (replace) {
+                    window.history.replaceState({}, '', url.toString());
+                } else {
+                    window.history.pushState({}, '', url.toString());
+                }
+            }
+
+            async function selectDate(dateStr, setURL = true) {
                 selectedDate = dateStr;
                 document.querySelectorAll('.date-btn').forEach((btn) => {
                     btn.classList.toggle(
@@ -474,6 +498,7 @@
                         btn.dataset.date === dateStr,
                     );
                 });
+                if (setURL) setQueryParam('date', dateStr, true);
                 const config = await loadConfig(dateStr);
                 draw(config);
             }
@@ -492,7 +517,7 @@
                 weekLabel.textContent = getWeekdayStr(dateStr);
 
                 labelRow.appendChild(mainLabel);
-                if (dateStr !== 'none') labelRow.appendChild(weekLabel);
+                if (dateStr !== 'none' && dateStr !== 'final') labelRow.appendChild(weekLabel);
                 btn.appendChild(labelRow);
                 btn.dataset.date = dateStr;
                 btn.onclick = () => selectDate(dateStr);
@@ -505,7 +530,26 @@
                 const ymd = getDateStr(now);
                 return btnDates.includes(ymd) ? ymd : 'none';
             }
-            selectDate(todayDateStr());
+
+            // 页面载入时同步selectedDate和url参数
+            function initialSelectDateFromURL() {
+                let dateParam = getQueryParam('date');
+                // 校验是否在btnDates中
+                if (!dateParam || !btnDates.includes(dateParam)) {
+                    // 跳转到今日
+                    const today = todayDateStr();
+                    setQueryParam('date', today, true);
+                    dateParam = today;
+                }
+                selectDate(dateParam, false);
+            }
+            // 支持前进/后退同步
+            window.addEventListener('popstate', () => {
+                initialSelectDateFromURL();
+            });
+
+            // 初次载入
+            initialSelectDateFromURL();
 
             // redrawOnZoom 需要异步获取配置，否则缩放后显示的内容可能不是最新的
             const redrawOnZoom = async () => {
@@ -517,8 +561,6 @@
                 attributes: true,
                 attributeFilter: ['style'],
             });
-
-            // 也可在dateConfig对象中添加更多日期配置
         </script>
     </body>
 </html>
