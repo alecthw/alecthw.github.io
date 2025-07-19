@@ -13,17 +13,17 @@ const ywk = {
     layer2: {
         '5-3': { color: '#16beae', alpha: 1, text: 'ywk' },
         '5-4': { color: '#16beae', alpha: 1, text: 'ywk' },
+        '5-5': { color: '#16beae', alpha: 1, text: 'ywk' },
         '6-3': { color: '#16beae', alpha: 1, text: 'ywk' },
         '6-4': { color: '#16beae', alpha: 1, text: 'ywk' },
+        '6-5': { color: '#16beae', alpha: 1, text: 'ywk' },
         '7-3': { color: '#16beae', alpha: 1, text: 'ywk' },
         '7-5': { color: '#16beae', alpha: 1, text: 'ywk' },
 
-        '3-3': { color: '#16beae', alpha: 1, text: 'ywk' },
-        '4-4': { color: '#16beae', alpha: 1, text: 'ywk' },
-        '5-5': { color: '#16beae', alpha: 1, text: 'ywk' },
-        '6-5': { color: '#16beae', alpha: 1, text: 'ywk' },
-        '7-4': { color: '#16beae', alpha: 1, text: 'ywk' },
-        '8-3': { color: '#16beae', alpha: 1, text: 'ywk' },
+        '3-3': { color: '#b1b1b1', alpha: 1, text: 'ywk' },
+        '4-4': { color: '#b1b1b1', alpha: 1, text: 'ywk' },
+        '7-4': { color: '#b1b1b1', alpha: 1, text: 'ywk' },
+        '8-3': { color: '#b1b1b1', alpha: 1, text: 'ywk' },
     },
 };
 
@@ -48,7 +48,7 @@ const R1s = {
         '3-5': { color: '#cdbc35', alpha: 1, text: 'R1s' },
         '4-5': { color: '#cdbc35', alpha: 1, text: 'R1s' },
 
-        '2-9': { color: '#cdbc35', alpha: 1, text: 'R1s' },
+        '2-9': { color: '#b1b1b1', alpha: 1, text: 'R1s' },
     },
 };
 
@@ -73,7 +73,7 @@ const Omz = {
         '9-6': { color: '#62bd32', alpha: 1, text: 'Omz' },
         '9-7': { color: '#62bd32', alpha: 1, text: 'Omz' },
 
-        '9-2': { color: '#62bd32', alpha: 1, text: 'Omz' },
+        '9-2': { color: '#b1b1b1', alpha: 1, text: 'Omz' },
     },
 };
 
@@ -93,40 +93,40 @@ const TUPA = {
         '3-7': { color: '#df697f', alpha: 1, text: 'TUPA' },
         '4-6': { color: '#df697f', alpha: 1, text: 'TUPA' },
         '4-8': { color: '#df697f', alpha: 1, text: 'TUPA' },
+        '5-6': { color: '#df697f', alpha: 1, text: 'TUPA' },
         '5-7': { color: '#df697f', alpha: 1, text: 'TUPA' },
         '5-8': { color: '#df697f', alpha: 1, text: 'TUPA' },
-
-        '3-8': { color: '#df697f', alpha: 1, text: 'TUPA' },
-        '4-7': { color: '#df697f', alpha: 1, text: 'TUPA' },
-        '5-6': { color: '#df697f', alpha: 1, text: 'TUPA' },
         '6-6': { color: '#df697f', alpha: 1, text: 'TUPA' },
-        '7-7': { color: '#df697f', alpha: 1, text: 'TUPA' },
-        '8-8': { color: '#df697f', alpha: 1, text: 'TUPA' },
+
+        '3-8': { color: '#b1b1b1', alpha: 1, text: 'TUPA' },
+        '4-7': { color: '#b1b1b1', alpha: 1, text: 'TUPA' },
+        '7-7': { color: '#b1b1b1', alpha: 1, text: 'TUPA' },
+        '8-8': { color: '#b1b1b1', alpha: 1, text: 'TUPA' },
     },
 };
 
 const Phs = {
     layer1: {
-        '6-8': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '6-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '7-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '8-7': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '8-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '9-8': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '9-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '10-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
+        '6-8': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '6-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '7-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '8-7': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '8-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '9-8': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '9-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '10-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
     },
     layer2: {
-        '5-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '6-7': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '6-8': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '6-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '7-8': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '7-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '8-7': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
-        '8-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
+        '5-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '6-7': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '6-8': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '6-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '7-8': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '7-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '8-7': { color: '#e652d7', alpha: 1, text: 'Phs' },
+        '8-9': { color: '#e652d7', alpha: 1, text: 'Phs' },
 
-        '9-9': { color: '#e652d7ff', alpha: 1, text: 'Phs' },
+        '9-9': { color: '#b1b1b1', alpha: 1, text: 'Phs' },
     },
 };
 

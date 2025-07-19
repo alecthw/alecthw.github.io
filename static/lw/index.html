@@ -441,8 +441,9 @@
                             ctx.fillRect(x, y, w, h);
                             ctx.globalAlpha = 1;
                             ctx.lineWidth = 6;
-                            // 对角线格子边框红色
-                            if (row === col || row + col === gridCount - 2) {
+
+                            // 对角线格子边框红色，除了最中间的4个
+                            if ((row === col || row + col === gridCount - 2)&& col !== 5 && col !== 6) {
                                 ctx.strokeStyle = 'red';
                             } else {
                                 ctx.strokeStyle = '#333';

@@ -33,7 +33,7 @@ const Fk1t = {
     layer2: {
         '0-1': { color: '#995dd4', alpha: 0.8, text: 'Fk1t' },
         '1-0': { color: '#995dd4', alpha: 0.8, text: 'Fk1t' },
-        '3-0': { color: '#995dd4', alpha: 0.8, text: 'Fk1t' },
+        '2-0': { color: '#995dd4', alpha: 0.8, text: 'Fk1t' },
     },
 };
 
