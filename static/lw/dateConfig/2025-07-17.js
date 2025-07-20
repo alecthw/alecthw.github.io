@@ -98,18 +98,18 @@ const TUPA = {
 
 const Phs = {
     layer1: {
-        '7-12': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '8-12': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '9-12': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '10-12': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '11-12': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '12-12': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
+        '7-12': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '8-12': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '9-12': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '10-12': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '11-12': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '12-12': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
     },
     layer2: {
-        '7-11': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '8-11': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '9-11': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
-        '10-11': { color: '#e652d7ff', alpha: 0.8, text: 'Phs' },
+        '7-11': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '8-11': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '9-11': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
+        '10-11': { color: '#e652d7', alpha: 0.8, text: 'Phs' },
     },
 };
 
