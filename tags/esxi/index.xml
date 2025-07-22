@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Esxi on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/tags/esxi/</link><description>Recent content in Esxi on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 22 Jul 2025 15:17:26 +0000</lastBuildDate><atom:link href="https://alecthw.github.io/tags/esxi/index.xml" rel="self" type="application/rss+xml"/><item><title>ESXi 直通核显开启硬解，Emby 配合 CloudDrive2 挂载云盘打造家用的流媒体</title><link>https://alecthw.github.io/p/emby-clouddrive2/</link><pubDate>Tue, 23 Jan 2024 10:31:42 +0800</pubDate><guid>https://alecthw.github.io/p/emby-clouddrive2/</guid><description>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/cover.jpg" alt="Featured image of post ESXi 直通核显开启硬解，Emby 配合 CloudDrive2 挂载云盘打造家用的流媒体" />&lt;p>🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+>TAG 全球250+节点、99+流媒体解锁&lt;/a>，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" >机场推荐&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>👉 注册 CloudDrive2 的时候可以填上我的推荐码哦：&lt;code>cAR6b415&lt;/code>。&lt;/p>
+&lt;p>核心点：&lt;/p>
+&lt;ol>
+&lt;li>使用 CloudDrive2 把云盘挂载到本地。&lt;/li>
+&lt;li>新款 CPU 如果没有硬解选项，就安装 beta 版的 emby。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;code>PS：以下使用的ESXi 8.0，基于 Ubuntu 22.04 LTS，在 root 用户下操作。需要有简单的 Linux 基础知识，例如了解 SSH、VIM 怎么使用。&lt;/code>&lt;/p>
+&lt;p>&lt;code>PS：CloudDrive2 和 Emby 的都是从 Github 下载的，连不上 Github 自行科学上网。&lt;/code>&lt;/p>
+&lt;h2 id="esxi-核显直通">ESXi 核显直通
+&lt;/h2>&lt;p>务必先创建好虚拟机，并配置好静态 IP 地址和 SSH！！！&lt;/p>
+&lt;p>直通并添加核显到虚拟机之后，ESXi网页中，虚拟机的控制台将什么也不显示了。如果没有配置 IP 和 SSH，只能要么把虚拟机核显删掉，要么机器直接连显示器。&lt;/p>
+&lt;h3 id="1-打开-esxi-ssh">1. 打开 ESXi SSH
+&lt;/h3>&lt;p>如图所示操作。开启完使用工具登录，例如 Putty、XShell 等。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/esxi-ssh.jpg"
+width="1507"
+height="791"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/esxi-ssh_hu_1f806776f4846d1f.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/esxi-ssh_hu_a749ee4c3ce80ddd.jpg 1024w"
+loading="lazy"
+alt="ESXi 开启 SSH"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="457px"
+>&lt;/p>
+&lt;h3 id="2-禁用-esxi-显卡调用">2. 禁用 ESXi 显卡调用
+&lt;/h3>&lt;p>禁用后，机器连接显示器将不显示黄黑色控制台。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 禁用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">esxcli system settings kernel &lt;span class="nb">set&lt;/span> -s vga -v FALSE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看配置结果&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">esxcli system settings kernel list -o &lt;span class="s2">&amp;#34;vga&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查出的结果如下，&lt;code>Configured&lt;/code> 显示 &lt;code>FALSE&lt;/code> 即成功，等一会儿重启后 &lt;code>Runtime&lt;/code> 会变成 &lt;code>FALSE&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">Name Type Configured Runtime Default Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---- ---- ---------- ------- ------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vga Bool FALSE TRUE TRUE Enable/Disable VGA support.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="3-passthrumap-增加核显">3. passthru.map 增加核显
+&lt;/h3>&lt;p>查看核显设备ID&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 禁用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lspci -v &lt;span class="p">|&lt;/span> grep -A &lt;span class="m">2&lt;/span> VGA
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>返回的信息如下，关注下第二行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">0000:00:02.0 Display controller VGA compatible controller: Intel Corporation Alder Lake-S GT1 [UHD Graphics 770]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Class 0300: 8086:5916
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>8086&lt;/code> 是供应商 ID，这里就是 Intel，&lt;code>5916&lt;/code> 就是硬件 ID。记下这8个字符，这里不要照抄哦，要用你自己的。&lt;/p>
+&lt;p>用 vi 修改 &lt;code>passthru.map&lt;/code>，在最后添加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl"># Intel VGA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8086 5916 d3d0 default
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>保存，重启ESXi主机。&lt;/p>
+&lt;h3 id="4-切换显卡直通">4. 切换显卡直通
+&lt;/h3>&lt;p>ESXi Web 控制台下&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/uhd-direct.jpg"
+width="2417"
+height="550"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/uhd-direct_hu_28a61b23edb0fef8.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/uhd-direct_hu_c8dd587a5cd58a70.jpg 1024w"
+loading="lazy"
+alt="切换显卡直通"
+class="gallery-image"
+data-flex-grow="439"
+data-flex-basis="1054px"
+>&lt;/p>
+&lt;p>切换成功后，直通显示为&lt;code>活动&lt;/code>。ESXi 7.x 和 ESXi 8.x 是不需要重启主机的，ESXi 6.7 可能还需要重启一次。&lt;/p>
+&lt;h3 id="5-虚拟机添加核显">5. 虚拟机添加核显
+&lt;/h3>&lt;p>创建虚拟机的步骤不再赘述。&lt;/p>
+&lt;p>编辑虚拟机&lt;/p>
+&lt;p>禁用 CPU 下虚拟化相关的三个配置&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/disable-cpu-cfg.jpg"
+width="1399"
+height="878"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/disable-cpu-cfg_hu_df36151170856c6d.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/disable-cpu-cfg_hu_68178c892668c809.jpg 1024w"
+loading="lazy"
+alt="禁用 CPU 下虚拟化相关的三个配置"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
+&lt;p>内存下，勾选&lt;code>预留所有客户机内存&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/keep-mem.jpg"
+width="1399"
+height="777"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/keep-mem_hu_31fe5442d3e83b13.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/keep-mem_hu_61e391a368d7c12a.jpg 1024w"
+loading="lazy"
+alt="禁用 CPU 下虚拟化相关的三个配置"
+class="gallery-image"
+data-flex-grow="180"
+data-flex-basis="432px"
+>&lt;/p>
+&lt;p>添加 PCI 设备&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/add-pci.jpg"
+width="1399"
+height="748"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/add-pci_hu_4796992fff25fd98.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/add-pci_hu_cddfea870d20e678.jpg 1024w"
+loading="lazy"
+alt="添加 PCI 设备"
+class="gallery-image"
+data-flex-grow="187"
+data-flex-basis="448px"
+>&lt;/p>
+&lt;p>在&lt;code>PCI设备1&lt;/code>中，选择你的核显。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/select-uhd.jpg"
+width="1399"
+height="803"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/select-uhd_hu_390d2f6b877a99df.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/select-uhd_hu_375edad98c45acc5.jpg 1024w"
+loading="lazy"
+alt="PCI 选择核显"
+class="gallery-image"
+data-flex-grow="174"
+data-flex-basis="418px"
+>&lt;/p>
+&lt;p>保存，启动虚拟机。这一次启动可能会比较慢，耐心等待，直到 SSH 可以连接上虚拟机。&lt;/p>
+&lt;h2 id="安装配置-clouddrive2">安装配置 CloudDrive2
+&lt;/h2>&lt;p>后续虚拟机上，都是在 &lt;code>root&lt;/code> 用户下操作的。&lt;/p>
+&lt;h3 id="1-虚拟机前置配置">1. 虚拟机前置配置
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 切换到 root 用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo su
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装 vim&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install -y vim
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 禁用防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl stop ufw
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable ufw
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-安装">2. 安装
+&lt;/h3>&lt;p>&lt;a class="link" href="https://www.clouddrive2.com/download.html" target="_blank" rel="noopener"
+>CloudDrive2 官网&lt;/a>下载 Linux 版本，使用 SFTP 客户端，上传到虚拟机的 &lt;code>/opt&lt;/code> 目录下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入 /opt 目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建一个新目录，给后续挂载云盘用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir /opt/mnt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 解压&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar xzf clouddrive-2-linux-x86_64-*.tgz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv clouddrive-2-linux-x86_64-* clouddrive2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="3-创建-systemd-service">3. 创建 systemd service
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim /lib/systemd/system/clouddrive2.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>填入以下内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">[Unit]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description=clouddrive2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ConditionFileIsExecutable=/opt/clouddrive2/clouddrive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">After=network.target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Wants=network.target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Service]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type=simple
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PIDFile=/var/run/clouddrive2.pid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ExecStart=/opt/clouddrive2/clouddrive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WorkingDirectory=/opt/clouddrive2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Restart=on-failure
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Install]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WantedBy=multi-user.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="4-启动-clouddrive2">4. 启动 CloudDrive2
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> clouddrive2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start clouddrive2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="5-网页登陆配置">5. 网页登陆配置
+&lt;/h3>&lt;p>&lt;a class="link" href="http://ip:19798/" target="_blank" rel="noopener"
+>http://ip:19798/&lt;/a>&lt;/p>
+&lt;p>注册登录后界面如下&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/clouddrive2.jpg"
+width="2324"
+height="802"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/clouddrive2_hu_5c457b16a03fc115.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/clouddrive2_hu_7495717d49f0943.jpg 1024w"
+loading="lazy"
+alt="CloudDrive2 界面"
+class="gallery-image"
+data-flex-grow="289"
+data-flex-basis="695px"
+>&lt;/p>
+&lt;p>点击云图标添加网盘，登录授权。&lt;/p>
+&lt;p>CloudDrive2 免费版功能有限制，一般情况下个人用户足够使用。具体可参考下图：&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/clouddrive2-vip.jpg"
+width="1665"
+height="993"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/clouddrive2-vip_hu_7c7d8ae65eab8050.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/clouddrive2-vip_hu_ee8b3f29ece43f37.jpg 1024w"
+loading="lazy"
+alt="CloudDrive2 VIP 价格"
+class="gallery-image"
+data-flex-grow="167"
+data-flex-basis="402px"
+>&lt;/p>
+&lt;h3 id="6-挂载网盘到本地">6. 挂载网盘到本地
+&lt;/h3>&lt;p>左树选择一个网盘（也可以选择子目录），然后点击&lt;code>电脑&lt;/code>图标，开始挂载，界面如下&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/mount.jpg"
+width="2324"
+height="1437"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/mount_hu_e8aecf18b289c11f.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/mount_hu_28c53eab5f711252.jpg 1024w"
+loading="lazy"
+alt="CloudDrive2 挂载"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>如果默认的名称为中文，建议改成&lt;code>英文/数字&lt;/code>，这个名称就是挂载后，Linux 本地的文件夹名称。&lt;/p>
+&lt;p>点击&lt;code>选择&lt;/code>，选择挂载点，这里选择之前创建的 &lt;code>/opt/mnt&lt;/code> 目录&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/mount-dir.jpg"
+width="1996"
+height="1161"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/mount-dir_hu_4d574671e40f8431.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/mount-dir_hu_6b6ff4d896068730.jpg 1024w"
+loading="lazy"
+alt="CloudDrive2 挂载目录选择"
+class="gallery-image"
+data-flex-grow="171"
+data-flex-basis="412px"
+>&lt;/p>
+&lt;p>挂载成功后，命令行看一下虚拟机的目录，这里我挂载了 aliyun 和 115。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">root@ubuntu-emby:~# ls /opt/mnt/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">115&lt;/span> aliyun
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装配置-emby-server">安装配置 Emby-Server
+&lt;/h2>&lt;p>注意：较新的CPU，建议下载 Beta 版本，否则硬解无法选择 &lt;code>QuickSync&lt;/code>。或者先安装标准版，发现硬解无法选择 &lt;code>QuickSync&lt;/code>，再覆盖安装 Beta 版。&lt;/p>
+&lt;h3 id="1-安装">1. 安装
+&lt;/h3>&lt;p>&lt;a class="link" href="https://emby.media/linux-server.html" target="_blank" rel="noopener"
+>Emby 官网下载&lt;/a> ubuntu 版本的 deb 包。&lt;/p>
+&lt;p>安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">dpkg -i emby-server-deb_*_amd64.deb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装后已经自动启用了，可以再执行一遍以下命令，防止开机自启没开启。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> emby-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看运行状态&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl status emby-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-启动顺序">2. 启动顺序
+&lt;/h3>&lt;p>由于使用了 CloudDrive2 挂载云盘，期望的是 CloudDrive2 要在 Emby 之前启动，才能保证 Emby 正常读取到网盘内容，避免报错。&lt;/p>
+&lt;p>编辑 emby 的 service 文件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim /lib/systemd/system/emby-server.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 &lt;code>After=network.target&lt;/code> 后面，均添加 &lt;code>clouddrive2.service&lt;/code>，然后再添加一行 &lt;code>Wants=network.target clouddrive2.service&lt;/code>，如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">[Unit]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description=Emby Server is a personal media server with apps on just about every device
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">After=network.target clouddrive2.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Wants=network.target clouddrive2.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">·····
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重载并重启&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart emby-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>注意，升级安装 emby 后，这个 service 会被覆盖成默认的，需要再次修改。&lt;/p>
+&lt;h3 id="3-配置-emby">3. 配置 Emby
+&lt;/h3>&lt;p>&lt;a class="link" href="http://ip:8096/" target="_blank" rel="noopener"
+>http://ip:8096/&lt;/a>&lt;/p>
+&lt;p>登录后按照指引配置就行了，这里网上教程很多，不赘述。&lt;/p>
+&lt;p>创建媒体库的时候，文件夹选择通过 CloudDrive2 挂载到本地的文件夹即可。例如：&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/emby-dir.jpg"
+width="1442"
+height="689"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/emby-dir_hu_340e910443afb1e0.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/emby-dir_hu_bfcf2848c795522d.jpg 1024w"
+loading="lazy"
+alt="Emby 媒体库目录"
+class="gallery-image"
+data-flex-grow="209"
+data-flex-basis="502px"
+>&lt;/p>
+&lt;h3 id="4-emby-硬解">4. Emby 硬解
+&lt;/h3>&lt;p>如下图，勾选 &lt;code>QuickSync&lt;/code>，调整顺序即可。&lt;/p>
+&lt;p>&lt;img src="https://alecthw.github.io/p/emby-clouddrive2/emby-hd.jpg"
+width="2268"
+height="1425"
+srcset="https://alecthw.github.io/p/emby-clouddrive2/emby-hd_hu_372628bb1708a5d5.jpg 480w, https://alecthw.github.io/p/emby-clouddrive2/emby-hd_hu_e8fed5a663eea793.jpg 1024w"
+loading="lazy"
+alt="Emby 硬解"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="381px"
+>&lt;/p>
+&lt;p>然后，随便找个视频测试下转码，调整码率，拖拉快进等。&lt;/p>
+&lt;h3 id="5-电视直播-m3u">5. 电视直播 m3u
+&lt;/h3>&lt;p>目前好用的直播源都是 ipv6 的，如果正确配置了 ipv6，可以添加如下直播源和指南数据库。&lt;/p>
+&lt;ul>
+&lt;li>直播源：&lt;a class="link" href="https://live.fanmingming.com/tv/m3u/ipv6.m3u" target="_blank" rel="noopener"
+>https://live.fanmingming.com/tv/m3u/ipv6.m3u&lt;/a>&lt;/li>
+&lt;li>XmlTV：&lt;a class="link" href="https://live.fanmingming.com/e.xml" target="_blank" rel="noopener"
+>https://live.fanmingming.com/e.xml&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
