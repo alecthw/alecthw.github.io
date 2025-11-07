@@ -31,7 +31,6 @@ weight: 1
 | 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 9折：2025s9 |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | - |
-| 🔥 | 喜欢看剧，自带Emby | TLS | 主打 Emby， 有 4K 资源，支持直连和 Infuse，全球 50+ 节点 | [🚀直达](https://tls.wiki/index.php#/register?code=ojo2nVBG) | - |
 
 流媒体解锁都支持的。当前强烈推荐**五树云机场（原小米梯子）**，稳定性好，性价比非常高！
 
@@ -47,8 +46,6 @@ weight: 1
 - [重度使用](#重度使用)
   - [🔥TAG —— 机场中的排头兵](#tag--机场中的排头兵)
   - [Nexitally —— 老牌机场佩奇家、奶昔](#nexitally--老牌机场佩奇家奶昔)
-- [特色机场](#特色机场)
-  - [TLS —— Emby 4K](#tls--emby-4k)
 - [最后](#最后)
 
 ## 特别推荐
@@ -235,30 +232,6 @@ Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以
 毒药的电信测速，可以参考下。
 
 ![Nexitally 测速（来自毒药）](nexitally-speed.png)
-
-## 特色机场
-
-这类机场除了提供科学上网的节点之外，一般还附带一些别的服务，例如 Emby、Plex 之类的视频服务。
-
-### TLS —— Emby 4K
-
-- ~~全场8折优惠码：2025GO~~
-
-官网：[👉链接🚀](https://tls.wiki/index.php#/register?code=ojo2nVBG)
-
-协议：`Shadowsocks`
-
-特点：中高级套餐附带 Emby 且有 4K，价格适中，速度较快，相对稳定。`PS: Emby 高清和4K均已恢复，可以冲！······`
-
-最大的特色是高级套餐附带 Emby 服务，提供了 4K 片源，并且直连 Emby 的速度也是不错的，不需要梯子就能直接看。影视库更新速度也挺快，最新电视剧集基本第二天就上了，基本可以替代国内视频平台。相对小众一点，客服态度也很好。
-
-套餐除了翻墙套餐送 Emby 外，也单独提供了 Emby 套餐。
-
-![TLS 套餐](tls.png)
-
-测速如下：
-
-![TLS 测速（来自网络）](tls-speed.png)
 
 ## 最后
 
