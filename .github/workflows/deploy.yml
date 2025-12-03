@@ -1,0 +1,65 @@
+name: Deploy to Github Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+      - ".vscode/**"
+      - ".gitignore"
+      - "LICENSE"
+      - "README.md"
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+      - ".vscode/**"
+      - ".gitignore"
+      - "LICENSE"
+      - "README.md"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "^1.21.0"
+      - run: go version
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+
+      - name: Build
+        run: |
+          hugo --minify --gc
+          hugo --minify --gc --baseURL "https://www.projectv.cc/" --destination public_projectv.cc
+
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: public
+          clean: true
+          single-commit: true
+
+      - name: Deploy projectv.cc
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: projectv.cc
+          folder: public_projectv.cc
+          clean: true
+          single-commit: true

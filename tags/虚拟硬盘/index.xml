@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>虚拟硬盘 on 小甲哥の垃圾工厂</title><link>https://www.wegod.cc/tags/%E8%99%9A%E6%8B%9F%E7%A1%AC%E7%9B%98/</link><description>Recent content in 虚拟硬盘 on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 03 Dec 2025 15:13:48 +0000</lastBuildDate><atom:link href="https://www.wegod.cc/tags/%E8%99%9A%E6%8B%9F%E7%A1%AC%E7%9B%98/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Hyper-V 中体验 陆大大的云固件 &amp; 使用 WinNTSetup 制作 L0 镜像</title><link>https://www.wegod.cc/p/cloud-firmware-hyperv/</link><pubDate>Sun, 14 Jan 2024 17:57:22 +0800</pubDate><guid>https://www.wegod.cc/p/cloud-firmware-hyperv/</guid><description>&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/cover.png" alt="Featured image of post 在 Hyper-V 中体验 陆大大的云固件 &amp; 使用 WinNTSetup 制作 L0 镜像" /&gt;&lt;p&gt;🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+&gt;TAG 全球250+节点、99+流媒体解锁&lt;/a&gt;，更多参考&lt;a class="link" href="https://www.wegod.cc/p/airport-recommend/" &gt;机场推荐&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;关于云固件相关的资料，请参考 &lt;a class="link" href="https://zhuanlan.zhihu.com/p/651550564" target="_blank" rel="noopener"
+&gt;陆伟峰​的知乎&lt;/a&gt;，这里不再赘述。&lt;/p&gt;
+&lt;p&gt;过程是其实和硬件硬盘是一样的，这里只不过是用同样的方式创建虚拟磁盘，然后在 Hyper-V 中启动。&lt;/p&gt;
+&lt;h2 id="云固件文件准备"&gt;云固件文件准备
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;云固件：&lt;a class="link" href="https://pan.baidu.com/share/init?surl=E3LKPlyAZCUX8PhIkIu98Q&amp;amp;pwd=7217" target="_blank" rel="noopener"
+&gt;r23942（v1.6.23942）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Win11 L1 镜像：&lt;a class="link" href="https://pan.baidu.com/s/1qpRqRhTlG5PTk0EfspJomw" target="_blank" rel="noopener"
+&gt;Windows 11 专业版 L1基本安装镜像&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="软件准备"&gt;软件准备
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.diskgenius.cn/" target="_blank" rel="noopener"
+&gt;DiskGenius&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="开始制作"&gt;开始制作
+&lt;/h2&gt;&lt;p&gt;整体还是比较简单的，先创建 vdhx 虚拟磁盘，然后用 DiskGenius 分区，最后然后再把 Win11 L1 镜像拷贝到 创建的 vhdx 中，配置启动镜像即可。&lt;/p&gt;
+&lt;h3 id="创建-vdhx"&gt;创建 vdhx
+&lt;/h3&gt;&lt;p&gt;为了简单，这里给出使用磁盘管理图形界面的创建步骤。&lt;/p&gt;
+&lt;p&gt;首先打开&lt;code&gt;计算机管理&lt;/code&gt;，然后点击左边的&lt;code&gt;磁盘管理&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/pc_mgr.jpg"
+width="555"
+height="440"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/pc_mgr_hu_8780d31c607443da.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/pc_mgr_hu_20b11113fec037a8.jpg 1024w"
+loading="lazy"
+alt="计算机管理"
+class="gallery-image"
+data-flex-grow="126"
+data-flex-basis="302px"
+&gt;&lt;/p&gt;
+&lt;p&gt;右键，点击&lt;code&gt;创建VHD&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vhdx_1.jpg"
+width="1232"
+height="571"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vhdx_1_hu_7d2368e26f0250b.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vhdx_1_hu_5d98d68832b67125.jpg 1024w"
+loading="lazy"
+alt="创建虚拟磁盘"
+class="gallery-image"
+data-flex-grow="215"
+data-flex-basis="517px"
+&gt;&lt;/p&gt;
+&lt;p&gt;按下图输入大写和选择，注意大小要大于 &lt;code&gt;260G&lt;/code&gt;，具体原因参考陆大的文章。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vhdx_2.jpg"
+width="551"
+height="672"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vhdx_2_hu_8dfd088807b51763.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vhdx_2_hu_86e0f383dabf7491.jpg 1024w"
+loading="lazy"
+alt="创建虚拟磁盘2"
+class="gallery-image"
+data-flex-grow="81"
+data-flex-basis="196px"
+&gt;&lt;/p&gt;
+&lt;p&gt;创建之后会自动挂载。&lt;/p&gt;
+&lt;h3 id="分区"&gt;分区
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-txt" data-lang="txt"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;注意：操作千万小心，不要错选磁盘，认证核对，避免数据丢失，数据无价！！！
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打开 &lt;code&gt;DiskGenius&lt;/code&gt;，选中刚刚创建的虚拟磁盘，然后点击&lt;code&gt;快速分区&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/partition.jpg"
+width="1519"
+height="519"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/partition_hu_64798e11d358ecbd.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/partition_hu_c8f0a27861e81f7.jpg 1024w"
+loading="lazy"
+alt="分区"
+class="gallery-image"
+data-flex-grow="292"
+data-flex-basis="702px"
+&gt;&lt;/p&gt;
+&lt;p&gt;按下图选择，卷标输入 &lt;code&gt;VDs&lt;/code&gt;，点击&lt;code&gt;确定&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/partition2.jpg"
+width="835"
+height="647"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/partition2_hu_604d631bd987bfd1.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/partition2_hu_2449114059e8d765.jpg 1024w"
+loading="lazy"
+alt="分区2"
+class="gallery-image"
+data-flex-grow="129"
+data-flex-basis="309px"
+&gt;&lt;/p&gt;
+&lt;p&gt;执行成功和，&lt;code&gt;VDs&lt;/code&gt; 应该被自动分配盘符挂载到系统了。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/my_pc.jpg"
+width="1047"
+height="185"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/my_pc_hu_20bc5b54a11ec735.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/my_pc_hu_e56fecc043eb3861.jpg 1024w"
+loading="lazy"
+alt="资源管理器"
+class="gallery-image"
+data-flex-grow="565"
+data-flex-basis="1358px"
+&gt;&lt;/p&gt;
+&lt;p&gt;还需要把 &lt;code&gt;ESP&lt;/code&gt; 分区也挂载到系统，只能在 DiskGenius 中操作。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/esp.jpg"
+width="417"
+height="578"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/esp_hu_56448e99b6ad2f8a.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/esp_hu_86937b6790c456a2.jpg 1024w"
+loading="lazy"
+alt="挂载ESP分区"
+class="gallery-image"
+data-flex-grow="72"
+data-flex-basis="173px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/my_pc2.jpg"
+width="992"
+height="167"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/my_pc2_hu_c46370574c1d5e8c.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/my_pc2_hu_8ccfccaf90982227.jpg 1024w"
+loading="lazy"
+alt="资源管理器2"
+class="gallery-image"
+data-flex-grow="594"
+data-flex-basis="1425px"
+&gt;&lt;/p&gt;
+&lt;h3 id="复制文件"&gt;复制文件
+&lt;/h3&gt;&lt;p&gt;将云固件解压到 &lt;code&gt;ESP&lt;/code&gt; 分区，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_cd.jpg"
+width="835"
+height="293"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_cd_hu_39af2879f9d7d4e4.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_cd_hu_8f4a915b9f5ddc0d.jpg 1024w"
+loading="lazy"
+alt="云固件解压"
+class="gallery-image"
+data-flex-grow="284"
+data-flex-basis="683px"
+&gt;&lt;/p&gt;
+&lt;p&gt;将云固件中的 &lt;code&gt;vd.config&lt;/code&gt; 拷贝到 &lt;code&gt;VDs&lt;/code&gt; 分区中。&lt;/p&gt;
+&lt;p&gt;再将下载的 &lt;code&gt;Windows 11 专业版 L1基本安装镜像&lt;/code&gt;，目录 &lt;code&gt;b1882792&lt;/code&gt; 中的 &lt;code&gt;Windows11-22H2-Pro-L1.7z&lt;/code&gt; 文件解压，解压后删除原文件 &lt;code&gt;Windows11-22H2-Pro-L1.7z&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;然后将目录 &lt;code&gt;b1882792&lt;/code&gt; 拷贝到 &lt;code&gt;VDs&lt;/code&gt; 分区中。目录结构如下。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_vd.jpg"
+width="796"
+height="292"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_vd_hu_b843856146f76fb0.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_vd_hu_2085cefa43d82c49.jpg 1024w"
+loading="lazy"
+alt="镜像解压"
+class="gallery-image"
+data-flex-grow="272"
+data-flex-basis="654px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_vd_2.jpg"
+width="844"
+height="360"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_vd_2_hu_71c7e92ca25ee7c.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/unzip_vd_2_hu_ab0dea304bef570a.jpg 1024w"
+loading="lazy"
+alt="镜像解压2"
+class="gallery-image"
+data-flex-grow="234"
+data-flex-basis="562px"
+&gt;&lt;/p&gt;
+&lt;h3 id="分离vhd"&gt;分离VHD
+&lt;/h3&gt;&lt;p&gt;（可选）在 &lt;code&gt;DiskGenius&lt;/code&gt; 中删除 &lt;code&gt;ESP&lt;/code&gt; 分区的盘符。&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;磁盘管理&lt;/code&gt;中，右键虚拟磁盘，点击&lt;code&gt;分离VHD&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/unmount_vhdx.jpg"
+width="767"
+height="235"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/unmount_vhdx_hu_c2089ec6efe0adc5.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/unmount_vhdx_hu_9e80853d8082c18e.jpg 1024w"
+loading="lazy"
+alt="分离VHD"
+class="gallery-image"
+data-flex-grow="326"
+data-flex-basis="783px"
+&gt;&lt;/p&gt;
+&lt;p&gt;至此，Hypver-V 上的云固件虚拟盘就做好了。&lt;/p&gt;
+&lt;h2 id="在-hyper-v-中创建虚拟机"&gt;在 Hyper-V 中创建虚拟机
+&lt;/h2&gt;&lt;p&gt;按如下步骤创建，选择&lt;code&gt;第二代&lt;/code&gt;，虚拟磁盘选择&lt;code&gt;使用现有&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_1.jpg"
+width="980"
+height="413"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_1_hu_6399208f3dc59d03.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_1_hu_2f04e525b49ed817.jpg 1024w"
+loading="lazy"
+alt="创建VM1"
+class="gallery-image"
+data-flex-grow="237"
+data-flex-basis="569px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_2.jpg"
+width="980"
+height="384"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_2_hu_f78575d1221817c6.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_2_hu_bc6f8f71e81fe196.jpg 1024w"
+loading="lazy"
+alt="创建VM2"
+class="gallery-image"
+data-flex-grow="255"
+data-flex-basis="612px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_3.jpg"
+width="976"
+height="377"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_3_hu_2db735f6d6124016.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_3_hu_6010c29f2abdc83a.jpg 1024w"
+loading="lazy"
+alt="创建VM3"
+class="gallery-image"
+data-flex-grow="258"
+data-flex-basis="621px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_4.jpg"
+width="968"
+height="722"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_4_hu_51731e7f17019676.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_4_hu_1ff759161a248f30.jpg 1024w"
+loading="lazy"
+alt="创建VM4"
+class="gallery-image"
+data-flex-grow="134"
+data-flex-basis="321px"
+&gt;&lt;/p&gt;
+&lt;p&gt;创建完成后，在虚拟机设置中，禁用安全启动。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_5.jpg"
+width="1046"
+height="437"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_5_hu_29f7006f045f55b1.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/create_vm_5_hu_968ce2b384b14173.jpg 1024w"
+loading="lazy"
+alt="创建VM5"
+class="gallery-image"
+data-flex-grow="239"
+data-flex-basis="574px"
+&gt;&lt;/p&gt;
+&lt;h3 id="启动运行"&gt;启动运行
+&lt;/h3&gt;&lt;p&gt;双击虚拟机，启动运行。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/run_1.jpg"
+width="1280"
+height="1045"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/run_1_hu_8dfcf83184292eda.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/run_1_hu_2d3edeacf2fe42bb.jpg 1024w"
+loading="lazy"
+alt="运行1"
+class="gallery-image"
+data-flex-grow="122"
+data-flex-basis="293px"
+&gt;&lt;/p&gt;
+&lt;p&gt;此时，鼠标可能无法使用，请使用 Tab键、方向键和回车键操作。&lt;/p&gt;
+&lt;p&gt;顺利进入系统。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/run_2.jpg"
+width="1275"
+height="1051"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/run_2_hu_53a872e9a07b8f70.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/run_2_hu_33eff7abb6a2811b.jpg 1024w"
+loading="lazy"
+alt="运行2"
+class="gallery-image"
+data-flex-grow="121"
+data-flex-basis="291px"
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="使用-winntsetup-快速制作-windows-l0-镜像"&gt;使用 WinNTSetup 快速制作 Windows L0 镜像
+&lt;/h2&gt;&lt;p&gt;下载 &lt;a class="link" href="https://msfn.org/board/topic/149612-winntsetup-v533/" target="_blank" rel="noopener"
+&gt;WinNTSetup&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id="vhdx-准备"&gt;vhdx 准备
+&lt;/h3&gt;&lt;p&gt;参考之前步骤，完成虚拟磁盘的创建和分区。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="#%e5%88%9b%e5%bb%ba-vdhx" &gt;创建 vdhx&lt;/a&gt;，大小建议70G以上。&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#%e5%88%86%e5%8c%ba" &gt;分区&lt;/a&gt;，卷标不用指定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="制作过程中自动禁用虚拟磁盘扩充到最大"&gt;制作过程中自动禁用虚拟磁盘扩充到最大
+&lt;/h3&gt;&lt;p&gt;在目录 &lt;code&gt;WinNTSetup\RegTweaks\Win10&lt;/code&gt; 下创建 &lt;code&gt;disable-vdisk-expand.reg&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这个目录是安装过程中修改注册表的，可以利用此特性预置很多配置。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-reg" data-lang="reg"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Windows Registry Editor Version 5.00
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;HKEY_LOCAL_MACHINE&lt;/span&gt;&lt;span class="k"&gt;\SYSTEM\CurrentControlSet\Services\FsDepends\Parameters]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;&amp;#34;VirtualDiskExpandOnMount&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;dword&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="m"&gt;00000004&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="使用-winntsetup-创建-l0-镜像"&gt;使用 WinNTSetup 创建 L0 镜像
+&lt;/h3&gt;&lt;p&gt;打开 &lt;code&gt;WinNTSetup&lt;/code&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;选择 Windows 安装镜像 ISO，这里以 LSTC 为例。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;引导驱动器&lt;/code&gt;选择虚拟磁盘的ESP分区，就是 FAT32 300MB 那个。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;系统驱动器&lt;/code&gt;选择虚拟磁盘最大的那个分区，NTFS 那个。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;优化调整&lt;/code&gt;里，&lt;code&gt;注册表调整&lt;/code&gt;选择&lt;code&gt;Win10&lt;/code&gt;，其余选项按需调整。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.wegod.cc/p/cloud-firmware-hyperv/winntsetup.jpg"
+width="1706"
+height="661"
+srcset="https://www.wegod.cc/p/cloud-firmware-hyperv/winntsetup_hu_38a50a389e0d4b50.jpg 480w, https://www.wegod.cc/p/cloud-firmware-hyperv/winntsetup_hu_b351d9ca2fc38d13.jpg 1024w"
+loading="lazy"
+alt="winntsetup"
+class="gallery-image"
+data-flex-grow="258"
+data-flex-basis="619px"
+&gt;&lt;/p&gt;
+&lt;p&gt;最后点击 &lt;code&gt;安装&lt;/code&gt;，会提示&lt;code&gt;不能选择VHD作为引导驱动器&lt;/code&gt;，点击&lt;code&gt;确定&lt;/code&gt;继续即可。&lt;/p&gt;
+&lt;p&gt;安装结束会提示&lt;code&gt;重启&lt;/code&gt;，就不用重启了。&lt;/p&gt;
+&lt;p&gt;最后分离 VHD，一个 Windows 的 L0 镜像就做好了。&lt;/p&gt;</description></item></channel></rss>
