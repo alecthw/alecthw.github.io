@@ -2,7 +2,7 @@
 title: 机场/梯子推荐
 description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
 slug: airport-recommend
-date: 2024-12-23T09:24:13+08:00
+date: 2025-12-03T09:24:13+08:00
 image: cover.jpg
 categories:
   - passgfw
@@ -152,9 +152,11 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 - ~~季付以上套餐8折：20258~~
 - ~~60G年付套餐9折: 20259n~~
 
-官网：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
+官网1：[👉链接🚀](https://cv02.xiaojikp.pro/#/register?code=tqB3FCup)
 
-官网2：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
+官网2：[👉链接🚀](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
+
+官网3：[👉链接🚀](https://xiaojiv2.xiaojicf.com/#/register?invitecode=tqB3FCup)
 
 协议：`Trojan`
 
