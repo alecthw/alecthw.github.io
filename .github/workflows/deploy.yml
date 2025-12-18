@@ -45,7 +45,7 @@ jobs:
       - name: Build
         run: |
           hugo --minify --gc
-          hugo --minify --gc --baseURL "https://www.wegod.cc/" --destination public_wegod.cc
+          hugo --minify --gc --baseURL "https://www.uufly.org/" --destination public_uufly.org
 
 
       - name: Deploy 🚀
@@ -56,10 +56,10 @@ jobs:
           clean: true
           single-commit: true
 
-      - name: Deploy wegod.cc
+      - name: Deploy uufly.org
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: wegod.cc
-          folder: public_wegod.cc
+          branch: uufly.org
+          folder: public_uufly.org
           clean: true
           single-commit: true
