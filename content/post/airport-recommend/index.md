@@ -2,7 +2,7 @@
 title: 机场/梯子推荐
 description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
 slug: airport-recommend
-date: 2025-12-03T09:24:13+08:00
+date: 2025-12-25T09:24:13+08:00
 image: cover.jpg
 categories:
   - passgfw
