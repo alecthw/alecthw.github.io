@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chr on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/tags/chr/</link><description>Recent content in Chr on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 25 Dec 2025 17:34:28 +0000</lastBuildDate><atom:link href="https://alecthw.github.io/tags/chr/index.xml" rel="self" type="application/rss+xml"/><item><title>RouterOS CHR v7 UEFI 镜像，使用 Github Actions 构建</title><link>https://alecthw.github.io/p/routeros-uefi/</link><pubDate>Thu, 07 Dec 2023 17:11:11 +0800</pubDate><guid>https://alecthw.github.io/p/routeros-uefi/</guid><description>&lt;img src="https://alecthw.github.io/p/routeros-uefi/cover.png" alt="Featured image of post RouterOS CHR v7 UEFI 镜像，使用 Github Actions 构建" /&gt;&lt;p&gt;🔥🔥🔥：稳定好用的机场/梯子 &lt;a class="link" href="https://558343.dedicated-afflink.com/#/auth/2neqgxFl" target="_blank" rel="noopener"
+&gt;TAG 全球250+节点、99+流媒体解锁&lt;/a&gt;，更多参考&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" &gt;机场推荐&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;👉 需要的朋友自取。&lt;/p&gt;
+&lt;p&gt;使用 Github Actions 构建，过程全透明，不存在后门的可能。官方镜像，&lt;code&gt;非破解&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;RouterOS chr-7.x 已经包含了 efi 启动文件，但是分区类型是 ext2。&lt;/p&gt;
+&lt;p&gt;所以，只要把分区类型从 ext2 转成 fat 就可以从 uefi 引导启动了。&lt;/p&gt;
+&lt;p&gt;当然，喜欢 GPT 的话，也可以制作 Hybrid MBR。&lt;/p&gt;
+&lt;h2 id="镜像下载"&gt;&lt;a class="link" href="https://github.com/alecthw/mikrotik-routeros-chr-efi/releases" target="_blank" rel="noopener"
+&gt;镜像下载&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;👉 &lt;a class="link" href="https://github.com/alecthw/mikrotik-routeros-chr-efi/releases" target="_blank" rel="noopener"
+&gt;Release&lt;/a&gt; 👈&lt;/p&gt;
+&lt;p&gt;👉 &lt;a class="link" href="https://www.right.com.cn/forum/thread-8271574-1-1.html" target="_blank" rel="noopener"
+&gt;破解版传送门&lt;/a&gt; 👈&lt;/p&gt;
+&lt;p&gt;包含的镜像类型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;img&lt;/li&gt;
+&lt;li&gt;qcow2&lt;/li&gt;
+&lt;li&gt;vdi&lt;/li&gt;
+&lt;li&gt;vhd&lt;/li&gt;
+&lt;li&gt;vhdx&lt;/li&gt;
+&lt;li&gt;vmdk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="hybrid-mbr-记录"&gt;Hybrid MBR 记录
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="c1"&gt;# use GPT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; t &lt;span class="c1"&gt;# change partition code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="c1"&gt;# select first partition&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;8300&lt;/span&gt; &lt;span class="c1"&gt;# change code to Linux filesystem 8300&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; r &lt;span class="c1"&gt;# Recovery/transformation&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; h &lt;span class="c1"&gt;# Hybrid MBR&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="c1"&gt;# partitions added to the hybrid MBR&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; n &lt;span class="c1"&gt;# Place EFI GPT (0xEE) partition first in MBR (good for GRUB)? (Y/N)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="c1"&gt;# Enter an MBR hex code (default 83)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; y &lt;span class="c1"&gt;# Set the bootable flag? (Y/N)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="c1"&gt;# Enter an MBR hex code (default 83)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; n &lt;span class="c1"&gt;# Set the bootable flag? (Y/N)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; n &lt;span class="c1"&gt;# Unused partition space(s) found. Use one to protect more partitions? (Y/N)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; w &lt;span class="c1"&gt;# write changes to disk&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; y &lt;span class="c1"&gt;# confirm&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo -E gdisk /dev/nbd1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
