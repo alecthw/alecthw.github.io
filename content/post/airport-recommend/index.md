@@ -30,7 +30,7 @@ weight: 1
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | 🔥 | 高性价比，小众新兴 | 五树云机场（原小米梯子） | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 9折：2025s9 |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
-| 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | - |
+| 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | 9 折：Christmas |
 
 流媒体解锁都支持的。当前强烈推荐**五树云机场（原小米梯子）**，稳定性好，性价比非常高！
 
@@ -109,7 +109,7 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 优惠码（截止2025年04月05日，注意关注官网公告）：
 
-- 9折：~~neqatgho~~
+- 9折：fstubgqp
 
 官网1：[👉链接（最新可直连）🚀](https://panel.sanfen.icu/register?code=FKnu6Hkg)
 官网2：[👉链接🚀](https://ca.sanfen.me/#/register?code=FKnu6Hkg)
@@ -117,7 +117,7 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 
 协议：`VMESS`
 
-**2024年6月5日起，限时供应 9.5CNY/Year 每月 200G 直连套餐！！！目前仍可购买。**
+曾是一个比较有名的廉价机场，现在逐渐转型做中转机场，暂时没有廉价套餐了。没有了廉价套餐，也就失去了优势， [五树云](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) 这种会是更好的选择！
 
 特点：廉价，流量较少，速度还行，稳定性一般，相对小众一点。
 
@@ -181,6 +181,10 @@ ChatGPT/OpenAI/TikTok 解锁，Netflix/Disney+/Youtube/PCR等常规流媒体已�
 - **高速**和***低时延***要求
 
 ### 🔥TAG —— 机场中的排头兵
+
+优惠码（截止2025年12月28日0点，注意关注官网公告）：
+
+- 9 折：Christmas
 
 官网：[👉链接🚀](https://558343.dedicated-afflink.com/#/auth/2neqgxFl)
 
