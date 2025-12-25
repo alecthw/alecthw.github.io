@@ -1,0 +1,985 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="V2Ray 简单介绍和配置指导，该文档比较老了，最新的配置有些许变化，不过大差不差，重要的是搞懂。"><title>V2Ray4.x + Nginx + TLS + ws + MTProto 详细配置教程</title><link rel=canonical href=https://www.uufly.org/p/v2ray-tutorial/><link rel=stylesheet href=/scss/style.min.ebd33182d80f4c09ca68afdd59bcc91a2568c867933c6f27103abdeb5f9726d6.css><meta property='og:title' content="V2Ray4.x + Nginx + TLS + ws + MTProto 详细配置教程"><meta property='og:description' content="V2Ray 简单介绍和配置指导，该文档比较老了，最新的配置有些许变化，不过大差不差，重要的是搞懂。"><meta property='og:url' content='https://www.uufly.org/p/v2ray-tutorial/'><meta property='og:site_name' content='小甲哥の垃圾工厂'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='v2ray'><meta property='article:tag' content='mtproto'><meta property='article:published_time' content='2018-11-18T13:32:58+08:00'><meta property='article:modified_time' content='2025-12-25T17:34:28+00:00'><meta property='og:image' content='https://www.uufly.org/p/v2ray-tutorial/cover.png'><meta name=twitter:title content="V2Ray4.x + Nginx + TLS + ws + MTProto 详细配置教程"><meta name=twitter:description content="V2Ray 简单介绍和配置指导，该文档比较老了，最新的配置有些许变化，不过大差不差，重要的是搞懂。"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://www.uufly.org/p/v2ray-tutorial/cover.png'><link rel="shortcut icon" href=/favicon.ico><script src=https://code.jquery.com/jquery-latest.min.js crossorigin=anonymous></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_d746b85c02e1d6d1.gif width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>小甲哥の垃圾工厂</a></h1><h2 class=site-description>挖坑埋雷 甩锅推诿</h2></div></header><ol class=menu-social><li><a href=https://github.com/alecthw target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://t.me/alecthw target=_blank title=Telegram rel=me><svg class="icon icon-tabler icon-tabler-brand-telegram" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/book/><svg class="icon icon-tabler icon-tabler-book" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 019 0 9 9 0 019 0"/><path d="M3 6a9 9 0 019 0 9 9 0 019 0"/><line x1="3" y1="6" x2="3" y2="19"/><line x1="12" y1="6" x2="12" y2="19"/><line x1="21" y1="6" x2="21" y2="19"/></svg>
+<span>书籍</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=https://558343.dedicated-afflink.com/#/auth/2neqgxFl target=_blank><svg class="icon icon-tabler icon-tabler-flame" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2-2.96.0-7-1-8 0 3.038-1.773 4.741-3 6-1.226 1.26-2 3.24-2 5a6 6 0 1012 0c0-1.532-1.056-3.94-2-5-1.786 3-2.791 3-4 2z"/></svg>
+<span>TAG</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a><ol><li><a href=#参考文档>参考文档</a></li><li><a href=#涉及的内容>涉及的内容</a></li><li><a href=#大致的步骤>大致的步骤</a></li></ol></li><li><a href=#安装部署>安装部署</a><ol><li><a href=#端口规划>端口规划</a></li><li><a href=#服务器准备>服务器准备</a><ol><li><a href=#bandwagonhost-套餐选择>BandwagonHost 套餐选择</a></li><li><a href=#准备软件>准备软件</a></li><li><a href=#配置服务器>配置服务器</a></li><li><a href=#申请域名>申请域名</a></li><li><a href=#准备-web-根目录>准备 web 根目录</a></li><li><a href=#安装配置-nginx>安装配置 Nginx</a></li><li><a href=#安装-v2ray>安装 V2Ray</a></li><li><a href=#申请-lets-encrypt-的-ssl-证书>申请 Let&rsquo;s Encrypt 的 SSL 证书</a></li><li><a href=#配置-nginx-支持-https-访问>配置 Nginx 支持 Https 访问</a></li><li><a href=#配置-v2ray-并启动>配置 V2Ray 并启动</a></li></ol></li></ol></li><li><a href=#客户端配置>客户端配置</a><ol><li><a href=#ios-客户端>iOS 客户端</a></li><li><a href=#其它>其它</a></li><li><a href=#最后提供两份客户端配置文件>最后提供两份客户端配置文件</a><ol><li><a href=#pc-用的支持国内外分流>PC 用的支持国内外分流</a></li><li><a href=#路由器用的透明代理>路由器用的，透明代理</a></li></ol></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/v2ray-tutorial/><img src=/p/v2ray-tutorial/cover_hu_2e126a8e8d34c271.png srcset="/p/v2ray-tutorial/cover_hu_2e126a8e8d34c271.png 800w, /p/v2ray-tutorial/cover_hu_a632b4c33e622cbc.png 1600w" width=800 height=337 loading=lazy alt="Featured image of post V2Ray4.x + Nginx + TLS + ws + MTProto 详细配置教程"></a></div><div class=article-details><header class=article-category><a href=/categories/passgfw/>科学上网</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/v2ray-tutorial/>V2Ray4.x + Nginx + TLS + ws + MTProto 详细配置教程</a></h2><h3 class=article-subtitle>V2Ray 简单介绍和配置指导，该文档比较老了，最新的配置有些许变化，不过大差不差，重要的是搞懂。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2018-11-18T13:32:58+08:00>2018-11-18 13:32</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 9 分钟</time></div></footer></div></header><section class=article-content><p>🔥🔥🔥：稳定好用的机场/梯子 <a class=link href=https://558343.dedicated-afflink.com/#/auth/2neqgxFl target=_blank rel=noopener>TAG 全球250+节点、99+流媒体解锁</a>，更多参考<a class=link href=/p/airport-recommend/>机场推荐</a></p><hr><h2 id=前言>前言</h2><p>当前 V2Ray 应该算是比较好用的翻墙软件，和 ss、ssr 相比还是很稳定的，不容易被检测，尤其是加上 Nginx 和 TLS，再做个简单的网站顶在前面，完全伪造成了一个正常的网页访问行为，非常安全可靠，并且具有很强的抗检测能力。</p><ul><li><strong><em>必须会简单使用 Linux 命令行，即 Shell</em></strong></li><li><strong><em>以下示例中的域名均为<code>www.example.cc</code>，域名、UUID 以及 MTProto 的密钥请记得替换成自己的</em></strong></li><li>有耐心、喜欢折腾或者想自己学点东西的就往下看</li><li>没耐心的可以去用机场或者一键脚本</li><li>这是针对学生和工薪阶层且有科学上网需求的同志，土豪请直接用机场去吧（比如<a class=link href=https://rixcloud.me/ target=_blank rel=noopener>外号 richCloud 的 rixCloud</a>）</li></ul><h3 id=参考文档>参考文档</h3><p><a class=link href=https://www.v2ray.com/ target=_blank rel=noopener>V2Ray 官方文档</a>
+<a class=link href=https://toutyrater.github.io/ target=_blank rel=noopener>V2Ray 白话文教程</a>
+<a class=link href=https://github.com/TelegramMessenger/MTProxy target=_blank rel=noopener>MTProxy 官方文档</a></p><h3 id=涉及的内容>涉及的内容</h3><pre class=mermaid>graph LR
+  subgraph V2Ray
+    v2rayws[V2Ray WebSocket]
+    v2raytg[V2Ray MTProto]
+  end
+  free((WAN))
+  rep(外部请求) --&gt; in[Nginx]
+  in -- / --&gt; web[腾讯公益404]
+  in -- /wss --&gt; v2rayws
+  v2rayws --&gt; free
+  tgc(Telegram Client) --&gt; v2raytg
+  v2raytg --&gt; free</pre><ol><li>域名申请；</li><li>Let&rsquo;s Encrypt 申请 SSL 证书；</li><li>Nginx 作为前置服务配置 web 主页；</li><li>通过配置 Nginx 反向代理访问后面的 v2ray 服务；</li><li>v2ray 同时提供 mtproto 服务；</li><li>使用腾讯公益 404 作为 web 主页；</li></ol><h3 id=大致的步骤>大致的步骤</h3><ol><li>准备服务器；</li><li>申请域名；</li><li>创建网站根目录；</li><li>安装 Nginx；</li><li>获得 SSL 证书；</li><li>修改 Nginx 配置支持 Https；</li><li>安装启动 V2Ray；</li></ol><h2 id=安装部署>安装部署</h2><h3 id=端口规划>端口规划</h3><div class=table-wrapper><table><thead><tr><th>Port</th><th>Listen IP</th><th>Use</th></tr></thead><tbody><tr><td>80</td><td>0.0.0.0</td><td>Nginx Http</td></tr><tr><td>443</td><td>0.0.0.0</td><td>Nginx Https</td></tr><tr><td>10443</td><td>127.0.0.1</td><td>V2Ray WebSocket</td></tr><tr><td>8080</td><td>0.0.0.0</td><td>V2Ray MTProto</td></tr></tbody></table></div><h3 id=服务器准备>服务器准备</h3><p>拿来翻墙用的服务器，肯定是本着便宜好用性价比高的原则来选择。<a class=link href=https://bwh8.net/ target=_blank rel=noopener>搬瓦工</a>毕竟有 cn2 和 cn2 gia 线路，价格也算是最便宜的，重点可以支付宝支付，还是选择搬瓦工吧。</p><p>逢年过节，搬瓦工都会推出特别款优惠主机，比如双十一、黑五，性价比极高！可以关注下。</p><h4 id=bandwagonhost-套餐选择>BandwagonHost 套餐选择</h4><p>搬瓦工套餐很多，相同配置不同价格排序如下：
+<code>普通线路 &lt; CN2线路 &lt; CN2 GIA线路</code>
+一般情况下个人使用或者家用的话，最便宜的套餐足以，不常看视频，一个月流量在 100-200GB。</p><p>注册购买什么的就不赘述了，现在上过学都看得懂英文。</p><p>根据自己的需求选择相应的配置即可，避免浪费。</p><ul><li>访问谷歌，简单的网页访问需求</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>10G VZ - PROMO
+</span></span><span class=line><span class=cl>SSD: 10 GB RAID-10
+</span></span><span class=line><span class=cl>RAM: 512 MB
+</span></span><span class=line><span class=cl>CPU: 1x Intel Xeon
+</span></span><span class=line><span class=cl>Transfer: 500 GB/mo
+</span></span><span class=line><span class=cl>Link speed: 1 Gigabit
+</span></span></code></pre></td></tr></table></div></div><p>19.99 美刀一年，只能年付。
+OpenVZ 架构，唯一的优势就是便宜。高峰期对主机性能和网络都有影响。</p><ul><li>偶尔看看视频，比如油管</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>SPECIAL 10G KVM PROMO V3 - LOS ANGELES - CN2
+</span></span><span class=line><span class=cl>SSD: 10 GB RAID-10
+</span></span><span class=line><span class=cl>RAM: 512 MB
+</span></span><span class=line><span class=cl>CPU: 1x Intel Xeon
+</span></span><span class=line><span class=cl>Transfer: 500 GB/mo
+</span></span><span class=line><span class=cl>Link speed: 1 Gigabit
+</span></span></code></pre></td></tr></table></div></div><p>29.99 美刀一年，只能年付。<strong><em>一般人建议买这个</em></strong>。
+KVM 架构，延迟勉强，<code>170ms</code>左右，油管 4K 撑得住。高峰期对网络有一定影响。</p><ul><li>强烈视频需求，打游戏，需要低延迟网络</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>SPECIAL 10G KVM PROMO V3 - LOS ANGELES - CN2 GIA - LIMITED EDITION
+</span></span><span class=line><span class=cl>**Limited stock available**
+</span></span><span class=line><span class=cl>SSD: 10 GB RAID-10
+</span></span><span class=line><span class=cl>RAM: 512 MB
+</span></span><span class=line><span class=cl>CPU: 1x Intel Xeon
+</span></span><span class=line><span class=cl>Transfer: 300 GB/mo
+</span></span><span class=line><span class=cl>Link speed: 1 Gigabit
+</span></span></code></pre></td></tr></table></div></div><p>39.99 美刀一年，只能年付。此套餐经常缺货，想买的需要关注，有钱可以买上一级套餐（可季付、半年付、年付）。</p><p>同样 KVM 架构，延迟比 cn2 略低，油管 4K 撑得住。高峰期对网络影响较小。</p><h4 id=准备软件>准备软件</h4><p>1、 <a class=link href=https://mobaxterm.mobatek.net/ target=_blank rel=noopener>MobaXterm</a>: SSH 客户端工具，集成了 SFTP，安装免费版即可
+2、 <a class=link href=https://code.visualstudio.com/ target=_blank rel=noopener>Visual Studio Code</a>: 编辑器，主要拿来编辑 Nginx 的配置文件和 V2ray 的配置文件，支持 JSON 代码高亮，避免配置文件编写错误</p><h4 id=配置服务器>配置服务器</h4><p>这里以搬瓦工为例。</p><h5 id=更换操作系统>更换操作系统</h5><p>建议选择 CentOS7 吧，方便好用。如果是 KVM 架构的机器，还能选择支持 bbr 的操作 CentOS。这里以 CN2 GIA 的服务器为例。</p><p><strong><em>以下命令均以 CentOS7 下的命令为例</em></strong></p><ul><li>登录搬瓦工<code>Client Area</code>，点<code>Services -> My Services</code>查看自己的所有服务</li><li>点击对应<code>Product/Service</code>后面的<code>KiwiVM Control Panel</code>按钮进入控制台
+<img src=/p/v2ray-tutorial/config_server_1.JPG width=977 height=86 srcset="/p/v2ray-tutorial/config_server_1_hu_b122a1be9190dbde.JPG 480w, /p/v2ray-tutorial/config_server_1_hu_68cd848df29f32cf.JPG 1024w" loading=lazy alt=config_server_1 class=gallery-image data-flex-grow=1136 data-flex-basis=2726px></li><li>首先将虚拟机关机，关机后才能重装系统
+<img src=/p/v2ray-tutorial/config_server_2.JPG width=935 height=435 srcset="/p/v2ray-tutorial/config_server_2_hu_bc4f27c498b8bfdb.JPG 480w, /p/v2ray-tutorial/config_server_2_hu_7a91dbb28e1cb70f.JPG 1024w" loading=lazy alt=config_server_2 class=gallery-image data-flex-grow=214 data-flex-basis=515px></li><li>选择<code>Install new OS</code>，然后选择<code>"centos-7-x86_64-bbr"</code>，勾选<code>"I agree ..."</code>，点<code>Reload</code>重新安装
+<img src=/p/v2ray-tutorial/config_server_3.JPG width=940 height=477 srcset="/p/v2ray-tutorial/config_server_3_hu_2c8a2bbf6eb5e742.JPG 480w, /p/v2ray-tutorial/config_server_3_hu_3f048d77690aa15e.JPG 1024w" loading=lazy alt=config_server_3 class=gallery-image data-flex-grow=197 data-flex-basis=472px></li><li><strong><em>记下 root 密码和端口号备用</em></strong></li></ul><h5 id=更改服务器密码>更改服务器密码</h5><p>使用 MobaXterm（或者其他 SSH 工具），使用刚刚的密码和端口号登录服务器，注意下<strong>端口号</strong>，搬瓦工的 SSH 不是默认 22 端口。
+登录后执行<code>passwd</code>，然后输入两遍新密码即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ passwd
+</span></span><span class=line><span class=cl>Changing password <span class=k>for</span> user root.
+</span></span><span class=line><span class=cl>New password:
+</span></span><span class=line><span class=cl>Retype new password:
+</span></span><span class=line><span class=cl>passwd: all authentication tokens updated successfully.
+</span></span></code></pre></td></tr></table></div></div><h5 id=更新系统>更新系统</h5><p>搬瓦工自带的 epel 总觉得缺包，所以卸载重新安装下。
+同时需要安装下 vim、git、zip 和 unzip。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>yum remove -y epel-release
+</span></span><span class=line><span class=cl>yum install -y epel-release
+</span></span><span class=line><span class=cl>yum update -y
+</span></span><span class=line><span class=cl>yum install -y vim git zip unzip
+</span></span></code></pre></td></tr></table></div></div><h4 id=申请域名>申请域名</h4><p>由于要使用 TLS，所以需要一个域名。建议注册<code>.cc</code>结尾的域名，便宜并且不需要实名认证。
+传送门：<a class=link href=https://wanwang.aliyun.com/ target=_blank rel=noopener>https://wanwang.aliyun.com/</a></p><p><strong><em>假设我们申请的域名的是：<code>example.cc</code>，编写配置文件时记得替换成自己的。</em></strong></p><h5 id=配置域名解析>配置域名解析</h5><p>域名解析这里配置两条，把<code>example.cc</code>和<code>www.example.cc</code>都指向服务器的地址。
+<img src=/p/v2ray-tutorial/config_server_4.JPG width=1402 height=206 srcset="/p/v2ray-tutorial/config_server_4_hu_d7bbaf71bc00c04c.JPG 480w, /p/v2ray-tutorial/config_server_4_hu_c415d47f4020420b.JPG 1024w" loading=lazy alt=config_server_4 class=gallery-image data-flex-grow=680 data-flex-basis=1633px></p><p>配置好之后，可以在本地 ping 一下，看看通没通。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ping example.cc
+</span></span></code></pre></td></tr></table></div></div><h4 id=准备-web-根目录>准备 web 根目录</h4><ul><li><p>新建目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /www/root
+</span></span></code></pre></td></tr></table></div></div></li><li><p>增加<code>index.html</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vim /www/root/index.html
+</span></span></code></pre></td></tr></table></div></div><p>按下<code>i</code>键到插入模式后，将以下所有内容贴进去。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>404<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>http-equiv</span><span class=o>=</span><span class=s>&#34;Content-Type&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;text/html&#34;</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span> <span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>script</span>
+</span></span><span class=line><span class=cl>      <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=na>src</span><span class=o>=</span><span class=s>&#34;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=na>charset</span><span class=o>=</span><span class=s>&#34;utf-8&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=na>homePageUrl</span><span class=o>=</span><span class=s>&#34;https://www.example.cc/&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=na>homePageName</span><span class=o>=</span><span class=s>&#34;回到我的主页&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div></li></ul><h4 id=安装配置-nginx>安装配置 Nginx</h4><p>Nginx 安装后，会用到两份配置：</p><ul><li>第一份是给第一次申请 Let&rsquo;s Encrypt 的 SSL 证书用的（由于此时还没有证书，配置成 Https）</li><li>第二份是增加了 V2Ray 反代和 Http 重定向 Https 的配置，这个就是一直要用的配置</li></ul><h5 id=安装-nginx>安装 Nginx</h5><p>很简单，一行命令搞定。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>yum install -y nginx
+</span></span></code></pre></td></tr></table></div></div><h5 id=编辑nginxconf>编辑<code>nginx.conf</code></h5><p>文件<code>/etc/nginx/nginx.conf</code>。
+害怕出错的或者新手请将文件 SFTP 下载到本地，使用 VSCode 修改后再 SFTP 传回服务器。
+熟悉 vim 的就直接在命令行修改吧。</p><p>配置文件如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=k>user</span> <span class=s>nginx</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>worker_processes</span> <span class=s>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>error_log</span> <span class=s>/dev/null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>pid</span> <span class=s>/run/nginx.pid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>include</span> <span class=n>/usr/share/nginx/modules/*.conf</span>;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>events</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>worker_connections</span> <span class=mi>1024</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>http</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>log_format</span>  <span class=s>main</span>  <span class=s>&#39;</span><span class=nv>$remote_addr</span> <span class=s>-</span> <span class=nv>$remote_user</span> <span class=s>[</span><span class=nv>$time_local]</span> <span class=s>&#34;</span><span class=nv>$request&#34;</span> <span class=s>&#39;</span>
+</span></span><span class=line><span class=cl>                      <span class=s>&#39;</span><span class=nv>$status</span> <span class=nv>$body_bytes_sent</span> <span class=s>&#34;</span><span class=nv>$http_referer&#34;</span> <span class=s>&#39;</span>
+</span></span><span class=line><span class=cl>                      <span class=s>&#39;&#34;</span><span class=nv>$http_user_agent&#34;</span> <span class=s>&#34;</span><span class=nv>$http_x_forwarded_for&#34;&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>access_log</span>  <span class=no>off</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>sendfile</span>            <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>tcp_nopush</span>          <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>tcp_nodelay</span>         <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>keepalive_timeout</span>   <span class=mi>65</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>types_hash_max_size</span> <span class=mi>2048</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>include</span>             <span class=s>/etc/nginx/mime.types</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>default_type</span>        <span class=s>application/octet-stream</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>include</span> <span class=s>/etc/nginx/conf.d/*.conf</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>server</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kn>listen</span>       <span class=mi>80</span> <span class=s>default_server</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>listen</span>       <span class=s>[::]:80</span> <span class=s>default_server</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>server_name</span>  <span class=s>example.cc</span> <span class=s>www.example.cc</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>root</span>         <span class=s>/www/root</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>index</span>        <span class=s>index.html</span> <span class=s>index.htm</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kn>location</span> <span class=s>/</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h5 id=启动-nginx-服务>启动 Nginx 服务</h5><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl <span class=nb>enable</span> nginx
+</span></span><span class=line><span class=cl>systemctl start nginx
+</span></span></code></pre></td></tr></table></div></div><p>然后查看下运行状态是否已经正常启动，看到<code>running</code>即是正常。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ systemctl status nginx
+</span></span><span class=line><span class=cl>● nginx.service - The nginx HTTP and reverse proxy server
+</span></span><span class=line><span class=cl>   Loaded: loaded <span class=o>(</span>/usr/lib/systemd/system/nginx.service<span class=p>;</span> enabled<span class=p>;</span> vendor preset: disabled<span class=o>)</span>
+</span></span><span class=line><span class=cl>   Active: active <span class=o>(</span>running<span class=o>)</span> since Wed 2018-11-14 11:22:53 CST<span class=p>;</span> <span class=m>4</span> days ago
+</span></span></code></pre></td></tr></table></div></div><p>然后打开浏览器访问 &lt;www.example.cc> 和 &lt;example.cc>看是否能打开腾讯公益 404 页面。能打开说明 Nginx 已经正确配置，然后就可以开始申请 SSL 证书了。</p><h4 id=安装-v2ray>安装 V2Ray</h4><p>具体参考<a class=link href=https://www.v2ray.com/chapter_00/install.html#linuxscript target=_blank rel=noopener>V2Ray 官方文档</a>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>bash &lt;<span class=o>(</span>curl -L -s https://install.direct/go.sh<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>安装完成后自动启动，这里先把它给停了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl stop v2ray
+</span></span></code></pre></td></tr></table></div></div><h4 id=申请-lets-encrypt-的-ssl-证书>申请 Let&rsquo;s Encrypt 的 SSL 证书</h4><p>Let&rsquo;s Encrypt 有很多 ACME 客户端的实现。这里选用<a class=link href=https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E target=_blank rel=noopener>acme.sh</a>。</p><h5 id=安装-acmesh>安装 acme.sh</h5><p>安装很简单，一个命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl  https://get.acme.sh <span class=p>|</span> sh
+</span></span></code></pre></td></tr></table></div></div><p>安装完成后执行下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>source</span> /root/.bashrc
+</span></span></code></pre></td></tr></table></div></div><h5 id=申请证书>申请证书</h5><p>很简单，一也是命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>acme.sh --issue -d example.cc -d www.example.cc --webroot /www/root/ -k ec-256
+</span></span></code></pre></td></tr></table></div></div><p>使用 ec-256 证书，让通信更安全吧。</p><h5 id=将证书安装到目录>将证书安装到目录</h5><p>这里将证书放到<code>/etx/v2ray</code>目录下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>acme.sh --installcert -d example.cc -d www.example.cc --key-file /etc/v2ray/v2ray.key --fullchain-file /etc/v2ray/v2ray.crt --ecc --reloadcmd  <span class=s2>&#34;service nginx force-reload &amp;&amp; systemctl restart v2ray&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>这行命令除了将证书放到指定目录下外，还会自动创建 crontab 定时任务，后面引号里的命令是定时任务更新证书后执行的命令。</p><h4 id=配置-nginx-支持-https-访问>配置 Nginx 支持 Https 访问</h4><p>不废话了，直接修改<code>/etc/nginx/nginx.conf</code>，完整配置文件如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=k>user</span> <span class=s>nginx</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>worker_processes</span> <span class=s>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>error_log</span> <span class=s>/dev/null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>pid</span> <span class=s>/run/nginx.pid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>include</span> <span class=n>/usr/share/nginx/modules/*.conf</span>;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>events</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>worker_connections</span> <span class=mi>1024</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>http</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>log_format</span>  <span class=s>main</span>  <span class=s>&#39;</span><span class=nv>$remote_addr</span> <span class=s>-</span> <span class=nv>$remote_user</span> <span class=s>[</span><span class=nv>$time_local]</span> <span class=s>&#34;</span><span class=nv>$request&#34;</span> <span class=s>&#39;</span>
+</span></span><span class=line><span class=cl>                      <span class=s>&#39;</span><span class=nv>$status</span> <span class=nv>$body_bytes_sent</span> <span class=s>&#34;</span><span class=nv>$http_referer&#34;</span> <span class=s>&#39;</span>
+</span></span><span class=line><span class=cl>                      <span class=s>&#39;&#34;</span><span class=nv>$http_user_agent&#34;</span> <span class=s>&#34;</span><span class=nv>$http_x_forwarded_for&#34;&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>access_log</span>  <span class=no>off</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>server_tokens</span>       <span class=no>off</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>sendfile</span>            <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>tcp_nopush</span>          <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>tcp_nodelay</span>         <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>keepalive_timeout</span>   <span class=mi>65</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>types_hash_max_size</span> <span class=mi>2048</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>include</span>             <span class=s>/etc/nginx/mime.types</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>default_type</span>        <span class=s>application/octet-stream</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>include</span> <span class=s>/etc/nginx/conf.d/*.conf</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># Http Server，强制跳转Https
+</span></span></span><span class=line><span class=cl>    <span class=kn>server</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kn>listen</span>       <span class=mi>80</span> <span class=s>default_server</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>listen</span>       <span class=s>[::]:80</span> <span class=s>default_server</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>server_name</span>  <span class=s>example.cc</span> <span class=s>www.example.cc</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>rewrite</span>      <span class=s>^(.*)</span>$ <span class=s>https://www.example.cc</span><span class=nv>$1</span> <span class=s>permanent</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># Https Server
+</span></span></span><span class=line><span class=cl>    <span class=kn>server</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kn>listen</span>       <span class=mi>443</span> <span class=s>ssl</span> <span class=s>http2</span> <span class=s>default_server</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>listen</span>       <span class=s>[::]:443</span> <span class=s>ssl</span> <span class=s>http2</span> <span class=s>default_server</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>server_name</span>  <span class=s>www.example.cc</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>root</span>         <span class=s>/www/root</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>index</span>        <span class=s>index.html</span> <span class=s>index.htm</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kn>ssl_certificate</span> <span class=s>&#34;/etc/v2ray/v2ray.crt&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>ssl_certificate_key</span> <span class=s>&#34;/etc/v2ray/v2ray.key&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>ssl_session_cache</span> <span class=s>shared:SSL:1m</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>ssl_session_timeout</span>  <span class=mi>10m</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>ssl_ciphers</span> <span class=s>HIGH:!aNULL:!MD5</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>ssl_prefer_server_ciphers</span> <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kn>include</span> <span class=s>/etc/nginx/default.d/*.conf</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kn>location</span> <span class=s>/</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 反向代理V2Ray
+</span></span></span><span class=line><span class=cl>        <span class=kn>location</span> <span class=s>/wss</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kn>proxy_redirect</span> <span class=no>off</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=kn>proxy_pass</span> <span class=s>http://127.0.0.1:10443</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=kn>proxy_http_version</span> <span class=mi>1</span><span class=s>.1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=kn>proxy_set_header</span> <span class=s>Upgrade</span> <span class=nv>$http_upgrade</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=kn>proxy_set_header</span> <span class=s>Connection</span> <span class=s>&#34;upgrade&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=kn>proxy_set_header</span> <span class=s>Host</span> <span class=nv>$http_host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kn>error_page</span> <span class=mi>404</span> <span class=s>/404.html</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kn>location</span> <span class=p>=</span> <span class=s>/40x.html</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kn>error_page</span> <span class=mi>500</span> <span class=mi>502</span> <span class=mi>503</span> <span class=mi>504</span> <span class=s>/50x.html</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=kn>location</span> <span class=p>=</span> <span class=s>/50x.html</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>配置完之后重新启动 Nginx</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><p>访问 &lt;www.example.cc> 和 &lt;example.cc>，如果自动跳转<code>https://www.example.cc</code>并且正确显示公益 404 则已经配置正确。</p><h4 id=配置-v2ray-并启动>配置 V2Ray 并启动</h4><p>前置的所有服务都已经配置完毕，只差最后的 V2Ray 了。</p><h5 id=为-v2ray-生成一个-uuid>为 V2Ray 生成一个 UUID</h5><p>使用 V2Ray 自带的<code>v2ctl</code>工具生成一个新的 uuid。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ /usr/bin/v2ray/v2ctl uuid
+</span></span><span class=line><span class=cl>27e0efcc-8e13-fef1-9e82-febebc469b2b
+</span></span></code></pre></td></tr></table></div></div><p>记录下此 uuid</p><h5 id=为-mtproto-生成一个密钥>为 mtproto 生成一个密钥</h5><p>使用 linux 系统创建伪随机数作为密钥。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ head -c <span class=m>16</span> /dev/urandom <span class=p>|</span> xxd -ps
+</span></span><span class=line><span class=cl>80e2e037610bac1444ac02979364f666
+</span></span></code></pre></td></tr></table></div></div><p>记录下此随机数</p><h5 id=修改etcv2rayconfigjson>修改<code>/etc/v2ray/config.json</code></h5><p>同样的，没把握用 vim 修改的，就拷贝下来在 VSCode 里修改，改完再传回服务器。</p><p>将刚生成的 uuid 和随机数填入对应的位置。</p><p>完整配置文件如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;log&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;loglevel&#34;</span><span class=p>:</span> <span class=s2>&#34;none&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;access&#34;</span><span class=p>:</span> <span class=s2>&#34;/var/log/v2ray/access.log&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;error&#34;</span><span class=p>:</span> <span class=s2>&#34;/var/log/v2ray/error.log&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;inbounds&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>10443</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;listen&#34;</span><span class=p>:</span> <span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;vmess&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;clients&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;27e0efcc-8e13-fef1-9e82-febebc469b2b&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;alterId&#34;</span><span class=p>:</span> <span class=mi>64</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>]</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;streamSettings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;network&#34;</span><span class=p>:</span> <span class=s2>&#34;ws&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;wsSettings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;/wss&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;tag&#34;</span><span class=p>:</span> <span class=s2>&#34;tg-in&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>8080</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;mtproto&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;users&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;secret&#34;</span><span class=p>:</span> <span class=s2>&#34;80e2e037610bac1444ac02979364f666&#34;</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>]</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;outbounds&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;freedom&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;blackhole&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;response&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;none&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;tag&#34;</span><span class=p>:</span> <span class=s2>&#34;blocked&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;tag&#34;</span><span class=p>:</span> <span class=s2>&#34;tg-out&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;mtproto&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;routing&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;domainStrategy&#34;</span><span class=p>:</span> <span class=s2>&#34;IPOnDemand&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;rules&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;geoip:private&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;blocked&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;inboundTag&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;tg-in&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;tg-out&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h5 id=启动-v2ray>启动 V2Ray</h5><p>开启开机启动并启动。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl <span class=nb>enable</span> v2ray
+</span></span><span class=line><span class=cl>systemctl start v2ray
+</span></span></code></pre></td></tr></table></div></div><p>启动之后查看下运行状态，看是否正常运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>$systemctl</span> status v2ray
+</span></span><span class=line><span class=cl>● v2ray.service - V2Ray Service
+</span></span><span class=line><span class=cl>   Loaded: loaded <span class=o>(</span>/etc/systemd/system/v2ray.service<span class=p>;</span> enabled<span class=p>;</span> vendor preset: disabled<span class=o>)</span>
+</span></span><span class=line><span class=cl>   Active: active <span class=o>(</span>running<span class=o>)</span> since Sun 2018-11-18 17:00:07 CST<span class=p>;</span> 3h 26min ago
+</span></span><span class=line><span class=cl> Main PID: <span class=m>8908</span> <span class=o>(</span>v2ray<span class=o>)</span>
+</span></span><span class=line><span class=cl>   CGroup: /system.slice/v2ray.service
+</span></span><span class=line><span class=cl>           └─8908 /usr/bin/v2ray/v2ray -config /etc/v2ray/config.json
+</span></span></code></pre></td></tr></table></div></div><h2 id=客户端配置>客户端配置</h2><p>客户端配置不尽相同，对应客户端详细配置可以自己百度。</p><p>这里用文字描述下大致的配置步骤：</p><ol><li>协议类型选择<code>Vmess</code>，需要和服务端一致</li><li>地址填<code>www.example.cc</code>，需要和服务端一致</li><li>端口填<code>443</code>，需要和服务端一致</li><li>UUID 填<code>27e0efcc-8e13-fef1-9e82-febebc469b2b</code>，需要和服务端一致</li><li>传输协议选择<code>ws</code>，路径填写<code>/wss</code>，需要和服务端一致</li><li>开启 TLS</li><li>AlterId 填写<code>64</code>，需要和服务端一致</li></ol><h3 id=ios-客户端>iOS 客户端</h3><p>iOS 下的 VPN 类客户端在国区基本下架下完了，V2Ray 推荐使用 Kitsunebi 的 TestFlight 版本。</p><ol><li>在手机上安装 TestFlight App：<a class=link href="https://itunes.apple.com/us/app/testflight/id899247664?mt=8" target=_blank rel=noopener>https://itunes.apple.com/us/app/testflight/id899247664?mt=8</a></li><li>在手机上打开这个链接自动加入 TestFlight：<a class=link href=https://testflight.apple.com/join/2w6EF67u target=_blank rel=noopener>https://testflight.apple.com/join/2w6EF67u</a></li></ol><p>&ndash;><a class=link href=https://docs.google.com/forms/d/1-1ZuYA1qkyDfAn6qzUzNEV3YVZbgr__7b6aFBiKeNHc/closedform target=_blank rel=noopener>原文地址</a></p><h3 id=其它>其它</h3><p>其它客户端请参考：
+<a class=link href=https://www.v2ray.com/ui_client/windows.html#windows-%E5%AE%A2%E6%88%B7%E7%AB%AF target=_blank rel=noopener>Windows</a>
+<a class=link href=https://www.v2ray.com/ui_client/android.html#android-%E5%AE%A2%E6%88%B7%E7%AB%AF target=_blank rel=noopener>Android</a>
+<a class=link href=https://www.v2ray.com/ui_client/osx.html#mac-os-x target=_blank rel=noopener>Mac OS X</a></p><h3 id=最后提供两份客户端配置文件>最后提供两份客户端配置文件</h3><p>无需求的以下就可以不看了。</p><h4 id=pc-用的支持国内外分流>PC 用的支持国内外分流</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;inbounds&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>1087</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;listen&#34;</span><span class=p>:</span> <span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;http&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;allowTransparent&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>1086</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;listen&#34;</span><span class=p>:</span> <span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;socks&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;domainOverride&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;tls&#34;</span><span class=p>,</span> <span class=s2>&#34;http&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=s2>&#34;noauth&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;udp&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;outbounds&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;vmess&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;vnext&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;address&#34;</span><span class=p>:</span> <span class=s2>&#34;www.example.cc&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>443</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;users&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>              <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;27e0efcc-8e13-fef1-9e82-febebc469b2b&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;alterId&#34;</span><span class=p>:</span> <span class=mi>64</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;security&#34;</span><span class=p>:</span> <span class=s2>&#34;auto&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>]</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;streamSettings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;network&#34;</span><span class=p>:</span> <span class=s2>&#34;ws&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;wsSettings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;/wss&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;security&#34;</span><span class=p>:</span> <span class=s2>&#34;tls&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;mux&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;enabled&#34;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;concurrency&#34;</span><span class=p>:</span> <span class=mi>8</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;tag&#34;</span><span class=p>:</span> <span class=s2>&#34;proxy&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;freedom&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;tag&#34;</span><span class=p>:</span> <span class=s2>&#34;direct&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;blackhole&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;tag&#34;</span><span class=p>:</span> <span class=s2>&#34;block&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;log&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;loglevel&#34;</span><span class=p>:</span> <span class=s2>&#34;none&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;access&#34;</span><span class=p>:</span> <span class=s2>&#34;D:/v2ray_access.log&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;error&#34;</span><span class=p>:</span> <span class=s2>&#34;D:/v2ray_error.log&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;dns&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;hosts&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;example.com&#34;</span><span class=p>:</span> <span class=s2>&#34;127.0.0.1&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;servers&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;223.5.5.5&#34;</span><span class=p>,</span> <span class=s2>&#34;8.8.8.8&#34;</span><span class=p>,</span> <span class=s2>&#34;localhost&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;routing&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;strategy&#34;</span><span class=p>:</span> <span class=s2>&#34;rules&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;domainStrategy&#34;</span><span class=p>:</span> <span class=s2>&#34;IPIfNonMatch&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;rules&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;domain&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;dropbox&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;github&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;google&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;instagram&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;netflix&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;pinterest&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;pixiv&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;tumblr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;twitter&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:facebook.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:fbcdn.net&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:fivecdm.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:ggpht.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:gstatic.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:line-scdn.net&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:line.me&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:medium.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:naver.jp&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:pximg.net&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:t.co&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:twimg.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:youtube.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:ytimg.com&#34;</span>
+</span></span><span class=line><span class=cl>          <span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;proxy&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;125.209.222.0/24&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;149.154.167.0/24&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;149.154.175.0/24&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;91.108.56.0/24&#34;</span>
+</span></span><span class=line><span class=cl>          <span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;proxy&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;domain&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;cctv&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;geosite:cn&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;umeng&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:apple.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:crashlytics.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:icloud.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:ixigua.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:pstatp.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:snssdk.com&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;domain:toutiao.com&#34;</span>
+</span></span><span class=line><span class=cl>          <span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;direct&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;geoip:cn&#34;</span><span class=p>,</span> <span class=s2>&#34;geoip:private&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;direct&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;field&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;domain&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;domain:doubleclick.net&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;outboundTag&#34;</span><span class=p>:</span> <span class=s2>&#34;block&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=路由器用的透明代理>路由器用的，透明代理</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;inbounds&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>7070</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;dokodemo-door&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;domainOverride&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;tls&#34;</span><span class=p>,</span> <span class=s2>&#34;http&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;address&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;network&#34;</span><span class=p>:</span> <span class=s2>&#34;tcp,udp&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;timeout&#34;</span><span class=p>:</span> <span class=mi>30</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;followRedirect&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;outbounds&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;protocol&#34;</span><span class=p>:</span> <span class=s2>&#34;vmess&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;settings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;vnext&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;address&#34;</span><span class=p>:</span> <span class=s2>&#34;www.example.cc&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;port&#34;</span><span class=p>:</span> <span class=mi>443</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;users&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>              <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;27e0efcc-8e13-fef1-9e82-febebc469b2b&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;alterId&#34;</span><span class=p>:</span> <span class=mi>64</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;security&#34;</span><span class=p>:</span> <span class=s2>&#34;auto&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>]</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;streamSettings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;network&#34;</span><span class=p>:</span> <span class=s2>&#34;ws&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;wsSettings&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;/wss&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;security&#34;</span><span class=p>:</span> <span class=s2>&#34;tls&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;mux&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;enabled&#34;</span><span class=p>:</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;log&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;loglevel&#34;</span><span class=p>:</span> <span class=s2>&#34;none&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;access&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;error&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;dns&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;servers&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;localhost&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/v2ray/>V2ray</a>
+<a href=/tags/mtproto/>Mtproto</a></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>最后更新于 2025-12-25 17:34</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/airport-recommend/><div class=article-image><img src=/p/airport-recommend/cover.d3d508b6e590ad5a33cca8f56d23e576_hu_32776d4a5ae044e5.jpg width=250 height=150 loading=lazy alt="Featured image of post 机场/梯子推荐" data-key=airport-recommend data-hash="md5-09UItuWQrVozzKj1bSPldg=="></div><div class=article-details><h2 class=article-title>机场/梯子推荐</h2></div></a></article><article class=has-image><a href=/p/singbox-help-mobile/><div class=article-image><img src=/p/singbox-help-mobile/cover.83bac89a365137229733a99e5c6c3dec_hu_a024f0fab6b95261.png width=250 height=150 loading=lazy alt="Featured image of post 手把手教你科学上网 —— 手机篇（sing-box）" data-key=singbox-help-mobile data-hash="md5-g7rImjZRNyKXM6meXGw97A=="></div><div class=article-details><h2 class=article-title>手把手教你科学上网 —— 手机篇（sing-box）</h2></div></a></article><article class=has-image><a href=/p/netflix-help/><div class=article-image><img src=/p/netflix-help/cover.5f9e08cc6eded8a1225fa9feb9a994af_hu_75e6ee77e5f487e1.jpg width=250 height=150 loading=lazy alt="Featured image of post 境外流媒体观看简单指南" data-key=netflix-help data-hash="md5-X54IzG7e2KEiX6n+uamUrw=="></div><div class=article-details><h2 class=article-title>境外流媒体观看简单指南</h2></div></a></article><article class=has-image><a href=/p/fuck-gfw-vxlan/><div class=article-image><img src=/p/fuck-gfw-vxlan/cover.9102a487229287a5998e850cffb3e718_hu_fb7bde766f95a17f.png width=250 height=150 loading=lazy alt="Featured image of post Vxlan 是否能让 GFW 放松一点？Vxlan 搭建科学上网实验" data-key=fuck-gfw-vxlan data-hash="md5-kQKkhyKSh6WZjoUM/7PnGA=="></div><div class=article-details><h2 class=article-title>Vxlan 是否能让 GFW 放松一点？Vxlan 搭建科学上网实验</h2></div></a></article><article class=has-image><a href=/p/fuck-gfw/><div class=article-image><img src=/p/fuck-gfw/cover.b9c32f77b8ea66c3642ba377bfc06138_hu_22c56294ff13f5fc.jpg width=250 height=150 loading=lazy alt="Featured image of post AdGuardHome + mosdns + openclash 打造自由的家庭/办公室网络" data-key=fuck-gfw data-hash="md5-ucMvd7jqZsNkK6N3v8BhOA=="></div><div class=article-details><h2 class=article-title>AdGuardHome + mosdns + openclash 打造自由的家庭/办公室网络</h2></div></a></article></div></div></aside><script src=https://giscus.app/client.js data-repo=alecthw/alecthw.github.io data-repo-id=R_kgDOJYr3yg data-category=Announcements data-category-id=DIC_kwDOJYr3ys4CbogO data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=noborder_light data-lang=en data-loading crossorigin=anonymous async></script><script>function setGiscusTheme(e){let t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setConfig:{theme:e}}},"https://giscus.app")}(function(){addEventListener("message",t=>{if(event.origin!=="https://giscus.app")return;e()}),window.addEventListener("onColorSchemeChange",e);function e(){setGiscusTheme(document.documentElement.dataset.scheme==="light"?"noborder_light":"noborder_gray")}})()</script><footer class=site-footer><section class=copyright>&copy;
+2015 -
+2025 小甲哥の垃圾工厂</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.32.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><style>.markmap>svg{width:100%;height:300px}</style><script>window.markmap={autoLoader:{manual:!0,onReady(){const{autoLoader:e,builtInPlugins:t}=window.markmap;e.transformPlugins=t.filter(e=>e.name!=="prism")}}}</script><script src=https://cdn.jsdelivr.net/npm/markmap-autoloader></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/mhchem.min.js crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js crossorigin=anonymous onload=renderMathInElement(document.body,null)></script><script src=https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.min.js crossorigin=anonymous></script><script src=/js/main.min.beed1be94ebe04a73a3d983583046daf3fd8ac54857fa72d94a1e83c470d9eaf.js integrity="sha256-vu0b6U6+BKc6PZg1gwRtrz/YrFSFf6ctlKHoPEcNnq8=" crossorigin=anonymous></script></body></html>
