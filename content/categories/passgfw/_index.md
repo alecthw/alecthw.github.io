@@ -1,5 +1,5 @@
 ---
-title: 科学上网
-description: 科学上网原理、工具、配置指导等。
+title: AI 大模型
+description: AI 大模型学习，以及工具使用等。
 image:
 ---
