@@ -30,7 +30,7 @@ weight: 1
 
 | 🔥 | 个人需求 | 机场名称 | 机场特点 | 传送门 | 优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 高性价比，机场新王 | 寰宇云机场 | 老牌团队分裂新开的 AnyTLS 协议机场，专业的服务，极高的稳定性，性价比之王。 | [🚀直达](https://huanyuyunvip.com/#/register?code=nzwnfjmd) | 78 折：KY78 |
+| 🔥 | 高性价比，机场新王 | 寰宇云机场 | 老牌团队分裂新开的 AnyTLS 协议机场，专业的服务，极高的稳定性，性价比之王。 | [🚀直达](http://huanyuyunbest.com/#/register?code=nzwnfjmd) | 78 折：KY78 |
 | 🔥 | 老牌小众，稳定可靠 | 五树云机场 | 新兴机场，2.5G 速率，价格实惠，性价比高，值得一试 | [🚀直达](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) | 9折：2025s9 |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | 9 折：Christmas |
@@ -59,7 +59,7 @@ weight: 1
 
 开业大促全场 78 折：KY78
 
-官网：[👉链接🚀](https://huanyuyunvip.com/#/register?code=nzwnfjmd)
+官网：[👉链接🚀](http://huanyuyunbest.com/#/register?code=nzwnfjmd)
 
 协议：`AnyTLS`
 
