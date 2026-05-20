@@ -46,8 +46,9 @@ window.markmap = {
 
 {{ $jsMermaid := resources.Get "js/mermaid.js" | resources.ExecuteAsTemplate "js/mermaid.js" . -}}
 {{ $jsMarkmap := resources.Get "js/markmap.js" | resources.ExecuteAsTemplate "js/markmap.js" . -}}
+{{ $jsImageExpand := resources.Get "js/image-expand.js" -}}
 
-{{ $jsArray := slice $jsMarkmap -}}
+{{ $jsArray := slice $jsMarkmap $jsImageExpand -}}
 
 {{ if $needmermaid -}}
 {{ $jsArray = $jsArray | append $jsMermaid -}}
