@@ -1,0 +1,183 @@
+{{- /*
+  Airport recommendation card.
+
+  Params:
+    url         - primary URL (required)
+    url_label   - primary button label (default: "点我起飞，前往官网")
+    url2, url3  - optional mirror URLs
+    url2_label, url3_label - optional mirror labels (default: "镜像入口")
+    protocol    - protocol name(s)
+    sub         - subscription support text
+    sub_status  - "ok" | "no" | "warn" (default "ok")
+    app         - dedicated client text
+    app_status  - "ok" | "no" | "warn" (default "ok")
+
+  Inner content: one coupon or info line per row.
+    "desc | code"   -> coupon button (click to copy code)
+    "desc"          -> info line (no button)
+    "~~...~~"       -> expired/struck-through
+*/ -}}
+
+{{- $url := .Get "url" -}}
+{{- $urlLabel := .Get "url_label" | default "点我起飞，前往官网" -}}
+{{- $url2 := .Get "url2" -}}
+{{- $url2Label := .Get "url2_label" | default "镜像入口" -}}
+{{- $url3 := .Get "url3" -}}
+{{- $url3Label := .Get "url3_label" | default "镜像入口" -}}
+{{- $protocol := .Get "protocol" -}}
+{{- $sub := .Get "sub" -}}
+{{- $subStatus := .Get "sub_status" | default "ok" -}}
+{{- $app := .Get "app" -}}
+{{- $appStatus := .Get "app_status" | default "ok" -}}
+
+{{- if not (.Page.Scratch.Get "airport-assets-loaded") -}}
+{{- .Page.Scratch.Set "airport-assets-loaded" true -}}
+<style>
+.airport-card{margin:1.8rem 0;border-radius:14px;background:var(--card-background,#fff);border:1px solid var(--card-separator-color,rgba(0,0,0,.08));box-shadow:0 2px 14px rgba(0,0,0,.06);overflow:hidden}
+.airport-rows{display:flex;flex-direction:column}
+.airport-row{padding:1rem 1.4rem;display:flex;flex-wrap:wrap;align-items:center;gap:.7rem}
+.airport-row+.airport-row{border-top:1px dashed var(--card-separator-color,rgba(0,0,0,.08))}
+.airport-info{padding:.85rem 1.4rem;background:linear-gradient(90deg,rgba(255,184,77,.18),rgba(255,184,77,.04));border-bottom:1px dashed rgba(240,160,64,.4);font-size:1.4rem;color:var(--card-text-color-main,#333);display:flex;align-items:center;gap:.55rem;line-height:1.5}
+.airport-info::before{content:"📣";flex:0 0 auto}
+.airport-coupon{position:relative;display:inline-flex;align-items:stretch;border:1.5px dashed #f0a040;background:linear-gradient(135deg,#fff7e6 0%,#ffe4cc 100%);border-radius:10px;overflow:hidden;cursor:pointer;font-family:inherit;font-size:1.4rem;padding:0;line-height:1.4;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+.airport-coupon:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(240,160,64,.32)}
+.airport-coupon-desc{padding:.5rem .85rem;color:#7a4500;font-weight:500;display:inline-flex;align-items:center;gap:.35rem}
+.airport-coupon-code{padding:.5rem 1rem;background:linear-gradient(135deg,#ff7a00 0%,#ff4d4d 100%);color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;letter-spacing:.06em;display:inline-flex;align-items:center;gap:.35rem}
+.airport-coupon-code::before{content:"📋";font-size:.9em;opacity:.9}
+.airport-coupon.expired{opacity:.5;cursor:not-allowed;text-decoration:line-through}
+.airport-coupon.expired:hover{transform:none;box-shadow:none}
+.airport-coupon-feedback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:600;font-size:1.35rem;opacity:0;transform:scale(.9);transition:opacity .2s ease,transform .2s ease;pointer-events:none;letter-spacing:.03em}
+.airport-coupon.copied .airport-coupon-feedback{opacity:1;transform:scale(1)}
+.airport-coupon.copied .airport-coupon-feedback::before{content:"✓ 已复制"}
+.airport-cta{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.6rem;background:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);color:#fff!important;text-decoration:none!important;font-weight:600;font-size:1.55rem;border-radius:10px;box-shadow:0 4px 14px rgba(37,99,235,.32);transition:transform .18s ease,box-shadow .18s ease;min-width:220px;border:none}
+.airport-cta:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(37,99,235,.42)}
+.airport-mirror{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.7rem 1.1rem;background:transparent;color:#2563eb!important;text-decoration:none!important;border:1.5px solid rgba(37,99,235,.45);border-radius:10px;font-weight:500;font-size:1.35rem;transition:background .15s ease,border-color .15s ease}
+.airport-mirror:hover{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.7)}
+.airport-protocol{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1rem;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.28);border-radius:999px;font-size:1.35rem;color:var(--card-text-color-secondary,#555);white-space:nowrap}
+.airport-protocol strong{font-weight:700;color:#7c3aed;letter-spacing:.02em}
+.airport-features{list-style:none!important;margin:0!important;padding:0!important;display:flex;flex-direction:column;gap:.45rem;width:100%}
+.airport-features li{display:flex;align-items:center;gap:.6rem;font-size:1.4rem;color:var(--card-text-color-main,#333);list-style:none;margin:0}
+.airport-features li::before{content:none!important}
+.airport-feature-icon{flex:0 0 1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-size:.95rem;font-weight:700;line-height:1}
+.airport-feature-icon.ok{background:#d4f4dd;color:#1e7e34}
+.airport-feature-icon.no{background:#fde2e1;color:#c0392b}
+.airport-feature-icon.warn{background:#fff4cf;color:#a07406}
+[data-scheme=dark] .airport-card{border-color:rgba(255,255,255,.08);box-shadow:0 2px 14px rgba(0,0,0,.28)}
+[data-scheme=dark] .airport-info{background:linear-gradient(90deg,rgba(255,184,77,.16),rgba(255,184,77,.02));border-bottom-color:rgba(240,160,64,.35);color:#ffd9a8}
+[data-scheme=dark] .airport-coupon{background:linear-gradient(135deg,#3a2a14 0%,#4a2e15 100%);border-color:#b87333}
+[data-scheme=dark] .airport-coupon-desc{color:#ffc78e}
+[data-scheme=dark] .airport-mirror{color:#a5b4fc!important;border-color:rgba(165,180,252,.45)}
+[data-scheme=dark] .airport-mirror:hover{background:rgba(165,180,252,.12);border-color:rgba(165,180,252,.7)}
+[data-scheme=dark] .airport-protocol{background:rgba(167,139,250,.14);border-color:rgba(167,139,250,.38)}
+[data-scheme=dark] .airport-protocol strong{color:#c4b5fd}
+[data-scheme=dark] .airport-feature-icon.ok{background:rgba(40,167,69,.25);color:#6dd58c}
+[data-scheme=dark] .airport-feature-icon.no{background:rgba(220,53,69,.25);color:#f48a8a}
+[data-scheme=dark] .airport-feature-icon.warn{background:rgba(240,180,30,.22);color:#ffd566}
+@media (max-width:580px){
+  .airport-row{padding:.9rem 1rem}
+  .airport-info{padding:.75rem 1rem;font-size:1.3rem}
+  .airport-coupon{font-size:1.3rem;width:100%;justify-content:space-between}
+  .airport-coupon-desc{flex:1 1 auto}
+  .airport-cta{width:100%;min-width:0;font-size:1.45rem}
+  .airport-mirror{flex:1 1 calc(50% - .35rem);font-size:1.25rem;padding:.6rem .8rem}
+  .airport-protocol{flex:1 1 100%;justify-content:center}
+}
+</style>
+<script>
+(function(){
+  if(window.__airportCopyBound)return;
+  window.__airportCopyBound=true;
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('.airport-coupon[data-code]');
+    if(!btn||btn.classList.contains('expired'))return;
+    var code=btn.getAttribute('data-code');
+    var done=function(){btn.classList.add('copied');setTimeout(function(){btn.classList.remove('copied');},1500);};
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+    }else{fallback(code,done);}
+  });
+  function fallback(text,cb){
+    var ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');cb();}catch(e){}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+{{- end -}}
+
+{{- /* Parse inner lines into coupon/info entries */ -}}
+{{- $inner := trim .Inner "\n\r \t" -}}
+{{- $entries := slice -}}
+{{- range $line := split $inner "\n" -}}
+  {{- $line = trim $line " \t\r" -}}
+  {{- if $line -}}
+    {{- $expired := false -}}
+    {{- if and (hasPrefix $line "~~") (hasSuffix $line "~~") -}}
+      {{- $expired = true -}}
+      {{- $line = trim (strings.TrimSuffix "~~" (strings.TrimPrefix "~~" $line)) " " -}}
+    {{- end -}}
+    {{- if in $line "|" -}}
+      {{- $parts := split $line "|" -}}
+      {{- $desc := trim (index $parts 0) " " -}}
+      {{- $code := trim (index $parts 1) " " -}}
+      {{- $entries = $entries | append (dict "type" "coupon" "desc" $desc "code" $code "expired" $expired) -}}
+    {{- else -}}
+      {{- $entries = $entries | append (dict "type" "info" "text" $line) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<div class="airport-card">
+  {{- /* Info banners */ -}}
+  {{- range $entries -}}
+    {{- if eq .type "info" -}}
+      <div class="airport-info">{{ .text }}</div>
+    {{- end -}}
+  {{- end -}}
+
+  <div class="airport-rows">
+    {{- /* Coupon row (if any) */ -}}
+    {{- $hasCoupon := false -}}
+    {{- range $entries -}}{{- if eq .type "coupon" -}}{{- $hasCoupon = true -}}{{- end -}}{{- end -}}
+    {{- if $hasCoupon }}
+    <div class="airport-row">
+      {{- range $entries -}}
+        {{- if eq .type "coupon" -}}
+          {{- if .expired -}}
+          <button type="button" class="airport-coupon expired" disabled aria-label="已过期的优惠码">
+            <span class="airport-coupon-desc">🏷️ {{ .desc }}</span>
+            <span class="airport-coupon-code">{{ .code }}</span>
+          </button>
+          {{- else -}}
+          <button type="button" class="airport-coupon" data-code="{{ .code }}" aria-label="复制优惠码 {{ .code }}">
+            <span class="airport-coupon-desc">🏷️ {{ .desc }}</span>
+            <span class="airport-coupon-code">{{ .code }}</span>
+            <span class="airport-coupon-feedback"></span>
+          </button>
+          {{- end -}}
+        {{- end -}}
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- /* Action row: main CTA + mirrors + protocol */ -}}
+    <div class="airport-row">
+      <a class="airport-cta" href="{{ $url }}" target="_blank" rel="noopener nofollow">🚀 {{ $urlLabel }}</a>
+      {{- with $url2 }}<a class="airport-mirror" href="{{ . }}" target="_blank" rel="noopener nofollow">🛰️ {{ $url2Label }}</a>{{ end -}}
+      {{- with $url3 }}<a class="airport-mirror" href="{{ . }}" target="_blank" rel="noopener nofollow">🛰️ {{ $url3Label }}</a>{{ end -}}
+      {{- with $protocol }}<span class="airport-protocol">协议 <strong>{{ . }}</strong></span>{{ end -}}
+    </div>
+
+    {{- /* Features row */ -}}
+    {{- if or $sub $app }}
+    <div class="airport-row">
+      <ul class="airport-features">
+        {{- with $sub }}<li><span class="airport-feature-icon {{ $subStatus }}">{{ if eq $subStatus "ok" }}✓{{ else if eq $subStatus "no" }}✕{{ else }}!{{ end }}</span>{{ . }}</li>{{ end }}
+        {{- with $app }}<li><span class="airport-feature-icon {{ $appStatus }}">{{ if eq $appStatus "ok" }}✓{{ else if eq $appStatus "no" }}✕{{ else }}!{{ end }}</span>{{ . }}</li>{{ end }}
+      </ul>
+    </div>
+    {{- end }}
+  </div>
+</div>
