@@ -15,8 +15,8 @@ tags:
   - ss
   - helloworld
   - tag
-  - chickenrun
-  - 小鸡快跑
+  - yuntu
+  - 云图
   - 机场
   - 梯子
   - 科学上网

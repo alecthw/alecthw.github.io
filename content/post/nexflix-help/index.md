@@ -13,8 +13,8 @@ tags:
   - prime vedio
   - 合租
   - tag
-  - chickenrun
-  - 小鸡快跑
+  - yuntu
+  - 云图
   - 机场
   - 梯子
   - 科学上网

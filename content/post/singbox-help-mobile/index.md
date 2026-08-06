@@ -11,8 +11,8 @@ tags:
   - singbox
   - gfw
   - tag
-  - chickenrun
-  - 小鸡快跑
+  - yuntu
+  - 云图
   - 机场
   - 梯子
   - 科学上网
@@ -22,7 +22,7 @@ tags:
 ## 手机科学上网需要些什么
 
 - 一部手机（废话）
-- 机场/梯子，术语叫代理、VPN，推荐购买 [五树云机场（原小米梯子）](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) 或 [小鸡快跑](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
+- 机场/梯子，术语叫代理、VPN，推荐购买 [云图机场](https://vip.ytjcok.org/#/register?code=dyGofOZw)
 - 客户端软件，文中使用 [sing-box](https://github.com/SagerNet/sing-box)
 
 打个比喻，客户端软件是车，机场/梯子是路，两个都有了才能跑。
@@ -38,11 +38,11 @@ tags:
 
 ### 1. 购买机场/梯子
 
-- 推荐购买：[五树云机场（原小米梯子）](https://xminb.xiaomiaff.cc/register.html?invitecode=DBQFuexi) 或 [小鸡快跑](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup)
+- 推荐购买：[云图机场](https://vip.ytjcok.org/#/register?code=dyGofOZw)
 
 其他机场可能需要**订阅转换**才能在 [sing-box](https://github.com/SagerNet/sing-box) 上使用。
 
-以下内容以 [小鸡快跑](https://ccv2.xiaojikp.pro/#/register?code=tqB3FCup) 为例。
+以下内容是以某机场为例，具体步骤大同小异。
 
 注册后，选择`购买订阅`购买，不同套餐一般都是流量不一样，按需购买。购买时间越长一般优惠越大，切合自己需求和经济能力购买。
 
