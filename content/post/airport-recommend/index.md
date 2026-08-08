@@ -36,8 +36,8 @@ weight: 1
 
 | 🔥 | 个人需求 | 机场名称 | 机场特点 | 订阅链接 | 传送门 | 优惠码 |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 日常主力，稳定省心 | 云图机场 | 全程金融级跨境专线，三网入口优化；全线节点统一 1 倍率，不玩倍率陷阱。晚高峰依然低延迟、零丢包，价格适中。 | ✅ | [🚀直达](https://vip.ytjcok.org/#/register?code=dyGofOZw) | 88折：yt88 |
-| 🔥 | 流量管够，开箱即用 | 寰宇云 | 八年行业经验的海外团队打造，直连 + 专线混合；套餐流量额度大方，流媒体与 AI 解锁齐全，全平台上手无门槛。 | ✅ | [🚀直达](http://huanyuyunbest.com/#/register?code=nzwnfjmd) | 85 折：HY888 |
+| 🔥 | 日常主力，稳定省心 | 云图机场 | 全程金融级跨境专线，三网双程优化；全线节点统一 1 倍率，不玩倍率陷阱。晚高峰依然低延迟、零丢包，价格适中。 | ✅ | [🚀直达](https://vip.ytjcok.org/#/register?code=dyGofOZw) | 88折：yt88 |
+| 🔥 | 流量管够，开箱即用 | 寰宇云 | 八年行业经验的海外团队打造，直连 + 专线混合；套餐流量额度大方，流媒体与 AI 解锁齐全，全平台上手无门槛。 | ✅ | [🚀直达](http://hyy.52kok.cn/#/register?code=nzwnfjmd) | 85 折：HY888 |
 | 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | ✅ | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
 | 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | ✅ | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | 9 折：Christmas |
 
@@ -117,7 +117,7 @@ weight: 1
 ### 🔥寰宇云机场 —— 大流量套餐，解锁全能
 
 {{< airport
-  url="http://huanyuyunbest.com/#/register?code=nzwnfjmd"
+  url="http://hyy.52kok.cn/#/register?code=nzwnfjmd"
   protocol="AnyTLS"
   sub="支持订阅链接，可在小火箭等第三方客户端使用"
   sub_status="ok"
