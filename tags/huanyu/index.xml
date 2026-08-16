@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Huanyu on 小甲哥の垃圾工厂</title><link>https://alecthw.github.io/tags/huanyu/</link><description>Recent content in Huanyu on 小甲哥の垃圾工厂</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 16 Aug 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://alecthw.github.io/tags/huanyu/index.xml" rel="self" type="application/rss+xml"/><item><title>寰宇云机场怎么样？线路、套餐、解锁与优惠码</title><link>https://alecthw.github.io/p/airport-huanyu/</link><pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate><guid>https://alecthw.github.io/p/airport-huanyu/</guid><description>&lt;img src="https://alecthw.github.io/p/airport-huanyu/cover.jpg" alt="Featured image of post 寰宇云机场怎么样？线路、套餐、解锁与优惠码" /&gt;&lt;p&gt;寰宇云机场适合流量消耗较大、希望同时兼顾流媒体和 AI 服务、并且需要多平台使用的人。它采用 AnyTLS，线路由直连与专线混合组成，同时提供订阅链接和自研客户端。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;**测试结论：**寰宇云的优势是流量额度、解锁覆盖和上手门槛，适合看剧、下载或多设备使用。线路不是所有节点都采用同一种接入方式，购买前仍应在自己的运营商网络中进行月付测试。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="快速结论"&gt;快速结论
+&lt;/h2&gt;&lt;h3 id="适合谁"&gt;适合谁
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;经常观看流媒体或有较大下载流量&lt;/li&gt;
+&lt;li&gt;需要 ChatGPT、Gemini、Midjourney 等 AI 服务&lt;/li&gt;
+&lt;li&gt;同时使用手机、电脑、软路由等多个平台&lt;/li&gt;
+&lt;li&gt;希望既能用官方客户端，也能导入第三方客户端&lt;/li&gt;
+&lt;li&gt;除常用地区外，还需要部分东南亚或小众落地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="不适合谁"&gt;不适合谁
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;只想购买价格最低的备用机场&lt;/li&gt;
+&lt;li&gt;要求所有节点都是同一规格的纯专线&lt;/li&gt;
+&lt;li&gt;需要非常多的冷门国家和地区节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="套餐优惠码与入口"&gt;套餐、优惠码与入口
+&lt;/h2&gt;&lt;style&gt;
+.airport-card{margin:1.8rem 0;border-radius:14px;background:var(--card-background,#fff);border:1px solid var(--card-separator-color,rgba(0,0,0,.08));box-shadow:0 2px 14px rgba(0,0,0,.06);overflow:hidden}
+.airport-rows{display:flex;flex-direction:column}
+.airport-row{padding:1rem 1.4rem;display:flex;flex-wrap:wrap;align-items:center;gap:.7rem}
+.airport-row+.airport-row{border-top:1px dashed var(--card-separator-color,rgba(0,0,0,.08))}
+.airport-info{padding:.85rem 1.4rem;background:linear-gradient(90deg,rgba(255,184,77,.18),rgba(255,184,77,.04));border-bottom:1px dashed rgba(240,160,64,.4);font-size:1.4rem;color:var(--card-text-color-main,#333);display:flex;align-items:center;gap:.55rem;line-height:1.5}
+.airport-info::before{content:"📣";flex:0 0 auto}
+.airport-coupon{position:relative;display:inline-flex;align-items:stretch;border:1.5px dashed #f0a040;background:linear-gradient(135deg,#fff7e6 0%,#ffe4cc 100%);border-radius:10px;overflow:hidden;cursor:pointer;font-family:inherit;font-size:1.4rem;padding:0;line-height:1.4;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+.airport-coupon:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(240,160,64,.32)}
+.airport-coupon-desc{padding:.5rem .85rem;color:#7a4500;font-weight:500;display:inline-flex;align-items:center;gap:.35rem}
+.airport-coupon-code{padding:.5rem 1rem;background:linear-gradient(135deg,#ff7a00 0%,#ff4d4d 100%);color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;letter-spacing:.06em;display:inline-flex;align-items:center;gap:.35rem}
+.airport-coupon-code::before{content:"📋";font-size:.9em;opacity:.9}
+.airport-coupon.expired{opacity:.5;cursor:not-allowed;text-decoration:line-through}
+.airport-coupon.expired:hover{transform:none;box-shadow:none}
+.airport-coupon-feedback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:600;font-size:1.35rem;opacity:0;transform:scale(.9);transition:opacity .2s ease,transform .2s ease;pointer-events:none;letter-spacing:.03em}
+.airport-coupon.copied .airport-coupon-feedback{opacity:1;transform:scale(1)}
+.airport-coupon.copied .airport-coupon-feedback::before{content:"✓ 已复制"}
+.airport-cta{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.6rem;background:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);color:#fff!important;text-decoration:none!important;font-weight:600;font-size:1.55rem;border-radius:10px;box-shadow:0 4px 14px rgba(37,99,235,.32);transition:transform .18s ease,box-shadow .18s ease;min-width:220px;border:none}
+.airport-cta:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(37,99,235,.42)}
+.airport-mirror{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.7rem 1.1rem;background:transparent;color:#2563eb!important;text-decoration:none!important;border:1.5px solid rgba(37,99,235,.45);border-radius:10px;font-weight:500;font-size:1.35rem;transition:background .15s ease,border-color .15s ease}
+.airport-mirror:hover{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.7)}
+.airport-protocol{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1rem;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.28);border-radius:999px;font-size:1.35rem;color:var(--card-text-color-secondary,#555);white-space:nowrap}
+.airport-protocol strong{font-weight:700;color:#7c3aed;letter-spacing:.02em}
+.airport-features{list-style:none!important;margin:0!important;padding:0!important;display:flex;flex-direction:column;gap:.45rem;width:100%}
+.airport-features li{display:flex;align-items:center;gap:.6rem;font-size:1.4rem;color:var(--card-text-color-main,#333);list-style:none;margin:0}
+.airport-features li::before{content:none!important}
+.airport-feature-icon{flex:0 0 1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-size:.95rem;font-weight:700;line-height:1}
+.airport-feature-icon.ok{background:#d4f4dd;color:#1e7e34}
+.airport-feature-icon.no{background:#fde2e1;color:#c0392b}
+.airport-feature-icon.warn{background:#fff4cf;color:#a07406}
+[data-scheme=dark] .airport-card{border-color:rgba(255,255,255,.08);box-shadow:0 2px 14px rgba(0,0,0,.28)}
+[data-scheme=dark] .airport-info{background:linear-gradient(90deg,rgba(255,184,77,.16),rgba(255,184,77,.02));border-bottom-color:rgba(240,160,64,.35);color:#ffd9a8}
+[data-scheme=dark] .airport-coupon{background:linear-gradient(135deg,#3a2a14 0%,#4a2e15 100%);border-color:#b87333}
+[data-scheme=dark] .airport-coupon-desc{color:#ffc78e}
+[data-scheme=dark] .airport-mirror{color:#a5b4fc!important;border-color:rgba(165,180,252,.45)}
+[data-scheme=dark] .airport-mirror:hover{background:rgba(165,180,252,.12);border-color:rgba(165,180,252,.7)}
+[data-scheme=dark] .airport-protocol{background:rgba(167,139,250,.14);border-color:rgba(167,139,250,.38)}
+[data-scheme=dark] .airport-protocol strong{color:#c4b5fd}
+[data-scheme=dark] .airport-feature-icon.ok{background:rgba(40,167,69,.25);color:#6dd58c}
+[data-scheme=dark] .airport-feature-icon.no{background:rgba(220,53,69,.25);color:#f48a8a}
+[data-scheme=dark] .airport-feature-icon.warn{background:rgba(240,180,30,.22);color:#ffd566}
+@media (max-width:580px){
+.airport-row{padding:.9rem 1rem}
+.airport-info{padding:.75rem 1rem;font-size:1.3rem}
+.airport-coupon{font-size:1.3rem;width:100%;justify-content:space-between}
+.airport-coupon-desc{flex:1 1 auto}
+.airport-cta{width:100%;min-width:0;font-size:1.45rem}
+.airport-mirror{flex:1 1 calc(50% - .35rem);font-size:1.25rem;padding:.6rem .8rem}
+.airport-protocol{flex:1 1 100%;justify-content:center}
+}
+&lt;/style&gt;
+&lt;script&gt;
+(function(){
+if(window.__airportCopyBound)return;
+window.__airportCopyBound=true;
+document.addEventListener('click',function(e){
+var btn=e.target.closest('.airport-coupon[data-code]');
+if(!btn||btn.classList.contains('expired'))return;
+var code=btn.getAttribute('data-code');
+var done=function(){btn.classList.add('copied');setTimeout(function(){btn.classList.remove('copied');},1500);};
+if(navigator.clipboard&amp;&amp;window.isSecureContext){
+navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+}else{fallback(code,done);}
+});
+function fallback(text,cb){
+var ta=document.createElement('textarea');
+ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+document.body.appendChild(ta);ta.select();
+try{document.execCommand('copy');cb();}catch(e){}
+document.body.removeChild(ta);
+}
+})();
+&lt;/script&gt;&lt;div class="airport-card"&gt;&lt;div class="airport-rows"&gt;
+&lt;div class="airport-row"&gt;&lt;button type="button" class="airport-coupon" data-code="HY888" aria-label="复制优惠码 HY888"&gt;
+&lt;span class="airport-coupon-desc"&gt;🏷️ 线路升级大促 85 折&lt;/span&gt;
+&lt;span class="airport-coupon-code"&gt;HY888&lt;/span&gt;
+&lt;span class="airport-coupon-feedback"&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;/div&gt;&lt;div class="airport-row"&gt;
+&lt;a class="airport-cta" href="http://hyy.52kok.cn/#/register?code=nzwnfjmd" target="_blank" rel="sponsored nofollow noopener"&gt;🚀 点我起飞，前往官网&lt;/a&gt;&lt;span class="airport-protocol"&gt;协议 &lt;strong&gt;AnyTLS&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class="airport-row"&gt;
+&lt;ul class="airport-features"&gt;&lt;li&gt;&lt;span class="airport-feature-icon ok"&gt;✓&lt;/span&gt;支持订阅链接，可在小火箭等第三方客户端使用&lt;/li&gt;&lt;li&gt;&lt;span class="airport-feature-icon ok"&gt;✓&lt;/span&gt;提供专属客户端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;寰宇云提供一次性流量包和周期套餐，额度相对充足。流量较大的用户可以减少频繁查看余额的压力，但仍应比较套餐周期、节点倍率和实际可用线路，而不是只看标称流量。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-plan.avif"
+loading="lazy"
+alt="寰宇云机场套餐"
+&gt;&lt;/p&gt;
+&lt;h2 id="线路与节点覆盖"&gt;线路与节点覆盖
+&lt;/h2&gt;&lt;p&gt;寰宇云由有多年行业经验的海外团队运营，线路采用优质跨境路由、直连和专线混合方案。常用地区包括香港、日本、新加坡、美国和台湾，同时提供越南、土耳其、菲律宾、秘鲁等部分落地。&lt;/p&gt;
+&lt;p&gt;混合线路的好处是可以在价格、覆盖和稳定性之间取得平衡，但不同节点的质量可能不同。选择节点时应关注面板标注，并在晚高峰分别测试延迟、丢包和视频播放，而不是仅观察白天测速。&lt;/p&gt;
+&lt;p&gt;YouTube 测试结果：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-youtube.avif"
+loading="lazy"
+alt="寰宇云机场YouTube测速"
+&gt;&lt;/p&gt;
+&lt;p&gt;综合测速结果：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-speedtest.avif"
+loading="lazy"
+alt="寰宇云机场测速"
+&gt;&lt;/p&gt;
+&lt;h2 id="anytls-与客户端支持"&gt;AnyTLS 与客户端支持
+&lt;/h2&gt;&lt;p&gt;寰宇云使用 AnyTLS 协议。它同时提供通用订阅链接和自研客户端，iOS、Android、Windows、macOS 与软路由都有可选择的使用方式。&lt;/p&gt;
+&lt;p&gt;熟悉客户端的用户可以将订阅导入 Clash、Shadowrocket、Surge、Stash、v2rayN 等工具，自行配置分流；不熟悉规则的新用户可以使用官方客户端直接登录。第三方客户端兼容政策可能调整，购买前应确认当前说明。&lt;/p&gt;
+&lt;h2 id="流媒体和-ai-解锁"&gt;流媒体和 AI 解锁
+&lt;/h2&gt;&lt;p&gt;测试时，原生 IP 节点可以用于 Netflix、Disney+、HBO Max、Spotify 等流媒体，并支持 ChatGPT、Gemini、Midjourney 等 AI 服务。不同节点的解锁范围并不完全相同，应以节点名称和当时测试为准。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-media.avif"
+loading="lazy"
+alt="寰宇云机场流媒体解锁"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-ai.avif"
+loading="lazy"
+alt="寰宇云机场AI解锁"
+&gt;&lt;/p&gt;
+&lt;h2 id="优点与缺点"&gt;优点与缺点
+&lt;/h2&gt;&lt;h3 id="优点"&gt;优点
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;套餐流量额度较充足，适合视频和多设备使用&lt;/li&gt;
+&lt;li&gt;常用地区以外还有部分小众节点&lt;/li&gt;
+&lt;li&gt;流媒体和 AI 服务解锁覆盖较完整&lt;/li&gt;
+&lt;li&gt;同时支持订阅链接和官方客户端&lt;/li&gt;
+&lt;li&gt;一次性流量包和周期套餐选择灵活&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="缺点"&gt;缺点
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;直连与专线混合，不同节点的线路质量可能存在差异&lt;/li&gt;
+&lt;li&gt;解锁和晚高峰表现会受落地、地区及运营商影响&lt;/li&gt;
+&lt;li&gt;官网入口当前使用 HTTP，访问和提交信息时应确认页面安全状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="替代方案"&gt;替代方案
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;更看重统一 1 倍率和日常主力稳定性，可以查看&lt;a class="link" href="https://alecthw.github.io/p/airport-yuntu/" &gt;云图机场评测&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;更需要大量冷门地区和游戏节点，可以查看&lt;a class="link" href="https://alecthw.github.io/p/airport-tag/" &gt;TAG 机场评测&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;还不确定如何选择，可以返回&lt;a class="link" href="https://alecthw.github.io/p/airport-recommend/" &gt;机场推荐总榜&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="更新记录"&gt;更新记录
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;2026-08-16：从总榜拆分独立评测，补充线路类型、适用人群、解锁、优缺点和替代方案。&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
