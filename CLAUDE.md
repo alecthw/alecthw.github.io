@@ -36,7 +36,7 @@ Because the theme is a Go module, **never edit theme files directly** — they d
 
 - Place a file at the same relative path under [layouts/](layouts/) or [assets/](assets/) and Hugo Module mounts let it shadow the theme's version.
 - The theme exposes two intentional empty hooks that this repo uses heavily:
-  - [layouts/partials/head/custom.html](layouts/partials/head/custom.html) — extra `<head>` content (currently jQuery + optional Prism CSS).
+  - [layouts/partials/head/custom.html](layouts/partials/head/custom.html) — extra `<head>` content (currently optional Prism CSS).
   - [layouts/partials/footer/custom.html](layouts/partials/footer/custom.html).
 - [layouts/partials/scripts.html](layouts/partials/scripts.html) is a full override of the theme's script loader. It wires up KaTeX (+ mhchem), Mermaid, and Markmap based on `params.yaml` flags, then concatenates `assets/js/markmap.js` and `assets/js/mermaid.js` via Hugo Pipes (`resources.Concat` → `minify` → `fingerprint` in production).
 

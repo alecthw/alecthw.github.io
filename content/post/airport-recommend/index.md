@@ -1,78 +1,70 @@
 ---
-title: 机场/梯子推荐
-description: 根据个人长期以来的使用，给有相同需求的朋友点建议，希望在机场/梯子的选择上提供点帮助。
+title: 机场推荐：实测对比、价格与避坑建议
+description: 对比常用机场的价格、线路、晚高峰表现、第三方订阅、流媒体与 AI 解锁能力，并按使用需求给出选择建议。
 slug: airport-recommend
 date: 2026-08-07T09:24:13+08:00
+lastmod: 2026-08-16T00:00:00+08:00
 image: cover.jpg
 categories:
   - passgfw
 tags:
-  - gfw
-  - clash
-  - ss
-  - tag
-  - yuntu
-  - 云图
-  - huanyu
-  - 寰宇云
-  - quanqiu
-  - 全球云
-  - 机场
-  - 梯子
+  - 机场推荐
+  - 机场评测
   - 科学上网
-  - 翻墙
 weight: 1
 ---
 
 <!-- markdownlint-disable-file MD034 -->
 
-> **💡非常时期，不存在绝对稳定的机场，不同地区不同运营商都会存在差别，建议先月付测试，找到自己合适的再考虑年付。目前唯一稳定的方案是 CCN(po0/rfc) 自建节点，但是费用很高，后面单独出个教程。**
+> **💡非常时期不存在绝对稳定的机场。不同地区、运营商和时段的体验都会有差别，建议先月付测试，找到适合自己的再考虑长期套餐。需要更强可控性时，也可以考虑 CCN（po0/rfc）等自建方案，但成本会明显更高。**
 
-分类推荐，每种就推荐两三个，供有不同需求的人参考。
+本文根据个人使用记录、套餐信息和持续更新的测速结果整理。重点比较稳定性、价格、节点倍率、第三方客户端兼容性、流媒体与 AI 解锁，不单纯按测速峰值排名。
 
-> 是否支持订阅链接，意味着是否能够使用 Surge/Stash/Egern/ShadowRocket 等三方客户端。
+> **推广说明：**本文包含推广链接，购买不会增加你的费用。推广关系不改变优缺点判断；机场存在运营和线路风险，请优先月付并避免一次投入过多。
 
-💡极简总结（**优惠码适时更新，请关注：**）：
+## 快速选择
 
-| 🔥 | 个人需求 | 机场名称 | 机场特点 | 订阅链接 | 传送门 | 优惠码 |
-| ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 🔥 | 日常主力，稳定省心 | 云图机场 | 全程金融级跨境专线，三网双程优化；全线节点统一 1 倍率，不玩倍率陷阱。晚高峰依然低延迟、零丢包，价格适中。 | ✅ | [🚀直达](https://vip.ytjcok.org/#/register?code=dyGofOZw) | 75折：uufly |
-| 🔥 | 流量管够，开箱即用 | 寰宇云 | 八年行业经验的海外团队打造，直连 + 专线混合；套餐流量额度大方，流媒体与 AI 解锁齐全，全平台上手无门槛。 | ✅ | [🚀直达](http://hyy.52kok.cn/#/register?code=nzwnfjmd) | 85 折：HY888 |
-| 🔥 | 尝鲜偶用，预算较低 | 一元机场 | 一个月不到 1 块钱，老牌廉价机场，推荐作为备用防失联 | ✅ | [🚀直达](https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU) | - |
-| 🔥 | 重度依赖，长期稳定 | TAG | 全球 250+ 节点、99+ 流媒体解锁，覆盖地区最广的机场，虽贵但好用 | ✅ | [🚀直达](https://558343.dedicated-afflink.com/#/auth/2neqgxFl) | 9 折：Christmas |
+| 使用需求 | 机场 | 主要特点 | 第三方订阅 | 详细评测 |
+| --- | --- | --- | --- | --- |
+| 日常主力，稳定省心 | 云图机场 | 金融级跨境专线，全线统一 1 倍率 | 支持 | [云图机场评测](/p/airport-yuntu/) |
+| 大流量与全平台使用 | 寰宇云 | 直连与专线混合，流媒体及 AI 解锁齐全 | 支持 | [寰宇云机场评测](/p/airport-huanyu/) |
+| 低价备用 | 一元机场 | 年付价格低，适合作为备用，晚高峰表现一般 | 支持 | 暂未发布 |
+| 入门专线 | 全球云 | IPLC / IEPL 专线，多地区节点 | 需联系客服获取 | 暂未发布 |
+| 轻量专线 | 极连云 | 三网接入与 IEPL 专线，提供轻量套餐 | 不支持 | 暂未发布 |
+| 中度使用 | 星岛梦 | IEPL 专线、无倍率，多地区覆盖 | 不支持 | 暂未发布 |
+| 性价比中转 | 光速云 | 隧道中转与高速专线，价格较低 | 不支持 | 暂未发布 |
+| 多地区与重度使用 | TAG | 节点地区覆盖广，流媒体与游戏节点丰富 | 支持 | [TAG 机场评测](/p/airport-tag/) |
+| 高预算稳定使用 | Nexitally | 老牌中转线路，晚高峰稳定，价格较高 | 支持 | 暂未发布 |
 
-当前首推**云图机场**：基于 AnyTLS 协议，金融级专线打底，全线节点统一 1 倍率，稳定不炸、账面清爽，同时支持订阅链接和自研客户端，闭眼入不亏。
+“支持第三方订阅”表示通常可以在 Shadowrocket、Surge、Stash、Egern、Quantumult X 等客户端中导入；实际兼容性仍以机场当前说明为准。
 
-**寰宇云机场**作为第二顺位同样值得一试，同为 AnyTLS，流媒体和 AI 解锁齐全，套餐流量额度给得大方，全平台上手也简单。要是嫌云图的套餐规格不合胃口，它是最省心的替代。
+## 怎么选择
 
----
+### 先看稳定性，而不是最高速度
 
-目录：
+测速截图反映的是特定时间、地区和运营商下的表现。对于长期使用，更值得关注的是晚高峰延迟、丢包、线路恢复速度和客服响应。建议先购买一个月，在自己的网络环境中测试。
 
-- [特别推荐](#特别推荐)
-  - [🔥云图机场 —— 金融级专线，性价比之王](#云图机场--金融级专线性价比之王)
-  - [🔥寰宇云机场 —— 大流量套餐，解锁全能](#寰宇云机场--大流量套餐解锁全能)
-- [轻度使用，入门尝鲜](#轻度使用入门尝鲜)
-  - [🔥一元机场 —— 廉价的不死神话](#一元机场--廉价的不死神话)
-  - [🔥全球云 —— IPLC/IEPL 专线](#全球云--iplciepl-专线)
-  - [🔥极连云机场 —— 三网手搓 BGP](#极连云机场--三网手搓-bgp)
-- [中度使用，聊天上网](#中度使用聊天上网)
-  - [🔥星岛梦 —— 高性价比新机场](#星岛梦--高性价比新机场)
-  - [🔥光速云 —— 中转优化](#光速云--中转优化)
-- [重度使用，稳定可靠](#重度使用稳定可靠)
-  - [🔥TAG —— 机场中的排头兵](#tag--机场中的排头兵)
-  - [🔥Nexitally —— 老牌机场佩奇家、奶昔](#nexitally--老牌机场佩奇家奶昔)
-- [最后](#最后)
+### 看清节点倍率和流量
 
----
+低价大流量不一定等于便宜。部分套餐在常用节点上按多倍流量扣除，应使用“可用流量 ÷ 节点倍率”比较。一次性流量包适合偶尔使用，周期套餐更适合持续使用。
+
+### 确认客户端限制
+
+只提供自有客户端的机场上手简单，但无法自由使用第三方客户端和自定义分流规则。需要软路由、Surge、Stash 或 Shadowrocket 的用户，应优先选择明确提供订阅链接的服务。
+
+### 流媒体和 AI 解锁会变化
+
+Netflix、Disney+、TikTok、ChatGPT、Gemini 等服务会持续调整风控。同一家机场的不同节点也可能有不同结果，因此这里只记录测试时的状态，不把“永久解锁”作为购买承诺。
 
 ## 特别推荐
 
-个人认为非常好用且性价比贼高的机场。
-
----
-
 ### 🔥云图机场 —— 金融级专线，性价比之王
+
+云图适合作为日常主力。全程金融级跨境专线，针对三网做双程优化；节点统一 1 倍率，账面比较清楚。它同时提供订阅链接和自研客户端，对希望使用 Shadowrocket、Surge、Stash 等第三方客户端的用户更友好。
+
+主要优点是晚高峰延迟和丢包表现稳定、常用地区资源集中、ChatGPT 与主流流媒体解锁较完整。需要注意的是，它更重视港、日、新、美、台等常用地区，而不是追求极多的冷门节点。
+
+[查看云图机场完整评测](/p/airport-yuntu/)
 
 {{< airport
   url="https://vip.ytjcok.org/#/register?code=dyGofOZw"
@@ -86,36 +78,15 @@ weight: 1
 大促 88 折 | yt88
 {{< /airport >}}
 
-特点：全程金融级跨境专线，三网双程优化，节点倍率统一 1 倍，主流地区精耕细作，晚高峰依然低延迟、零丢包。
-
-云图官方主打“金融级专线”，整条链路跑在高规格跨境专线上，并针对国内电信、联通、移动分别做了入口优化。和普通公网中转最直观的差别不在跑分数字，而在晚高峰那几个小时：延迟曲线平、基本不丢包，看剧不用等缓冲，开会也不会突然掉线。
-
-节点布局上，云图把资源集中在港、日、新、美、台这些最常用的地区，不追求把地图插满旗，而是把带宽都堆在了走量的几条路上。ChatGPT、Netflix、TikTok 等主流服务解锁得很干净，部分地区还给到原生 IP。
-
-计费是我最认可的一点：**全线节点统一 1 倍率**，不玩“低价套餐配 3 倍节点”的把戏，买多少流量就跑多少流量，账算得明明白白。套餐上一次性流量包和周期套餐都有，短期出差、临时出国可以只买一次性包，长期用再上年付，不用为了尝鲜先押一整年。
-
-在当前多数机场纷纷封端（不支持订阅链接，仅认自家客户端）的情况下，云图依然放开订阅链接，可在 ShadowRocket 小火箭、Surge、Stash、Quantumult X 等任意三方客户端中使用，规则和分流能自己完全接管——这点对老玩家很重要。懒得折腾的话官方客户端也有，登录即连。Telegram 群客服答复及时，有一线机场的眼界和服务水平。
-
-另外，这里有必要简单介绍下 AnyTLS。Reality 协议目前依然是行业标杆，拥有出色的稳定性。而新出现的 AnyTLS 可以说是 Reality 进化版，由 sing-box 团队开发并维护。AnyTLS 通过可自定义的 TLS Padding 机制增强流量的隐蔽性，检测难度更高，稳定性更强，同时保持良好的性能表现和广泛的兼容性。
-
-- 🌟 金融级专线｜全线高规格专线传输，三网入口优化，高峰期依然极速稳定
-- 🟢 计费透明｜节点倍率统一 1 倍，绝无高倍扣费陷阱，一次性包与周期套餐自由选
-- 🟢 解锁干净｜ChatGPT、Netflix、TikTok 等主流服务完美解锁，部分地区原生 IP
-- 🟢 客户端自由｜订阅链接与自研客户端双通，多设备同时在线，工单 24 小时内响应
-
-![云图机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/yuntu-plan.avif)
-
-测速如下：
-
-![云图机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/yuntu-speedtest.avif)
-
-流媒体解锁：
-
-![云图机场流媒体解锁](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/yuntu-media.avif)
-
 ---
 
 ### 🔥寰宇云机场 —— 大流量套餐，解锁全能
+
+寰宇云适合流量使用较多、希望开箱即用的人。线路采用直连与专线混合方案，覆盖常用地区以及部分小众落地，周期套餐和一次性流量包都有，流媒体与 AI 解锁面较完整。
+
+它同时提供订阅链接和自研客户端，Windows、macOS、iOS、Android 与软路由的适配比较灵活。选择前仍应确认所在运营商的晚高峰表现，并优先使用月付套餐测试。
+
+[查看寰宇云机场完整评测](/p/airport-huanyu/)
 
 {{< airport
   url="http://hyy.52kok.cn/#/register?code=nzwnfjmd"
@@ -128,51 +99,15 @@ weight: 1
 线路升级大促 85 折 | HY888
 {{< /airport >}}
 
-特点：八年行业经验的海外团队打造，直连 + 专线混合线路；套餐流量额度大方，流媒体与 AI 解锁齐全，全平台开箱即用。
-
-寰宇云同样基于 AnyTLS 协议（原理见上文云图部分），抗封锁能力和兼容性都不用操心。团队有八年行业经验打底，技术和服务都比较成熟，出问题时节点补得快、工单有人认真回，这点在真遇上事的那天才见真章。
-
-线路走的是优质跨境路由 + 精选高速节点，直连和专线混着搭，港、日、新、美、台常规区之外还有越南、土耳其、菲律宾、秘鲁几个落地。晚高峰能稳住，4K 视频秒开不转圈，日常够用有余。
-
-它最实在的地方是**流量给得足**。一次性流量包和周期套餐都有，额度比较大方，属于「买了不用天天盯着还剩多少」的那类，配合 85 折优惠码，到手价格相当能打。适合看剧、下载量大，不想为流量精打细算的人。
-
-解锁面也没有短板：原生 IP 节点对 Netflix、Disney+、HBO Max、Spotify 支持到位，ChatGPT、Gemini、Midjourney 这类 AI 服务能长期稳定访问，不会用两天就得手动换节点。
-
-上手门槛低是另一个加分项。订阅链接与自研客户端两条路都通，iOS / Android / Windows / macOS 到各类软路由都能接，Clash、Shadowrocket、Surge、v2rayN 一键导入订阅，完全没碰过这类工具的人也不至于卡在第一步。
-
-![寰宇云机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-plan.avif)
-
-Youtube 测速如下：
-
-![寰宇云机场YouTube测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-youtube.avif)
-
-测速如下：
-
-![寰宇云机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-speedtest.avif)
-
-流媒体解锁：
-
-![寰宇云机场流媒体解锁](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-media.avif)
-
-AI 解锁：
-
-![寰宇云机场流媒体解锁](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/huanyu-ai.avif)
-
----
-
 ## 轻度使用，入门尝鲜
 
-- **预算低**，舍不得在这方面大支出
-- 体验翻墙
-- 备用机场防失联
-- 海淘、谷歌
-- 偶尔看看 Youtube 等视频
-- Telegram 聊天
-- 基本没有速度和时延要求
-
----
+适合预算有限、首次体验、备用防失联、海淘、偶尔观看视频或使用 Telegram，对时延和速度没有很高要求的用户。
 
 ### 🔥一元机场 —— 廉价的不死神话
+
+一元机场的优势非常直接：价格低，适合作为备用线路。常用节点以香港、日本、美国和新加坡为主，部分节点可以解锁 Netflix、Disney+ 和 ChatGPT。
+
+它的晚高峰稳定性和线路质量不能与专线机场相比。传家宝套餐已经由原来的每月 500G 调整为每月 50G，购买前应重新核对当前套餐，不要只参考旧截图。
 
 {{< airport
   url="https://xn--4gq62f52gdss.ink/#/register?code=QFTTlbYU"
@@ -181,31 +116,20 @@ AI 解锁：
   sub_status="ok"
   app="提供专属客户端"
   app_status="ok"
->}}
-{{< /airport >}}
-
-特点：好几年了，竟然还活着，廉价的不死神话，流量高，速度还行，但是不太稳定。
-
-有点小名气的低价机场，主打的就是一个价格低。晚高峰会有点卡，稳定性也不算高，不过 12CNY/Year、20CNY/2Year 的价格要什么自行车，主要是速度也还行，解锁 Netflix 和 Disney+，美国节点解锁 ChatGPT。
-
-**注意:** 传家宝套餐由原来每月 `500G`，变成每月 `50G` 了，此时可以优先考虑[三分机场](#三分机场 —— 一天3分钱)了~~
-
-他家就买这个传家宝套餐就行了。至于俩稍微贵点的高流量套餐，可以拿来当二道贩子，封装个 APP 卖钱😜。
-
-![一元机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/onedollar-plan.avif)
-
-节点以香港、日本、美国、新加坡为主，偶尔会出现土耳其等特别的节点。
-
-![一元机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/onedollar-speedtest.avif)
+>}}{{< /airport >}}
 
 ---
 
 ### 🔥全球云 —— IPLC/IEPL 专线
 
+全球云采用企业级 IPLC / IEPL 专线，并结合负载均衡和三网入口优化。节点覆盖香港、日本、新加坡、美国、欧洲及部分东南亚地区，适合希望以入门价格体验专线的多设备用户。
+
+需要注意的是，它不能直接获取通用订阅地址，需要联系客服处理。依赖 Shadowrocket、Clash、V2Ray 或软路由的用户，应在付款前确认当前订阅政策。
+
 {{< airport
   url="https://kaelthw.gcvipaff.com/#/?code=515drxRl"
   protocol="VLESS"
-  sub="无法直接订阅地址，可以联系客服获取订阅地址"
+  sub="无法直接获取订阅地址，可以联系客服"
   sub_status="warn"
   app="提供专属客户端"
   app_status="ok"
@@ -213,31 +137,13 @@ AI 解锁：
 新人 8 折优惠码 | qq88
 {{< /airport >}}
 
-特点：全球云是一家专注提供出海专线加速与流媒体解锁服务的网络加速品牌。采用企业级 IPLC / IEPL 专线，并结合智能负载均衡与三网入口优化，尽量保障国内用户连接海外节点的速度与稳定性，晚高峰也有更好的表现。
-
-- 专线落地 + 高速解锁
-原生机房线路，稳定低延迟
-节点通常标示可解锁 Netflix / Disney+ / TikTok / ChatGPT 等（以节点标注为准）
-- 全球布局 + 多地区节点
-覆盖香港、日本、新加坡、美国、英国、德国、法国、韩国、马来西亚、泰国、越南、菲律宾、土耳其等
-60+ 节点，独立 IP 资源，带宽 3Gbps+，高峰冗余策略（参考 500Mbps 级别冗余）
-- 多平台支持 + 多设备同时用
-支持 Shadowrocket / Clash / V2Ray / Trojan 等主流客户端生态（以订阅 / 配置为准）
-适配 iOS / Android / Windows / macOS / 路由器
-同一账号可多端使用，适合家庭与多设备用户（以套餐规则为准）
-- 售后与维护
-支持提交工单与在线客服，响应快
-海外团队持续维护节点网络，优化稳定性与抗干扰能力
-
-![全球云机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/quanqiu-plan.avif)
-
-测速如下：
-
-![全球云机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/quanqiu-speedtest.avif)
-
 ---
 
 ### 🔥极连云机场 —— 三网手搓 BGP
+
+极连云通过广州电信、深圳移动和深圳联通三线接入，并搭配 IEPL 专线。轻量套餐适合用量不高、希望获得比普通直连更稳定体验的用户，节点标注了流媒体和 AI 解锁状态。
+
+它目前不支持通用订阅链接，只能使用自有客户端。这对新手较省事，但不适合依赖小火箭、Surge、Stash 或自定义分流的用户。
 
 {{< airport
   url="https://a01.jlyvipaff.cc/#/?code=tILdRY17"
@@ -250,28 +156,15 @@ AI 解锁：
 8 折优惠码 | JLY888
 {{< /airport >}}
 
-特点：广州电信 / 深圳移动 / 深圳联通三线接入（手搓 BGP）+IEPL 专线！！！新增 96 元 / 年 每月 60G 流量套餐，适合轻度用户（配合 8 折码更优惠）
-
-专线机场，由新加坡老牌运营团队操刀，线路配置上已经初具高端机场的雏形，三线接入给到了不同网络环境的优化，所有节点均标示可解锁流媒体（如 Netflix、Disney+、TikTok、ChatGPT 等）满足影音+办公双场景解锁，支持 Gemini 的节点也进行了标注，后续会持续优化节点解锁。背靠大厂资源专业性在线，保证线路稳定，八折优惠码已经附上。
-
-![极连云机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/hyperlink-plan.avif)
-
-测速如下：
-
-![极连云机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/hyperlink-speedtest.avif)
-
----
-
 ## 中度使用，聊天上网
 
-- **预算有限**，愿意适当的为科学上网付费
-- 时不时看看 Youtube、Netflix、Disney+ 等流媒体
-- Telegram 聊天，偶尔看看视频
-- 速度和时延不是特别敏感
-
----
+适合愿意为稳定性适当付费、经常观看 YouTube 或流媒体、使用 Telegram，但对极低时延和持续大带宽没有强依赖的用户。
 
 ### 🔥星岛梦 —— 高性价比新机场
+
+星岛梦采用 IEPL 专线，套餐无倍率、不限速，在合理使用范围内不限制设备数量。除常用地区外还覆盖东南亚、韩国和部分欧美地区，并提供不限时流量套餐。
+
+它不提供通用订阅链接，主要依赖自有客户端。机场成立时间和长期运营记录也应纳入风险判断，建议从短周期套餐开始。
 
 {{< airport
   url="https://kltw01.xdmvipaff.cc/#/register?code=O7VQztxS"
@@ -285,32 +178,21 @@ AI 解锁：
   app="提供专属客户端"
   app_status="ok"
 >}}
-开业最大优惠，新老用户、新开续费均可。长期有效。
 全场 88 折 | XDM888
-季付专属 88 折优惠卷 | JF88
-半年付专属 85 折优惠卷 | BN85
-年付专属 8 折优惠卷 | NF80
-两年付专属 7 折优惠卷 | LN70
-三年付专属 6 折优惠卷 | SN60
+季付 88 折 | JF88
+半年付 85 折 | BN85
+年付 8 折 | NF80
+两年付 7 折 | LN70
+三年付 6 折 | SN60
 {{< /airport >}}
-
-特点：新兴 IEPL 专线机场，专注于稳定流媒体验与跨境业务场景，高性价比机场，晚高峰速度稳定！
-
-IEPL 专线机场，基于高品质线路与 Trojan 等主流协议打造，专注于稳定流媒体验与跨境业务场景。全线支持解锁各大流媒体平台（如 Netflix、Disney+、YouTube 等）， 解锁 ChatGPT、Gemini 等 AI 服务 ，支持 TikTok 跨区，适合跨境电商、店群、直播运营、远程办公等高要求用户使用。
-
-套餐无倍率、不限速、不限制设备数量（合理使用前提），支持支付宝、USDT 多种付款方式。
-
-除港、台、日、美、新五大常规节点外，星岛梦还提供东南亚多国、韩国及多家欧美国家节点覆盖，价格亲民，月付低至 16 元起，还支持 1T 大流量永久不限时套餐，是专线圈中少见的高性价比选择。售后方面由多人客服团队轮流值班，配合海外技术团队长期维护，可视需求提供小火箭下载账号、TG 代注册等增值服务。
-
-![星岛梦机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/thundermouse-plan.avif)
-
-测速如下：
-
-![星岛梦机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/thundermouse-speedtest.avif)
 
 ---
 
 ### 🔥光速云 —— 中转优化
+
+光速云主打低价中转和高速专线，套餐价格较低，覆盖常用地区与部分东南亚、欧洲节点。原生 IP 节点可以用于 Netflix、TVB、TikTok 等流媒体，适合预算有限的中度用户。
+
+它同样不支持通用订阅链接，需要使用自有客户端。页面中的节点数量、带宽和解锁能力均可能随运营调整，购买前应以当前面板为准。
 
 {{< airport
   url="https://kaelthw.gsyaff.com/#/?code=Hdf63iSY"
@@ -323,35 +205,17 @@ IEPL 专线机场，基于高品质线路与 Trojan 等主流协议打造，专�
 8 折优惠码 | AMM
 {{< /airport >}}
 
-特点：定价实惠便宜机场梯子工具，月付17元110G，极具性价比，最低可至0.15元/GB。全部节点线路采用隧道中转优化及高速专线，可选择全球节点，提供最优质线路。
-
-节点数量完善至 60+ 独立 IP，带宽 2GB 以上，高峰期冗余 500M。
-海外技术团队运营安全稳定不会跑路优质机场。
-原生 IP 所有套餐均支持 Netflix、TVB、TikTok 等国外流媒体解锁。
-支持提交工单、在线客服，响应快速，教程网站与软件完善；
-常用地区：香港|台湾|日本|新加坡|马来西亚|美国|韩国|越南|菲律宾|泰国|德国|法国|英国
-
-![光速云机场套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/lightspeed-plan.avif)
-
-测速如下：
-
-![光速云机场测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/lightspeed-speedtest.avif)
-
----
-
 ## 重度使用，稳定可靠
 
-- **不在乎价格**
-- Netflix、Disney+ 等流媒体重度依赖
-- 长期看不能直连的 Emby 公益服
-- Telegram 上看视频
-- 办公强依赖
-- 追求**稳定性**
-- **高速**和***低时延***要求
-
----
+适合对流媒体、远程办公、Telegram 视频或海外服务有长期依赖，重视稳定性、低时延与晚高峰表现，并愿意承担较高费用的用户。
 
 ### 🔥TAG —— 机场中的排头兵
+
+TAG 的核心优势是地区覆盖范围。它拥有大量常规与冷门地区节点，并提供流媒体及游戏用途节点，适合需要切换不同国家或重度使用海外服务的人。
+
+价格较高是主要缺点。另一个重要限制是禁用 22 端口，会影响 Git SSH 等开发场景，开发者购买前需要确认替代连接方式。
+
+[查看 TAG 机场完整评测](/p/airport-tag/)
 
 {{< airport
   url="https://558343.dedicated-afflink.com/#/auth/2neqgxFl"
@@ -364,71 +228,32 @@ IEPL 专线机场，基于高品质线路与 Trojan 等主流协议打造，专�
 ~~9 折优惠码 | Christmas~~
 {{< /airport >}}
 
-特点：比较贵，节点覆盖面广，速度较快，稳定。有**游戏专用节点**，游戏加速效果不错。
-
-**特别提醒：该机场禁用了 22 端口，这点对开发者不太友好，尤其影响 Git SSH，如果你是开发者则慎重购买。**
-
-全球 250+ 节点、99+ 流媒体解锁，线路是全 BGP-IEPL 广港 + BGP-IEPL 沪日中转，全球 90+ 国家地区节点，**地区覆盖范围是最广的**，什么奇奇怪怪的国家地区都有，就连南极、美国星链也有。想象以下，发帖回帖，地区显示南极😁！
-
-同样的 Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是。
-
-他家有一个特别套餐，154CNY/Year，总共 200G 流量，用作备用防失联特别好，或者需要一些罕见地区的时候。
-
-![TAG特殊套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/tagss-plan-sp.avif)
-
-其他套餐价格如下：
-
-![TAG套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/tagss-plan.avif)
-
-电信测速，可以参考下。
-
-![TAG测速](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/tagss-speedtest.avif)
-
 ---
 
 ### 🔥Nexitally —— 老牌机场佩奇家、奶昔
+
+Nexitally 是价格较高的老牌中转机场，优势是晚高峰稳定、速度较快、长期运营记录较多。它提供订阅链接和自有客户端，Netflix、Disney+、ChatGPT 等常用服务在测试时可以正常使用。
+
+其主要缺点是价格高，并且官网在部分网络环境下可能无法直连访问。官方计划切换到 AnyTLS，购买前应确认当前协议和客户端兼容状态。
 
 {{< airport
   url="https://nxonearth.com/signupbyemail.aspx?MemberCode=5753cb7ae8b241a0bf7a55ae3330f8bc20210411040001"
   url2="https://naiixi.com/signupbyemail.aspx?MemberCode=5753cb7ae8b241a0bf7a55ae3330f8bc20210411040001"
   url2_label="备用入口"
-  protocol="AnyTLS / SS(日落) / Trojan(日落)"
+  protocol="AnyTLS / SS（日落）/ Trojan（日落）"
   sub="支持订阅链接，可在小火箭等第三方客户端使用"
   sub_status="ok"
   app="提供专属客户端"
   app_status="ok"
->}}
-{{< /airport >}}
-
-特点：昂贵，稳定，流量还行，速度快，晚高峰也稳定有速度。出问题的时候，也是自己把自己折腾挂了。
-
-2026年6月将全面切换到 AnyTLS 协议。
-
-官网打不开的话先挂个别的代理。
-
-[毒药](https://www.duyaoss.com/)推荐中的第一名，佩奇家中转线路的高端机场，稳定性和速度都非常错，价格高昂，但是对于追求稳定性的用户也还能接受。
-
-这也是我个人主要使用的，已经使用三年了，目前应该是第四年。
-
-Netflix、Disney+ 等流媒体，该解锁的都解锁了，ChatGPT 也是可以正常用的。
-
-有自己的傻瓜客户端，可以登录后一键连接。
-
-套餐情况：
-
-- Smart Access：每月 500G 流量，价格受汇率影响，约为 117CNY/Month，约 594CNY/Year，约 1102CNY/Year
-- Smart Access Air：每月 200G 流量，价格是 Smart Access 的一半多点，但是`限量提供，能不能买到看缘分，买到后可以一直续费`
-
-![Nexitally套餐](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/nexitally-plan.avif)
-
-毒药的电信测速，可以参考下。
-
-![Nexitally 测速（来自毒药）](https://raw.githubusercontent.com/alecthw/images/refs/heads/master/avif/nexitally-speedtest.avif)
-
----
+>}}{{< /airport >}}
 
 ## 最后
 
-对于刚接触科学上网的朋友，建议先买个廉价的梯子体验个把月，确认自己是否有科学上网的需求、以及科学上网的依赖度有多大，如果确实有需求再考虑换高价稳定的梯子。
+刚接触科学上网时，先购买低价月付或一次性套餐，确认需求和依赖程度，再决定是否升级到高价线路。即使长期使用，也建议准备不同运营方的备用方案，避免单一线路故障后完全失联。
 
-对于海淘的朋友，如果只看看商品不亲自购买，一元机场、三分机场这种完全够用，别信海淘群里那种倒卖的，说不定卖给你的就是这种。
+对于只浏览海外商品、偶尔搜索或低频聊天的人，低价线路通常已经够用；流媒体、远程办公和开发工作则更应该关注晚高峰表现、第三方客户端兼容性和端口限制，而不是只比较套餐流量。
+
+## 更新记录
+
+- 2026-08-16：总榜改为选购与横向对比页面，新增独立品牌评测入口，并补充客户端限制和推广说明。
+- 2026-08-14：更新云图、寰宇云等套餐和线路信息。

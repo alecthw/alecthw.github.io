@@ -164,9 +164,9 @@
 
     {{- /* Action row: main CTA + mirrors + protocol */ -}}
     <div class="airport-row">
-      <a class="airport-cta" href="{{ $url }}" target="_blank" rel="noopener nofollow">🚀 {{ $urlLabel }}</a>
-      {{- with $url2 }}<a class="airport-mirror" href="{{ . }}" target="_blank" rel="noopener nofollow">🛰️ {{ $url2Label }}</a>{{ end -}}
-      {{- with $url3 }}<a class="airport-mirror" href="{{ . }}" target="_blank" rel="noopener nofollow">🛰️ {{ $url3Label }}</a>{{ end -}}
+      <a class="airport-cta" href="{{ $url }}" target="_blank" rel="sponsored nofollow noopener">🚀 {{ $urlLabel }}</a>
+      {{- with $url2 }}<a class="airport-mirror" href="{{ . }}" target="_blank" rel="sponsored nofollow noopener">🛰️ {{ $url2Label }}</a>{{ end -}}
+      {{- with $url3 }}<a class="airport-mirror" href="{{ . }}" target="_blank" rel="sponsored nofollow noopener">🛰️ {{ $url3Label }}</a>{{ end -}}
       {{- with $protocol }}<span class="airport-protocol">协议 <strong>{{ . }}</strong></span>{{ end -}}
     </div>
 

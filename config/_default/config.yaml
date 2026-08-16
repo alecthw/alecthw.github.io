@@ -18,4 +18,4 @@ pagination:
   pagerSize: 5
 
 frontmatter:
-  lastmod: [":fileModTime", "lastmod"]
+  lastmod: ["lastmod", "date"]
