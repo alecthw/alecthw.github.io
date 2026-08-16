@@ -19,6 +19,8 @@ tags:
   - 翻墙
 ---
 
+> **本文已归档：**sing-box 的 iOS App Store 版本已停止更新。新用户请改看[Clash Mi 手机端教程](/p/clashmi-help-mobile/)，覆盖 iOS、Android、Windows 和 macOS。以下内容仅供仍在使用旧版 sing-box 的用户参考。
+
 ## 手机科学上网需要些什么
 
 - 一部手机（废话）

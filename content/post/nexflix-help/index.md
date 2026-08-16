@@ -33,7 +33,7 @@ Nextflix, Disney+ 和 Prime Vedio 是有中文字幕的，推荐在新加坡区�
 
 目前大部分机场，基本都解锁了 Nextflix，其他的流媒体不是都解锁，购买时请注意下说明。[机场推荐](/p/airport-recommend/)。
 
-手机科学上网教程可以参考：[手把手教你科学上网 —— 手机篇（sing-box）](/p/singbox-help-mobile/)
+手机科学上网教程可以参考：[手把手教你科学上网：Clash Mi 手机端教程](/p/clashmi-help-mobile/)
 
 路由器科学上网教程可以参考：[AGuardHome + mosdns + openclash 打造自由的家庭/办公室网络](/p/fuck-gfw/)
 
@@ -53,7 +53,7 @@ Nextflix 已经清退了大部分低价区用户，包括土区也无法使用�
 
 ### iOS
 
-iOS 是需要外区账号的，获取外区账号可以参考：[手把手教你科学上网/准备外区账号](/p/singbox-help-mobile/#准备苹果外区账号)。
+iOS 是需要非中国大陆地区 App Store 账号的，切换与安装注意事项可以参考：[Clash Mi 手机端教程](/p/clashmi-help-mobile/)。
 
 使用外区账号下载对应客户端，用购买的合租账号登录即可。
 
