@@ -4,6 +4,7 @@ description: 手机端的科学上网教程，完全傻瓜式，不解释任何�
 slug: singbox-help-mobile
 date: 2026-08-06T10:16:19+08:00
 image: cover.png
+draft: true
 categories:
   - passgfw
 tags:
